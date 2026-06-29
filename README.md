@@ -31,7 +31,7 @@ Current focus: **μP / muP**, **μTransfer**, and adjacent hyperparameter-transf
 | 4 | Depth scaling | [Tensor Programs VI: Feature Learning in Infinite-Depth Neural Networks](https://arxiv.org/abs/2310.02244) |
 | 5 | Practical caveat | [Quantifying Hyperparameter Transfer and the Importance of Embedding Layer Learning Rate](https://arxiv.org/abs/2605.21486) |
 
-For the full guide, including the current two-year μP paper sweep, see [μTransfer / μP Hyperparameter Transfer](docs/mup-transfer.md).
+For the full guide, including the current two-year μP paper sweep ordered by arXiv publication date, see [μTransfer / μP Hyperparameter Transfer](docs/mup-transfer.md).
 
 ## Scope
 
