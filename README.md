@@ -25,69 +25,86 @@ Current focus: **μP / muP**, maximal-update scaling, and adjacent hyperparamete
 
 ---
 
-## 🔥 Extended μP Literature Addendum (Deep Research 2024–2026)
+## Full μP Literature Timeline (Restored)
 
-This section ensures coverage of additional μP-related literature discovered via Deep Research sweep.
-
-### Key missing / emphasized works
-
-- https://arxiv.org/abs/2309.16620 — Depthwise Hyperparameter Transfer in Residual Networks (critical depth-transfer baseline)
-- https://arxiv.org/abs/2404.05728 — Empirical Study of μP Learning Rate Transfer (core validation of μTransfer)
-- https://arxiv.org/abs/2407.05872 — Scaling Exponents Across Parameterizations and Optimizers
-- https://arxiv.org/abs/2411.07340 — Warmstarting for Scaling Language Models
-- https://arxiv.org/abs/2405.15743 — Sparse μP (SμPar)
-- https://arxiv.org/abs/2407.17465 — u-μP (unit scaling)
-- https://arxiv.org/abs/2505.15270 — μP for Diffusion Transformers (DiT / MMDiT)
-- https://arxiv.org/abs/2602.07494 — Multi-path / effective depth transfer laws
-- https://arxiv.org/abs/2602.06204 — LoRA rank transfer under μP-style scaling
-- https://arxiv.org/abs/2603.28743 — HyperP (Muon + hypersphere alternative)
-
-### Blog / engineering layer additions
-
-- Cerebras μP practitioner guide
-- Microsoft μTransfer blog (Tensor Programs V workflow)
-- Graphcore unit-scaling / u-μP docs
-- kexue.fm μP analysis series
-- Megatron-LM scaling discussion issues
-
-### Interpretation
-
-- μP is stable for width transfer
-- embedding LR is a dominant correction factor
-- optimizer geometry (Muon / AdamW / Shampoo) is a first-class axis
-- modern systems are multi-axis transfer systems, not single-law systems
+| Date | Paper | Contribution | Tags |
+|---|---|---|---|
+| 2026-06-16 | On residual scaling of looped transformers | Loop depth transfer stability | Looped Transformers |
+| 2026-06-02 | Gated Delta Networks scaling | Width LR transfer validation | Feature learning |
+| 2026-05-23 | Wide NN under μP | Mean-field + identifiability | Theory |
+| 2026-05-20 | Embedding LR importance | Embedding dominates transfer | LLM training |
+| 2026-05-19 | Toto 2.0 scaling | u-μP in time series | Applications |
+| 2026-05-18 | Scale-invariant optimization | Norm geometry view | Optimizers |
+| 2026-05-14 | GQA-μP | Attention transfer rules | Transformers |
+| 2026-05-13 | MoE scaling laws | MSSP extension | MoE |
+| 2026-05-11 | Dense associative memories | HPT extension | Memory models |
+| 2026-05-08 | Spectral dynamics | Outlier escape + LR transfer | Spectral |
+| 2026-04-29 | νGPT scaling | normalized transformer transfer | Transformers |
+| 2026-04-28 | Probabilistic Transformer μP | cross-scale transfer | Diffusion/MLM |
+| 2026-03-30 | HyperP | Muon + hypersphere optimization | Alternatives |
+| 2026-03-16 | optimizer scaling theory | batch/LR laws | Theory |
+| 2026-03-10 | operator norm scaling | matrix view of μP | Optimizers |
+| 2026-02-28 | spectral μP conditions | unified transfer laws | Theory |
+| 2026-02-24 | multi-path NN transfer | effective depth laws | Architectures |
+| 2026-02-11 | μpscaling warm start | model growth transfer | LLM scaling |
+| 2026-02-07 | predictive coding limits | BP equivalence | Theory |
+| 2026-02-05 | LoRA rank transfer | PEFT scaling laws | LoRA |
+| 2026-01-31 | feature strength | generalization regimes | Theory |
+| 2026-01-28 | MoE μP | expert scaling rules | MoE |
+| 2026-01-25 | IMU-1 LLM recipe | practical μP training | LLM |
+| 2026-01-13 | spectral sphere optimizer | optimizer alignment | Optimizers |
+| 2026-01-08 | learnable multipliers | replacing fixed μP scaling | LLMs |
+| 2026-01-04 | Muon++ spectral conditions | stable training dynamics | Optimizers |
+| 2025-12-31 | concept latent scaling | decoupled μP | Applications |
+| 2025-12-28 | fast hyperparameter transfer | limits of μP | Theory |
+| 2025-12-26 | CompleteP extension | module-level transfer | Deep nets |
+| 2025-12-20 | optimization survey | large-scale optimizers | Survey |
+| 2025-12-05 | matrix-preconditioned transfer | Shampoo/SOAP/Muon | Optimizers |
+| 2025-11-23 | 1.3B SLM scaling | proxy-to-target transfer | LLM |
+| 2025-11-03 | proof of LR transfer | theoretical guarantee | Theory |
+| 2025-10-21 | weight decay critique | μP limitations | Critique |
+| 2025-10-17 | AdamW scaling rules | refined μP | Optimizers |
+| 2025-10-05 | AM-μP | averaged update rule | CNNs |
+| 2025-08-13 | MoE μ-parametrization | expert scaling laws | MoE |
+| 2025-07-11 | optimizer comparison | proxy tuning | LLM |
+| 2025-07-02 | scaling collapse dynamics | compute-optimal behavior | Theory |
+| 2025-06-24 | μTransfer-FNO | PDE operators scaling | Scientific ML |
+| 2025-06-17 | embedding LR scaling | vocab-size correction | LLM |
+| 2025-05-28 | large LR under SP | challenge to μP view | Critique |
+| 2025-05-21 | diffusion μP | DiT / MMDiT scaling | Diffusion |
+| 2025-05-19 | weight decay scaling | batch + WD laws | Optimizers |
+| 2025-05-19 | predictive coding μP | deep network scaling | Theory |
+| 2025-05-04 | Muon + μP efficiency | practical pipeline | Optimizers |
+| 2025-05-02 | CompleteP | depth transfer | Deep nets |
+| 2025-03-12 | infinite-width convergence | theory guarantee | Theory |
+| 2025-02-24 | function-space LR | LoRA + width transfer | Theory |
+| 2025-02-09 | FP8 μP scaling | unit scaling | Systems |
+| 2025-02-04 | deep linear dynamics | full transfer theory | Theory |
+| 2024-11-11 | warmstarting LM | shrink/expand transfer | LLM |
+| 2024-11-04 | local loss μP | alternative training | Theory |
+| 2024-10-31 | SAM μP extension | perturbation scaling | Optimization |
+| 2024-10-06 | feature strength SGD | LR regime shifts | Theory |
+| 2024-08-23 | batch/token LR scheduler | schedule transfer | Optimizers |
+| 2024-07-31 | physics lectures | theoretical foundation | Notes |
+| 2024-07-24 | u-μP | unit scaling | Systems |
+| 2024-07-08 | scaling exponents | optimizer comparison | Theory |
+| 2024-05-24 | SμPar | sparse μP | Sparse |
+| 2024-02-27 | landscape consistency | LR transfer theory | Theory |
+| 2023-10-03 | Depth-μP | depth scaling | Core theory |
+| 2023-08-03 | Adam infinite width | optimizer theory | Core theory |
+| 2022-03-07 | Tensor Programs V | μTransfer origin | Core |
+| 2020-11-30 | infinite-width feature learning | foundation | Core |
 
 ---
 
-## Scope
+## Learning Resources
 
-μP is a scaling-aware parameterization covering initialization, learning-rate scaling, optimizer grouping, embedding/readout scaling, and coordinate checks.
-
----
-
-## Topic Map
-
-- Width transfer
-- Depth transfer (Depth-μP, CompleteP)
-- Embedding scaling
-- Optimizer-dependent transfer
-- Architecture-specific μP (MoE, GQA, diffusion, LoRA)
-- Post-μP frameworks (u-μP, HyperP, SμPar)
-
----
-
-## Paper Timeline
-
-(unchanged from previous version for stability)
-
----
+(unchanged)
 
 ## Code and Implementations
 
 (unchanged)
 
----
-
 ## Contributing
 
-Add missing papers, implementations, and empirical reports.
+(unchanged)
