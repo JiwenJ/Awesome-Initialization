@@ -7,20 +7,42 @@ Snapshot: **2026-06-29**.
 
 This page focuses on μP as a practical tool for **cross-scale hyperparameter transfer**, especially learning-rate transfer in Transformers and related architectures.
 
-## One-paragraph summary
+## Contents
+
+- [Summary](#summary)
+- [Terminology](#terminology)
+- [Core reading path](#core-reading-path)
+- [Paper map](#paper-map)
+- [Implementation resources](#implementation-resources)
+- [Practical checklist](#practical-checklist)
+- [Known limitations and open questions](#known-limitations-and-open-questions)
+- [Search keywords](#search-keywords)
+
+## Summary
 
 Standard parameterization often makes the best learning rate, initialization scale, and sometimes weight decay change with width. μP changes the scaling rules so that hidden-layer updates stay maximally large but stable as width grows. In that parameterization, many useful hyperparameters become approximately width-invariant. This motivates μTransfer: run sweeps on a cheap small model, then reuse the selected hyperparameters on the expensive large model.
 
+| Axis | Practical question |
+|---|---|
+| Width | Does the tuned learning rate remain stable when hidden dimension grows? |
+| Depth | Does the transfer law survive deeper residual structure or multi-layer blocks? |
+| Parameter groups | Are embeddings, readouts, biases, norms, and hidden matrices scaled separately? |
+| Optimizer | Does the rule hold under AdamW, SGD, Muon, or constrained optimization? |
+| Data and schedule | Does changing batch size, token budget, warmup, or schedule length break transfer? |
+| Architecture | Does the model introduce GQA, MoE, LoRA, diffusion objectives, sparsity, or neural-operator axes? |
+
 ## Terminology
 
-- **SP** — standard parameterization, the usual finite-width training recipe.
-- **NTK / lazy limit** — scaling regime where very wide networks behave like kernels and do little feature learning.
-- **μP / muP** — maximal-update parameterization designed to preserve feature learning in the infinite-width limit.
-- **μTransfer / muTransfer** — zero-shot hyperparameter transfer enabled by μP.
-- **Coordinate check** — practical diagnostic: track activations / logits / update magnitudes across widths to confirm that the μP implementation scales correctly.
-- **Base model / delta model / target model** — common μP implementation pattern: define a base shape, a slightly wider delta shape, and the target shape to infer scaling multipliers.
+| Term | Meaning |
+|---|---|
+| SP | Standard parameterization, the usual finite-width training recipe. |
+| NTK / lazy limit | Scaling regime where very wide networks behave like kernels and do little feature learning. |
+| μP / muP | Maximal-update parameterization designed to preserve feature learning in the infinite-width limit. |
+| μTransfer / muTransfer | Zero-shot hyperparameter transfer enabled by μP. |
+| Coordinate check | Diagnostic that tracks activations, logits, gradients, or update magnitudes across widths to confirm that the μP implementation scales correctly. |
+| Base / delta / target model | Common implementation pattern: define a base shape, a slightly wider delta shape, and the target shape to infer scaling multipliers. |
 
-## Core reading path
+## Core Reading Path
 
 | Order | Resource | Why it matters |
 |---:|---|---|
@@ -30,7 +52,11 @@ Standard parameterization often makes the best learning rate, initialization sca
 | 4 | [Tensor Programs VI: Feature Learning in Infinite-Depth Neural Networks](https://arxiv.org/abs/2310.02244) | Introduces Depth-μP and discusses why depth transfer is harder than width transfer, especially for modern residual blocks. |
 | 5 | [Quantifying Hyperparameter Transfer and the Importance of Embedding Layer Learning Rate](https://arxiv.org/abs/2605.21486) | Recent critical analysis: proposes metrics for transfer quality and highlights embedding-layer learning rate as a key bottleneck in AdamW LM training. |
 
-## Foundational papers
+## Paper Map
+
+The table below keeps the collection organized by contribution type rather than by recency alone.
+
+### Foundational Papers
 
 | Year | Paper | Notes | Tags |
 |---:|---|---|---|
@@ -39,7 +65,7 @@ Standard parameterization often makes the best learning rate, initialization sca
 | 2023 | [Tensor Programs IVb: Adaptive Optimization in the Infinite-Width Limit](https://arxiv.org/abs/2308.01814) | Generalizes analysis beyond SGD to adaptive optimizers. | Adam, adaptive optimization |
 | 2023 | [Tensor Programs VI: Feature Learning in Infinite-Depth Neural Networks](https://arxiv.org/abs/2310.02244) | Studies depthwise parameterizations; proposes Depth-μP for single-layer residual blocks and discusses limitations for deeper blocks. | Depth-μP, ResNets, Transformers |
 
-## Recent papers and extensions
+### Recent Papers and Extensions
 
 | Year | Paper | Main contribution | Tags |
 |---:|---|---|---|
@@ -56,7 +82,7 @@ Standard parameterization often makes the best learning rate, initialization sca
 | 2026 | [GQA-μP: The maximal parameterization update for grouped query attention](https://arxiv.org/abs/2605.15290) | Derives μP scalings for grouped-query attention and studies transfer over GQA repetition and weight decay. | GQA, attention |
 | 2026 | [Quantifying Hyperparameter Transfer and the Importance of Embedding Layer Learning Rate](https://arxiv.org/abs/2605.21486) | Defines transfer-quality metrics and argues that embedding learning-rate scaling explains much of μP's practical AdamW benefit in LMs. | embedding LR, AdamW |
 
-## Implementation resources
+## Implementation Resources
 
 | Resource | Notes |
 |---|---|
@@ -65,7 +91,7 @@ Standard parameterization often makes the best learning rate, initialization sca
 | [EleutherAI/nanoGPT-mup/tree/supar](https://github.com/EleutherAI/nanoGPT-mup/tree/supar) | Minimal implementation for SμPar sparse maximal update parameterization. |
 | [microsoft/ArchScale](https://github.com/microsoft/ArchScale) | Released with HyperP / hypersphere optimization transfer work. |
 
-## Practical checklist for μTransfer experiments
+## Practical Checklist
 
 1. **Decide which axes transfer.** Classic μP targets width transfer. Depth, batch size, sequence length, token budget, sparsity, LoRA rank, GQA groups, and optimizer changes need additional rules or validation.
 2. **Use matched model families.** Keep architecture, tokenizer, data distribution, objective, optimizer, schedule shape, and normalization choices as close as possible between proxy and target.
@@ -76,7 +102,7 @@ Standard parameterization often makes the best learning rate, initialization sca
 7. **Watch embeddings.** Recent work suggests embedding-layer learning rate can dominate transfer quality in AdamW language-model training, so treat embeddings as first-class hyperparameters.
 8. **Document failures.** Failed transfer cases are useful: record which axis changed, which parameter groups were scaled, and which coordinate checks failed.
 
-## Known limitations and open questions
+## Known Limitations and Open Questions
 
 - **Width is better understood than depth.** Depth-μP works cleanly in restricted residual-block settings, but modern multi-layer blocks and Transformers introduce complications.
 - **Embedding and output layers are special.** Transfer can appear to fail because embeddings/readouts are not scaled or optimized consistently.
@@ -85,7 +111,7 @@ Standard parameterization often makes the best learning rate, initialization sca
 - **Architecture-specific derivations are often needed.** GQA, MoE, LoRA, sparsity, diffusion objectives, and neural operators all introduce extra scaling axes.
 - **Theory vs practice gap remains.** Recent empirical work questions whether the standard μP explanation fully accounts for AdamW LM transfer, especially around embeddings.
 
-## Search keywords
+## Search Keywords
 
 Use these when extending the list:
 
