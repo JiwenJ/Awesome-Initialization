@@ -6,19 +6,19 @@
 [![Scope](https://img.shields.io/badge/scope-initialization%20%7C%20scaling%20%7C%20transfer-2f6f9f)](#scope)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-2ea44f)](CONTRIBUTING.md)
 
-This repository tracks papers, implementation notes, and practical checklists for initialization and scaling recipes that make neural-network training more predictable across model sizes.
+This repository tracks papers, implementation notes, engineering reports, and practical checklists for initialization and scaling recipes that make neural-network training more predictable across model sizes.
 
-Current focus: **μP / muP**, **μTransfer**, and adjacent hyperparameter-transfer methods.
+Current focus: **μP / muP**, **μTransfer**, maximal-update scaling, and adjacent hyperparameter-transfer methods.
 
-> Snapshot: **2026-06-29**.
+> Snapshot: **2026-06-29**. The homepage now contains the full μP-related literature index collected so far.
 
 ## Contents
 
 - [Start here](#start-here)
 - [Scope](#scope)
 - [Topic map](#topic-map)
-- [Paper timeline](#paper-timeline)
-- [Learning resources and blogs](#learning-resources-and-blogs)
+- [Full μP literature index](#full-μp-literature-index)
+- [Learning resources, blogs, talks, and issues](#learning-resources-blogs-talks-and-issues)
 - [Code and implementations](#code-and-implementations)
 - [Repository layout](#repository-layout)
 - [Contributing](#contributing)
@@ -31,38 +31,38 @@ Current focus: **μP / muP**, **μTransfer**, and adjacent hyperparameter-transf
 | 2 | Core μTransfer recipe | [Tensor Programs V: Tuning Large Neural Networks via Zero-Shot Hyperparameter Transfer](https://arxiv.org/abs/2203.03466) |
 | 3 | Adaptive optimizers | [Tensor Programs IVb: Adaptive Optimization in the Infinite-Width Limit](https://arxiv.org/abs/2308.01814) |
 | 4 | Depth scaling | [Tensor Programs VI: Feature Learning in Infinite-Depth Neural Networks](https://arxiv.org/abs/2310.02244) |
-| 5 | Practical caveat | [Quantifying Hyperparameter Transfer and the Importance of Embedding Layer Learning Rate](https://arxiv.org/abs/2605.21486) |
+| 5 | Practical audit | [An Empirical Study of μP Learning Rate Transfer](https://arxiv.org/abs/2404.05728) |
+| 6 | Critical caveat | [Quantifying Hyperparameter Transfer and the Importance of Embedding Layer Learning Rate](https://arxiv.org/abs/2605.21486) |
 
-For the detailed guide and practical checklist, see [μTransfer / μP Hyperparameter Transfer](docs/mup-transfer.md).
+For detailed explanations and practical checklists, see [μTransfer / μP Hyperparameter Transfer](docs/mup-transfer.md), [μP Community & Engineering Layer](docs/mup-community.md), and [Post-2026 μP / μTransfer Synthesis](docs/mup-post2026.md).
 
 ## Scope
 
-μP is not just an initialization trick. It is a scaling-aware parameterization recipe covering initialization scales, learning-rate multipliers, readout and embedding treatment, and optimizer parameter groups. The practical goal of μTransfer is:
+μP is not just an initialization trick. It is a scaling-aware parameterization recipe covering initialization scales, learning-rate multipliers, readout and embedding treatment, optimizer parameter groups, and coordinate checks. The practical goal of μTransfer is:
 
 1. Convert the target architecture to μP.
 2. Tune key hyperparameters on a small proxy model.
 3. Transfer those hyperparameters to a much larger model without re-running the expensive sweep.
 
-The broader scope includes neural-network initialization, scaling limits, SP / NTK / mean-field parameterizations, coordinate checks, and empirical reports on when hyperparameter transfer succeeds or fails.
+The broader scope includes neural-network initialization, scaling limits, SP / NTK / mean-field parameterizations, coordinate checks, optimizer-specific transfer, depth scaling, sparsity, MoE, GQA, LoRA, diffusion Transformers, Fourier neural operators, and empirical reports on when hyperparameter transfer succeeds or fails.
 
 ## Topic Map
 
 | Topic | What to look for |
 |---|---|
-| Width transfer | Original μTransfer framing and practical Transformer results. |
-| Depth transfer | Depth-μP, effective-depth laws, and limits in modern residual blocks. |
-| Embedding / readout scaling | Cases where embedding-layer learning rate or output scaling controls transfer quality. |
-| Architecture-specific μP | GQA, diffusion Transformers, probabilistic Transformers, Fourier neural operators, sparse models, and LoRA. |
-| Optimizer-specific transfer | Adaptive optimizers, Muon / hypersphere optimization, and optimizer-dependent scaling rules. |
-| Schedule and data scaling | Token-budget, batch-size, warmup, and learning-rate schedule transfer. |
+| Width transfer | Original μTransfer framing, Transformer results, and proxy-to-target LR transfer. |
+| Depth transfer | Depth-μP, CompleteP, effective-depth laws, and limits in modern residual blocks. |
+| Embedding / readout scaling | Cases where embedding-layer LR or output scaling controls transfer quality. |
+| Architecture-specific μP | GQA, MoE, diffusion Transformers, probabilistic Transformers, Fourier neural operators, sparse models, DenseAM, predictive coding, and LoRA. |
+| Optimizer-specific transfer | AdamW, SGD, Muon, Shampoo, SOAP, Sophia, LAMB, hypersphere optimization, and spectral conditions. |
+| Schedule and data scaling | Token-budget, batch-size, warmup, duration, and learning-rate schedule transfer. |
+| Post-μP frameworks | u-μP, CompleteP, SμPar, HyperP, MSSP, μnit Scaling, μpscaling, and spectral-sphere methods. |
 
-## Paper Timeline
+## Full μP Literature Index
 
-The table is ordered by arXiv `published` date in reverse chronological order. The current two-year sweep covers papers from **2024-06-29 to 2026-06-29**; earlier rows are retained as foundational context.
+The table is ordered by publication / arXiv date in reverse chronological order. It includes core μP / maximal-update papers, closely related hyperparameter-transfer work, application reports that materially use μP-style scaling, and foundational context. Unrelated keyword hits such as particle-physics `μp` or generic non-ML uses are excluded.
 
-Coverage includes core μP / maximal-update papers, closely related hyperparameter-transfer work, and application reports that materially use μP-style scaling. Unrelated keyword hits such as particle-physics `μp` or generic non-ML uses are excluded.
-
-| Date | Paper | Main contribution | Tags |
+| Date | Paper / resource | Main contribution | Tags |
 |---|---|---|---|
 | 2026-06-16 | [On the Residual Scaling of Looped Transformers: Stability and Transferability](https://arxiv.org/abs/2606.18524) | Derives residual scaling for weight-tied looped Transformers so learning rates transfer across loop counts. | looped Transformers, residual scaling |
 | 2026-06-02 | [Unlocking Feature Learning in Gated Delta Networks at Scale](https://arxiv.org/abs/2606.04048) | Derives μP scaling rules for Gated Delta Networks and validates width learning-rate transfer under AdamW and SGD. | Gated Delta Networks, sequence models |
@@ -127,34 +127,51 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 | 2024-07-24 | [u-μP: The Unit-Scaled Maximal Update Parametrization](https://arxiv.org/abs/2407.17465) | Combines μP with Unit Scaling; aims for simpler defaults and low-precision / FP8-friendly training. | unit scaling, FP8 |
 | 2024-07-08 | [Scaling Exponents Across Parameterizations and Optimizers](https://arxiv.org/abs/2407.05872) | Large empirical/theoretical study of learning-rate scaling across optimizers and parameterizations; argues that transfer can occur beyond classical μP and highlights Adam epsilon scaling. | scaling exponents, optimizers |
 | 2024-05-24 | [Sparse maximal update parameterization: A holistic approach to sparse training dynamics](https://arxiv.org/abs/2405.15743) | SμPar extends maximal-update ideas to sparse neural networks and transfers hyperparameters across width and sparsity. | sparsity, SμPar |
+| 2024-04-08 | [An Empirical Study of μP Learning Rate Transfer](https://arxiv.org/abs/2404.05728) | Audits μP learning-rate transfer in transformer language models, documenting where proxy-to-target transfer works and where it degrades. | empirical μTransfer, LLMs |
 | 2024-02-27 | [Super Consistency of Neural Network Landscapes and Learning Rate Transfer](https://arxiv.org/abs/2402.17457) | Studies why learning-rate transfer can occur by analyzing Hessian sharpness and landscape consistency under μP-like feature-learning limits. | sharpness, landscape |
 | 2023-10-03 | [Tensor Programs VI: Feature Learning in Infinite-Depth Neural Networks](https://arxiv.org/abs/2310.02244) | Studies depthwise parameterizations; proposes Depth-μP for single-layer residual blocks and discusses limitations for deeper blocks. | Depth-μP, ResNets, Transformers |
-| 2023-08-03 | [Tensor Programs IVb: Adaptive Optimization in the Infinite-Width Limit](https://arxiv.org/abs/2308.01814) | Generalizes analysis beyond SGD to adaptive optimizers. | Adam, adaptive optimization |
+| 2023-09-29 | [Depthwise Hyperparameter Transfer in Residual Networks: Dynamics and Scaling Limit](https://arxiv.org/abs/2309.16620) | Combines residual-branch depth scaling with μP to transfer hyperparameters across width and depth in ResNets and ViTs. | depth transfer, residual networks |
+| 2023-08-03 | [Tensor Programs IVb: Adaptive Optimization in the Infinite-Width Limit](https://arxiv.org/abs/2308.01814) | Generalizes Tensor Programs analysis beyond SGD to adaptive optimizers. | Adam, adaptive optimization |
 | 2022-03-07 | [Tensor Programs V: Tuning Large Neural Networks via Zero-Shot Hyperparameter Transfer](https://arxiv.org/abs/2203.03466) | Introduces μTransfer; demonstrates transfer on Transformer and ResNet settings. | μP, μTransfer, LLMs |
 | 2020-11-30 | [Feature Learning in Infinite-Width Neural Networks](https://arxiv.org/abs/2011.14522) | Shows how non-kernel, feature-learning infinite-width limits can be obtained with Tensor Programs. | Tensor Programs, feature learning |
 
-## Learning Resources and Blogs
+## Learning Resources, Blogs, Talks, and Issues
 
-| Resource | Type | Notes |
+| Resource | Type | Why it matters |
 |---|---|---|
-| [The Practitioner's Guide to the Maximal Update Parameterization](https://www.cerebras.ai/blog/the-practitioners-guide-to-the-maximal-update-parameterization) | Guide / blog | Practical implementation guide linked by `EleutherAI/nanoGPT-mup`; useful for coordinate checks and small GPT experiments. |
-| [μTransfer: A technique for hyperparameter tuning of enormous neural networks](https://www.microsoft.com/en-us/research/blog/%C2%B5transfer-a-technique-for-hyperparameter-tuning-of-enormous-neural-networks/) | Blog | Microsoft Research explainer for μTransfer and the Tensor Programs V workflow. |
-| [francesco-innocenti/mup-papers](https://github.com/francesco-innocenti/mup-papers) | Curated list | Active community list of mean-field / maximal-update parameterisation papers, grouped by theory and extensions. |
+| [The Practitioner's Guide to the Maximal Update Parameterization](https://www.cerebras.ai/blog/the-practitioners-guide-to-the-maximal-update-parameterization) | Guide / blog | High-signal practical guide for coordinate checks, GPT-style μP experiments, and implementation pitfalls. |
+| [μTransfer: A technique for hyperparameter tuning of enormous neural networks](https://www.microsoft.com/en-us/research/blog/%C2%B5transfer-a-technique-for-hyperparameter-tuning-of-enormous-neural-networks/) | Blog | Microsoft Research explainer for the original Tensor Programs V / μTransfer workflow. |
+| [How To Scale](https://howtoscalenn.github.io/) | Technical blog / notes | Places μP alongside optimizer, weight-decay, batch-size, Muon, and scaling-law practice. |
 | [unit-scaling documentation](https://graphcore-research.github.io/unit-scaling) | Documentation | Docs and examples for the PyTorch unit-scaling library used by u-μP. |
+| [francesco-innocenti/mup-papers](https://github.com/francesco-innocenti/mup-papers) | Curated list | Community list of mean-field / maximal-update parameterisation papers grouped by theory and extensions. |
+| [MuP之上：1. 好模型的三个特征](https://kexue.fm/archives/11340) | Chinese blog | Chinese technical perspective on μP, scale stability, feature learning, and optimizer design. |
+| [Muon续集：为什么我们选择尝试Muon？](https://kexue.fm/archives/10739/comment-page-1?replyTo=27060) | Chinese blog | Discusses Muon and update-scale alignment, relevant to post-μP transfer thinking. |
+| [Muon blog by Keller Jordan](https://kellerjordan.github.io/posts/muon/) | Blog | Useful background for Muon-style optimizer geometry, which appears in HyperP and post-μP work. |
+| [SμPar talk](https://www.youtube.com/watch?v=TaiXBi7OCtY) | Talk / video | Short presentation on sparse maximal update parameterization. |
+| [CompleteP talk](https://www.youtube.com/watch?v=4q9F8ixNq9k) | Talk / video | Short presentation on CompleteP and deep Transformer transfer. |
+| [DiT-μP NeurIPS slides](https://neurips.cc/media/neurips-2025/Slides/117664.pdf) | Slides | Presentation material for scaling diffusion Transformers efficiently via μP. |
+| [NVIDIA Megatron-LM #1263](https://github.com/NVIDIA/Megatron-LM/issues/1263) | GitHub issue | Engineering discussion about layer-specific LR scaling during pretraining. |
+| [NVIDIA Megatron-LM #4088](https://github.com/nvidia/megatron-lm/issues/4088) | GitHub issue | Discussion prompt around hyperparameter transfer beyond μP. |
+| [graphcore/unit-scaling #73](https://github.com/graphcore-research/unit-scaling/issues/73) | GitHub issue | Implementation-level discussion of optimizer-dependent LR scaling in unit scaling / u-μP. |
+| [microsoft/mutransformers #5](https://github.com/microsoft/mutransformers/issues/5) | GitHub issue | Useful status signal for the older μP Transformer demo repository. |
 
 ## Code and Implementations
 
 | Resource | Related method | Notes |
 |---|---|---|
 | [microsoft/mup](https://github.com/microsoft/mup) | μP / μTransfer | Reference PyTorch implementation mentioned by Tensor Programs V. |
+| [microsoft/mutransformers](https://github.com/microsoft/mutransformers) | μP Transformers | Older Transformer demonstration repository for μTransfer ideas. |
 | [EleutherAI/nanoGPT-mup](https://github.com/EleutherAI/nanoGPT-mup) | μP for GPTs | Compact GPT-style implementation with marked μP changes, examples, and coordinate-check scripts. |
 | [EleutherAI/nanoGPT-mup/tree/supar](https://github.com/EleutherAI/nanoGPT-mup/tree/supar) | SμPar | Minimal implementation for sparse maximal update parameterization. |
 | [EleutherAI/nanoGPT-mup/tree/completep](https://github.com/EleutherAI/nanoGPT-mup/tree/completep) | CompleteP | Minimal implementation for CompleteP depth-wise transfer experiments. |
 | [graphcore-research/unit-scaling](https://github.com/graphcore-research/unit-scaling) | u-μP | PyTorch library for Unit-Scaled Maximal Update Parameterization. |
-| [LithiumDA/muTransfer-FNO](https://github.com/LithiumDA/muTransfer-FNO) | μTransfer-FNO | Official implementation for zero-shot hyperparameter transfer in Fourier Neural Operators. |
-| [muTransfer-FNO data](https://huggingface.co/datasets/LDA1020/muTransfer-FNO-data/tree/main) | μTransfer-FNO | Dataset release used by the μTransfer-FNO experiments. |
+| [ML-GSAI/Scaling-Diffusion-Transformers-muP](https://github.com/ML-GSAI/Scaling-Diffusion-Transformers-muP) | DiT-μP | Official implementation for scaling diffusion Transformers efficiently via μP. |
 | [ML-GSAI/Width-Depth-muP](https://github.com/ML-GSAI/Width-Depth-muP) | Width-depth μP | Official implementation for spectral conditions under joint width-depth scaling. |
+| [LithiumDA/muTransfer-FNO](https://github.com/LithiumDA/muTransfer-FNO) | μTransfer-FNO | Official implementation for zero-shot hyperparameter transfer in Fourier Neural Operators. |
+| [muTransfer-FNO data](https://huggingface.co/datasets/LDA1020/muTransfer-FNO-data/tree/main) | μTransfer-FNO | Dataset release used by μTransfer-FNO experiments. |
 | [microsoft/ArchScale](https://github.com/microsoft/ArchScale) | HyperP / architecture scaling | Codebase released with HyperP, SqrtGate, and MuonH scaling experiments. |
+| [yuxinma98/mupscaling](https://github.com/yuxinma98/mupscaling) | μpscaling | Implementation for principled warm starts and hyperparameter transfer when upscaling small models. |
+| [charliezchen/scaling-matrix-preconditioning](https://github.com/charliezchen/scaling-matrix-preconditioning) | Matrix-preconditioned HPT | Code for hyperparameter transfer with matrix-preconditioned optimizers. |
 | [Unakar/Spectral-Sphere-Optimizer](https://github.com/Unakar/Spectral-Sphere-Optimizer) | Spectral Sphere Optimizer | Official implementation for spectral-sphere μP-aligned optimization. |
 | [Unakar/Megatron-LM/tree/SSO_main](https://github.com/Unakar/Megatron-LM/tree/SSO_main) | Spectral Sphere Optimizer | Megatron-LM implementation branch for large-scale SSO experiments. |
 | [Melina-Jingting/mup-equinox](https://github.com/Melina-Jingting/mup-equinox) | JAX / Equinox μP | Lightweight community library bringing μP-style modules and base-shape utilities to Equinox. |
@@ -164,12 +181,14 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 | Path | Purpose |
 |---|---|
 | [docs/mup-transfer.md](docs/mup-transfer.md) | Main μP / μTransfer reading guide, paper timeline, resources, code links, and practical checklist. |
+| [docs/mup-community.md](docs/mup-community.md) | Community, engineering, GitHub issue, and practitioner layer. |
+| [docs/mup-post2026.md](docs/mup-post2026.md) | Post-μP synthesis: u-μP, CompleteP, SμPar, HyperP, optimizer geometry, and failure modes. |
 | [papers/mup-transfer.bib](papers/mup-transfer.bib) | BibTeX references for the μP / μTransfer collection. |
 | [papers/README.md](papers/README.md) | Notes on maintaining reference files. |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution scope and entry template. |
 
 ## Contributing
 
-Useful additions include papers, implementation notes, coordinate-check scripts, empirical transfer reports, and short writeups of failed transfer cases. Please include source links, arXiv IDs when available, and a one-sentence reason why the resource matters.
+Useful additions include papers, implementation notes, coordinate-check scripts, empirical transfer reports, blog posts, talks, issues, and short writeups of failed transfer cases. Please include source links, arXiv IDs when available, and a one-sentence reason why the resource matters.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the suggested format.
