@@ -3,7 +3,7 @@
 > μP = **Maximal Update Parametrization**.  
 > μTransfer = tune hyperparameters on a small μP proxy model and transfer them to a larger μP target model.
 
-Snapshot: **2026-07-03**. This page's full paper list contains **102** μP / μTransfer entries, with supplementary learning and implementation links below. The current two-year sweep covers papers from **2024-06-29 to 2026-06-29**; earlier rows are retained as foundational context.
+Snapshot: **2026-07-07**. This page's full paper list contains **103** μP / μTransfer entries, with supplementary learning and implementation links below. The current two-year sweep covers papers from **2024-07-07 to 2026-07-07**; earlier rows are retained as foundational context.
 
 This page focuses on μP as a practical tool for **cross-scale hyperparameter transfer**, especially learning-rate transfer in Transformers and related architectures.
 
@@ -30,7 +30,7 @@ Standard parameterization often makes the best learning rate, initialization sca
 | Parameter groups | Are embeddings, readouts, biases, norms, and hidden matrices scaled separately? |
 | Optimizer | Does the rule hold under AdamW, SGD, Muon, or constrained optimization? |
 | Data and schedule | Does changing batch size, token budget, warmup, or schedule length break transfer? |
-| Architecture | Does the model introduce GQA, MoE, LoRA, diffusion objectives, sparsity, or neural-operator axes? |
+| Architecture | Does the model introduce GNNs, GQA, MoE, LoRA, diffusion objectives, sparsity, or neural-operator axes? |
 
 ## Terminology
 
@@ -61,6 +61,7 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
+| 2026-07-06 | [Hyperparameter Transfer in Graph Neural Networks](https://arxiv.org/abs/2607.05017) | Develops transfer parameterizations for GNNs under SGD, Adam, and AdamW, yielding stable feature updates and learning-rate transfer across width and depth. | GNNs, transfer parameterization |
 | 2026-06-16 | [On the Residual Scaling of Looped Transformers: Stability and Transferability](https://arxiv.org/abs/2606.18524) | Derives residual scaling for weight-tied looped Transformers so learning rates transfer across loop counts. | looped Transformers, residual scaling |
 | 2026-06-16 | [Learning Rate Transfer and Feature Learning Across Depth for Constrained Spectral Optimizers: Complete Scion](https://openreview.net/forum?id=TGiJpGVPNA) | Extends CompleteP-style depth scaling to constrained spectral optimizers such as Scion, supporting width- and depth-wise learning-rate transfer. | Scion, depth transfer |
 | 2026-06-02 | [Unlocking Feature Learning in Gated Delta Networks at Scale](https://arxiv.org/abs/2606.04048) | Derives μP scaling rules for Gated Delta Networks and validates width learning-rate transfer under AdamW and SGD. | Gated Delta Networks, sequence models |
@@ -188,6 +189,8 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 | [EleutherAI/nanoGPT-mup/tree/supar](https://github.com/EleutherAI/nanoGPT-mup/tree/supar) | SμPar | Minimal implementation for sparse maximal update parameterization. |
 | [EleutherAI/nanoGPT-mup/tree/completep](https://github.com/EleutherAI/nanoGPT-mup/tree/completep) | CompleteP | Minimal implementation for CompleteP depth-wise transfer experiments. |
 | [graphcore-research/unit-scaling](https://github.com/graphcore-research/unit-scaling) | u-μP | PyTorch library for Unit-Scaled Maximal Update Parameterization. |
+| [DataDog/toto](https://github.com/DataDog/toto) | u-μP application | Official code for Toto 2.0, a time-series foundation-model family trained with a u-μP transfer pipeline. |
+| [Datadog/toto-20 checkpoints](https://huggingface.co/collections/Datadog/toto-20) | u-μP application | Released Toto 2.0 model checkpoints accompanying the u-μP scaling report. |
 | [LithiumDA/muTransfer-FNO](https://github.com/LithiumDA/muTransfer-FNO) | μTransfer-FNO | Official implementation for zero-shot hyperparameter transfer in Fourier Neural Operators. |
 | [muTransfer-FNO data](https://huggingface.co/datasets/LDA1020/muTransfer-FNO-data/tree/main) | μTransfer-FNO | Dataset release used by the μTransfer-FNO experiments. |
 | [cofe-ai/Mu-scaling](https://github.com/cofe-ai/Mu-scaling) | μScaling / nanoLM | Code for accurate loss prediction across scales using maximal update parametrization. |

@@ -10,7 +10,7 @@ This repository tracks papers, implementation notes, engineering reports, and pr
 
 Current focus: **μP / muP**, **μTransfer**, maximal-update scaling, and adjacent hyperparameter-transfer methods.
 
-> Snapshot: **2026-07-03**. README homepage full paper list contains **102** μP / μTransfer entries, with supplementary learning and implementation links below.
+> Snapshot: **2026-07-07**. README homepage full paper list contains **103** μP / μTransfer entries, with supplementary learning and implementation links below.
 
 ## Contents
 
@@ -53,7 +53,7 @@ This is especially relevant for large Transformers, diffusion Transformers, spar
 - **Width transfer for LLMs** — original μTransfer framing and practical Transformer results.
 - **Depth transfer** — Depth-μP, effective-depth laws, and limitations in modern multi-layer residual blocks.
 - **Embedding and readout scaling** — recent evidence that embedding-layer learning rate can dominate apparent μP gains in AdamW language-model training.
-- **Architecture-specific μP** — GQA-μP, diffusion Transformers, probabilistic Transformers, Fourier neural operators, MoE, LoRA, and sparse models.
+- **Architecture-specific μP** — GNNs, GQA-μP, diffusion Transformers, probabilistic Transformers, Fourier neural operators, MoE, LoRA, and sparse models.
 - **Training-system variants** — u-μP for unit-scaled / low-precision training, SμPar for sparse training, HyperP for hypersphere optimization with Muon, and matrix-preconditioned optimizer scaling.
 - **Schedule and data scaling** — combining μP with token-, batch-size-, weight-decay-, and learning-rate-schedule transfer.
 
@@ -62,18 +62,19 @@ This is especially relevant for large Transformers, diffusion Transformers, spar
 | Width transfer | Original μTransfer framing and practical Transformer results. |
 | Depth transfer | Depth-μP, effective-depth laws, and limits in modern residual blocks. |
 | Embedding / readout scaling | Cases where embedding-layer learning rate or output scaling controls transfer quality. |
-| Architecture-specific μP | GQA, diffusion Transformers, probabilistic Transformers, Fourier neural operators, sparse models, and LoRA. |
+| Architecture-specific μP | GNNs, GQA, diffusion Transformers, probabilistic Transformers, Fourier neural operators, sparse models, and LoRA. |
 | Optimizer-specific transfer | Adaptive optimizers, Muon / hypersphere optimization, and optimizer-dependent scaling rules. |
 | Schedule and data scaling | Token-budget, batch-size, warmup, and learning-rate schedule transfer. |
 
 ## Full Paper List
 
-The full paper list is shown directly on this README homepage. The table is ordered by arXiv `published` date, OpenReview public date, or venue date in reverse chronological order. The current two-year sweep covers papers from **2024-06-29 to 2026-06-29**; earlier rows are retained as foundational context.
+The full paper list is shown directly on this README homepage. The table is ordered by arXiv `published` date, OpenReview public date, or venue date in reverse chronological order. The current two-year sweep covers papers from **2024-07-07 to 2026-07-07**; earlier rows are retained as foundational context.
 
 Coverage includes core μP / maximal-update papers, closely related hyperparameter-transfer work, OpenReview / venue-only papers, and application reports that materially use μP-style scaling. Unrelated keyword hits such as particle-physics `μp` or generic non-ML uses are excluded.
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
+| 2026-07-06 | [Hyperparameter Transfer in Graph Neural Networks](https://arxiv.org/abs/2607.05017) | Develops transfer parameterizations for GNNs under SGD, Adam, and AdamW, yielding stable feature updates and learning-rate transfer across width and depth. | GNNs, transfer parameterization |
 | 2026-06-16 | [On the Residual Scaling of Looped Transformers: Stability and Transferability](https://arxiv.org/abs/2606.18524) | Derives residual scaling for weight-tied looped Transformers so learning rates transfer across loop counts. | looped Transformers, residual scaling |
 | 2026-06-16 | [Learning Rate Transfer and Feature Learning Across Depth for Constrained Spectral Optimizers: Complete Scion](https://openreview.net/forum?id=TGiJpGVPNA) | Extends CompleteP-style depth scaling to constrained spectral optimizers such as Scion, supporting width- and depth-wise learning-rate transfer. | Scion, depth transfer |
 | 2026-06-02 | [Unlocking Feature Learning in Gated Delta Networks at Scale](https://arxiv.org/abs/2606.04048) | Derives μP scaling rules for Gated Delta Networks and validates width learning-rate transfer under AdamW and SGD. | Gated Delta Networks, sequence models |
@@ -201,6 +202,8 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 | [EleutherAI/nanoGPT-mup/tree/supar](https://github.com/EleutherAI/nanoGPT-mup/tree/supar) | SμPar | Minimal implementation for sparse maximal update parameterization. |
 | [EleutherAI/nanoGPT-mup/tree/completep](https://github.com/EleutherAI/nanoGPT-mup/tree/completep) | CompleteP | Minimal implementation for CompleteP depth-wise transfer experiments. |
 | [graphcore-research/unit-scaling](https://github.com/graphcore-research/unit-scaling) | u-μP | PyTorch library for Unit-Scaled Maximal Update Parameterization. |
+| [DataDog/toto](https://github.com/DataDog/toto) | u-μP application | Official code for Toto 2.0, a time-series foundation-model family trained with a u-μP transfer pipeline. |
+| [Datadog/toto-20 checkpoints](https://huggingface.co/collections/Datadog/toto-20) | u-μP application | Released Toto 2.0 model checkpoints accompanying the u-μP scaling report. |
 | [LithiumDA/muTransfer-FNO](https://github.com/LithiumDA/muTransfer-FNO) | μTransfer-FNO | Official implementation for zero-shot hyperparameter transfer in Fourier Neural Operators. |
 | [muTransfer-FNO data](https://huggingface.co/datasets/LDA1020/muTransfer-FNO-data/tree/main) | μTransfer-FNO | Dataset release used by the μTransfer-FNO experiments. |
 | [cofe-ai/Mu-scaling](https://github.com/cofe-ai/Mu-scaling) | μScaling / nanoLM | Code for accurate loss prediction across scales using maximal update parametrization. |
