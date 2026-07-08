@@ -10,7 +10,7 @@ This repository tracks papers, implementation notes, engineering reports, and pr
 
 Current focus: **μP / muP**, **μTransfer**, maximal-update scaling, and adjacent hyperparameter-transfer methods.
 
-> Snapshot: **2026-07-07**. README homepage full paper list contains **103** μP / μTransfer entries, with supplementary learning and implementation links below.
+> Snapshot: **2026-07-08**. README homepage full paper list contains **106** μP / μTransfer entries, with supplementary learning and implementation links below.
 
 ## Contents
 
@@ -68,15 +68,17 @@ This is especially relevant for large Transformers, diffusion Transformers, spar
 
 ## Full Paper List
 
-The full paper list is shown directly on this README homepage. The table is ordered by arXiv `published` date, OpenReview public date, or venue date in reverse chronological order. The current two-year sweep covers papers from **2024-07-07 to 2026-07-07**; earlier rows are retained as foundational context.
+The full paper list is shown directly on this README homepage. The table is ordered by arXiv `published` date, OpenReview public date, or venue date in reverse chronological order. The current two-year sweep covers papers from **2024-07-08 to 2026-07-08**; earlier rows are retained as foundational context.
 
 Coverage includes core μP / maximal-update papers, closely related hyperparameter-transfer work, OpenReview / venue-only papers, and application reports that materially use μP-style scaling. Unrelated keyword hits such as particle-physics `μp` or generic non-ML uses are excluded.
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
 | 2026-07-06 | [Hyperparameter Transfer in Graph Neural Networks](https://arxiv.org/abs/2607.05017) | Develops transfer parameterizations for GNNs under SGD, Adam, and AdamW, yielding stable feature updates and learning-rate transfer across width and depth. | GNNs, transfer parameterization |
+| 2026-06-28 | [On the Nonlinearity of Learning Rate Scaling for LLM Training](https://arxiv.org/abs/2606.29158) | Shows optimal learning-rate scaling for GPT-style LMs is nonlinear in model/data scale and that effective learning rate plus data-scale extrapolation gives cleaner transfer. | LR scaling, effective LR |
 | 2026-06-16 | [On the Residual Scaling of Looped Transformers: Stability and Transferability](https://arxiv.org/abs/2606.18524) | Derives residual scaling for weight-tied looped Transformers so learning rates transfer across loop counts. | looped Transformers, residual scaling |
 | 2026-06-16 | [Learning Rate Transfer and Feature Learning Across Depth for Constrained Spectral Optimizers: Complete Scion](https://openreview.net/forum?id=TGiJpGVPNA) | Extends CompleteP-style depth scaling to constrained spectral optimizers such as Scion, supporting width- and depth-wise learning-rate transfer. | Scion, depth transfer |
+| 2026-06-15 | [Fantastic Pretraining Optimizers and Where to Find Them II: Hyperball Optimization](https://arxiv.org/abs/2606.16899) | Introduces Hyperball, an Adam/Muon wrapper fixing weight and update Frobenius norms, improving learning-rate transfer across width and depth. | Hyperball, Muon, LR transfer |
 | 2026-06-02 | [Unlocking Feature Learning in Gated Delta Networks at Scale](https://arxiv.org/abs/2606.04048) | Derives μP scaling rules for Gated Delta Networks and validates width learning-rate transfer under AdamW and SGD. | Gated Delta Networks, sequence models |
 | 2026-05-29 | [Why Routers Freeze: Infinite Width Learning Dynamics for Mixture of Experts](https://openreview.net/forum?id=AhwB471ARJ) | Uses Tensor Programs to show router saturation under standard parameterization and derives μP-MoE scaling for stable router dynamics. | MoE, routers, OpenReview |
 | 2026-05-29 | [Fast Learning Rate Transfer for Gradient Descent in Sketched Linear Regression](https://openreview.net/forum?id=WMHm9bkItE) | Analyzes Yang et al.-style hyperparameter transfer in a solvable sketched-linear model and proves fast learning-rate transfer regimes. | LR transfer, sketched linear regression |
@@ -174,6 +176,7 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 | 2023-04-14 | [nanoLM: an Affordable LLM Pre-training Benchmark via Accurate Loss Prediction across Scales](https://arxiv.org/abs/2304.06875) | Introduces μScaling, using μP to predict large-model pretraining loss from smaller counterparts. | μScaling, loss prediction |
 | 2023-04-06 | [Cerebras-GPT: Open Compute-Optimal Language Models Trained on the Cerebras Wafer-Scale Cluster](https://arxiv.org/abs/2304.03208) | Open LLM family and engineering report discussing μP as a way to improve scaling and pretraining efficiency. | application report, LLM |
 | 2022-10-10 | [Meta-Principled Family of Hyperparameter Scaling Strategies](https://arxiv.org/abs/2210.04909) | Derives a one-parameter family interpolating between NTK and mean-field / maximal-update hyperparameter scaling. | scaling strategies, theory |
+| 2022-05-26 | [A Framework for Overparameterized Learning](https://arxiv.org/abs/2205.13507) | Proves learning-rate transfer across widths in an overparameterized lazy-training framework, providing adjacent theory for width-scaling transfer. | overparameterization, LR transfer |
 | 2022-03-07 | [Tensor Programs V: Tuning Large Neural Networks via Zero-Shot Hyperparameter Transfer](https://arxiv.org/abs/2203.03466) | Introduces μTransfer; demonstrates transfer on Transformer and ResNet settings. | μP, μTransfer, LLMs |
 | 2021-10-29 | [Training Integrable Parameterizations of Deep Neural Networks in the Infinite-Width Limit](https://arxiv.org/abs/2110.15596) | Studies mean-field integrable parameterizations and shows one training method is equivalent to a modification of μP. | mean field, integrable parameterizations |
 | 2020-11-30 | [Feature Learning in Infinite-Width Neural Networks](https://arxiv.org/abs/2011.14522) | Shows how non-kernel, feature-learning infinite-width limits can be obtained with Tensor Programs. | Tensor Programs, feature learning |
