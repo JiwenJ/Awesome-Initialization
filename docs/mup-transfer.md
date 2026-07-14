@@ -3,7 +3,7 @@
 > μP = **Maximal Update Parametrization**.  
 > μTransfer = tune hyperparameters on a small μP proxy model and transfer them to a larger μP target model.
 
-Snapshot: **2026-07-10**. This page's full paper list contains **131** μP / μTransfer and closely related entries, with supplementary learning and implementation links below. The current two-year sweep covers papers from **2024-07-10 to 2026-07-10**; earlier rows are retained as foundational context.
+Snapshot: **2026-07-14**. This page's full paper list contains **131** μP / μTransfer and closely related entries, with supplementary learning and implementation links below. The current two-year sweep covers papers from **2024-07-14 to 2026-07-14**; earlier rows are retained as foundational context.
 
 This page focuses on μP as a practical tool for **cross-scale hyperparameter transfer**, especially learning-rate transfer in Transformers and related architectures.
 
@@ -58,6 +58,8 @@ Standard parameterization often makes the best learning rate, initialization sca
 The table is ordered by arXiv `published` date, OpenReview public date, or venue date in reverse chronological order, matching the style of `JiwenJ/Awesome-Optimizers`.
 
 Coverage includes core μP / maximal-update papers, closely related hyperparameter-transfer and token-horizon / schedule-scaling work, OpenReview / venue-only papers, and application reports that materially use μP-style scaling. Non-μP papers are included only when their main result directly addresses a transfer axis tracked here and are tagged as adjacent; unrelated keyword hits such as particle-physics `μp` or generic non-ML uses are excluded.
+
+The **2026-07-14** audit cross-checked arXiv searches for both spellings of maximal-update parameterization, μP / μTransfer, zero-shot hyperparameter transfer, hyperparameter transfer, and learning-rate transfer; OpenReview records; and the active `francesco-innocenti/mup-papers` index. Alternate arXiv, OpenReview, and venue records for the same work are collapsed into one entry.
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
@@ -198,8 +200,10 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 | Resource | Type | Notes |
 |---|---|---|
 | [The Practitioner's Guide to the Maximal Update Parameterization](https://www.cerebras.ai/blog/the-practitioners-guide-to-the-maximal-update-parameterization) | Guide / blog | Practical implementation guide linked by `EleutherAI/nanoGPT-mup`; useful for coordinate checks and small GPT experiments. |
+| [Train an LLM using Maximal Update Parameterization](https://training-api.cerebras.ai/en/latest/wsc/Model-zoo/tutorials/mup/mup_docs.html) | Documentation | End-to-end Cerebras guide to proxy-to-target μTransfer, base dimensions, initialization scaling, layer-wise learning-rate groups, supported models, and validation practice. |
 | [On infinitely wide neural networks that exhibit feature learning](https://www.microsoft.com/en-us/research/blog/on-infinitely-wide-neural-networks-that-exhibit-feature-learning/) | Research blog | Microsoft Research introduction to feature learning at infinite width and the original maximal-update construction. |
 | [μTransfer: A technique for hyperparameter tuning of enormous neural networks](https://www.microsoft.com/en-us/research/blog/%C2%B5transfer-a-technique-for-hyperparameter-tuning-of-enormous-neural-networks/) | Blog | Microsoft Research explainer for μTransfer and the Tensor Programs V workflow. |
+| [Greg Yang's Tensor Programs and μP reading guide](https://thegregyang.com/) | Author guide | First-author map of Tensor Programs IV–VI, μP / μTransfer papers and code, and a recommended entry point into the theory. |
 | [Infinite Widths (& Depths) Part III: The Maximal Update Parameterisation](https://francesco-innocenti.github.io/posts/2025/04/09/Infinite-Widths-%26-Depths-Part-III-The-Maximal-Update-Parameterisation/) | Researcher guide | Compact guide connecting width μP, Depth-μP, feature learning, and the main extensions. |
 | [Completed Hyperparameter Transfer across Modules, Width, Depth, Batch and Duration](https://machinelearning.apple.com/research/completed-hyperparameter) | Research page | Apple research page for Complete(d)P and transfer across width, depth, batch size, and duration. |
 | [Predictable Scale: Part I](https://step-law.github.io/) | Project / tool | Interactive project page for Step Law, including fitted optimal LR and batch-size scaling across model and data scales. |
@@ -210,6 +214,8 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 | [A Simple Guide to Maximal Update Parameterization](https://blog.speechmatics.com/mup) | Blog | Practitioner-oriented explanation of μP motivation, scaling intuition, and implementation details. |
 | [francesco-innocenti/mup-papers](https://github.com/francesco-innocenti/mup-papers) | Curated list | Active community list of mean-field / maximal-update parameterisation papers, grouped by theory and extensions. |
 | [unit-scaling documentation](https://graphcore-research.github.io/unit-scaling) | Documentation | Docs and examples for the PyTorch unit-scaling library used by u-μP. |
+| [Tensor Programs V / μTransfer talk](https://www.youtube.com/watch?v=z8-C42mAwBc) | Talk / video | Author talk linked from the official `microsoft/mup` repository, covering the transfer recipe, large-scale results, and theoretical motivation. |
+| [Renormalizing the optimal hyperparameters of a neural network](https://indico.cern.ch/event/1065458/contributions/4647081/) | Talk / slides | Greg Yang's concise μTransfer talk with a recording, 25-page slide deck, and effective-field-theory analogy. |
 | [Timothy Nguyen conversation on μP and Tensor Programs](https://www.youtube.com/watch?v=1aXOXHA7Jcw&t=2723s&ab_channel=TimothyNguyen) | Video | Long-form discussion touching Tensor Programs, μP, and scaling limits. |
 | [AutoML Seminar: scaling exponents across parameterisations](https://www.youtube.com/watch?v=CnAfD7aVzLg&ab_channel=AutoMLSeminars) | Talk | Seminar companion for scaling-exponent work across parameterizations and optimizers. |
 
@@ -217,8 +223,10 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 
 | Resource | Related method | Notes |
 |---|---|---|
-| [microsoft/mup](https://github.com/microsoft/mup) | μP / μTransfer | Reference PyTorch implementation mentioned by Tensor Programs V. |
-| [microsoft/mutransformers](https://github.com/microsoft/mutransformers) | μP Transformers | Microsoft implementation of common Hugging Face Transformer models in μP. |
+| [microsoft/mup](https://github.com/microsoft/mup) | μP / μTransfer | Reference PyTorch package with base-shape tooling, model and optimizer scaling, examples, and coordinate-check utilities. |
+| [microsoft/mutransformers](https://github.com/microsoft/mutransformers) | μP Transformers | Historical Microsoft demonstration for Hugging Face Transformer models; archived in June 2026 and based on Transformers 4.16.2. |
+| [Cerebras/modelzoo](https://github.com/Cerebras/modelzoo) | Cerebras μP / μTransfer | Active training stack with μP / µParam scaling and configurations for GPT-style and other supported model families. |
+| [NVIDIA Megatron Core μP configuration](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html) | Production LLM μP | Native `use_mup` support with base-width, embedding, output, and attention scaling in [Megatron-LM](https://github.com/NVIDIA/Megatron-LM). |
 | [zanussbaum/mup-tf](https://github.com/zanussbaum/mup-tf) | TensorFlow μP | Community TensorFlow implementation of maximal update parameterization. |
 | [EleutherAI/nanoGPT-mup](https://github.com/EleutherAI/nanoGPT-mup) | μP for GPTs | Compact GPT-style implementation with marked μP changes, examples, and coordinate-check scripts. |
 | [EleutherAI/nanoGPT-mup/tree/supar](https://github.com/EleutherAI/nanoGPT-mup/tree/supar) | SμPar | Minimal implementation for sparse maximal update parameterization. |
@@ -229,6 +237,8 @@ Coverage includes core μP / maximal-update papers, closely related hyperparamet
 | [LithiumDA/muTransfer-FNO](https://github.com/LithiumDA/muTransfer-FNO) | μTransfer-FNO | Official implementation for zero-shot hyperparameter transfer in Fourier Neural Operators. |
 | [muTransfer-FNO data](https://huggingface.co/datasets/LDA1020/muTransfer-FNO-data/tree/main) | μTransfer-FNO | Dataset release used by the μTransfer-FNO experiments. |
 | [cofe-ai/Mu-scaling](https://github.com/cofe-ai/Mu-scaling) | μScaling / nanoLM | Code for accurate loss prediction across scales using maximal update parametrization. |
+| [ML-GSAI/Scaling-Diffusion-Transformers-muP](https://github.com/ML-GSAI/Scaling-Diffusion-Transformers-muP) | Diffusion Transformer μP | Official NeurIPS 2025 implementation with DiT / PixArt coordinate checks, proxy-model sweeps, and transferred large-model learning rates. |
+| [GSAI-ML/DiT-muP checkpoints](https://huggingface.co/GSAI-ML/DiT-muP) | Diffusion Transformer μP | Released DiT-μP and PixArt-μP pretrained checkpoints accompanying the scaling study. |
 | [step-law/steplaw](https://github.com/step-law/steplaw) | Step Law | Official code, experiment records, checkpoints, and fitting tools for optimal LR and batch-size scaling laws. |
 | [ML-GSAI/Width-Depth-muP](https://github.com/ML-GSAI/Width-Depth-muP) | Width-depth μP | Official implementation for spectral conditions under joint width-depth scaling. |
 | [microsoft/ArchScale](https://github.com/microsoft/ArchScale) | HyperP / architecture scaling | Codebase released with HyperP, SqrtGate, and MuonH scaling experiments. |
