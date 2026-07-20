@@ -3,7 +3,7 @@
 > μP = **Maximal Update Parametrization**.  
 > μTransfer = tune hyperparameters on a small μP proxy model and transfer them to a larger μP target model.
 
-Snapshot: **2026-07-17**. This page's full paper list contains **162** μP / μTransfer and closely related entries, with supplementary learning and implementation links below. The current two-year sweep covers papers from **2024-07-17 to 2026-07-17**; earlier rows are retained as foundational context.
+Snapshot: **2026-07-20**. This page's full paper list contains **162** μP / μTransfer and closely related entries, with supplementary learning and implementation links below. The current two-year sweep covers papers from **2024-07-20 to 2026-07-20**; earlier rows are retained as foundational context.
 
 This page focuses on μP as a practical tool for **cross-scale hyperparameter transfer**, especially learning-rate transfer in Transformers and related architectures.
 
@@ -59,7 +59,7 @@ The table is ordered by arXiv `published` date, OpenReview public date, or venue
 
 Coverage includes core μP / maximal-update papers, closely related hyperparameter-transfer and token-horizon / schedule-scaling work, OpenReview / venue-only papers, and application reports that materially use μP-style scaling. Non-μP papers are included only when their main result directly addresses a transfer axis tracked here and are tagged as adjacent; unrelated keyword hits such as particle-physics `μp` or generic non-ML uses are excluded.
 
-The **2026-07-17** audit cross-checked exact and broad arXiv searches, recent-category sweeps, OpenReview and venue records, full-text application reports, official project and model pages, and the active `francesco-innocenti/mup-papers` index. Alternate arXiv, OpenReview, workshop, and venue records for the same work are collapsed into one entry.
+The **2026-07-20** audit cross-checked exact and broad arXiv searches, recent-category sweeps, OpenReview and venue records, full-text application reports, official project and model pages, and the active `francesco-innocenti/mup-papers` index. Alternate arXiv, OpenReview, workshop, and venue records for the same work are collapsed into one entry.
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|

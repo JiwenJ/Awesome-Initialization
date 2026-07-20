@@ -10,7 +10,7 @@ This repository tracks papers, implementation notes, engineering reports, and pr
 
 Current focus: **μP / muP**, **μTransfer**, maximal-update scaling, and adjacent hyperparameter-transfer methods.
 
-> Snapshot: **2026-07-17**. README homepage full paper list contains **162** μP / μTransfer and closely related entries, with supplementary learning and implementation links below.
+> Snapshot: **2026-07-20**. README homepage full paper list contains **162** μP / μTransfer and closely related entries, with supplementary learning and implementation links below.
 
 ## Contents
 
@@ -68,11 +68,11 @@ This is especially relevant for large Transformers, diffusion Transformers, spar
 
 ## Full Paper List
 
-The full paper list is shown directly on this README homepage. The table is ordered by arXiv `published` date, OpenReview public date, or venue date in reverse chronological order. The current two-year sweep covers papers from **2024-07-17 to 2026-07-17**; earlier rows are retained as foundational context.
+The full paper list is shown directly on this README homepage. The table is ordered by arXiv `published` date, OpenReview public date, or venue date in reverse chronological order. The current two-year sweep covers papers from **2024-07-20 to 2026-07-20**; earlier rows are retained as foundational context.
 
 Coverage includes core μP / maximal-update papers, closely related hyperparameter-transfer and token-horizon / schedule-scaling work, OpenReview / venue-only papers, and application reports that materially use μP-style scaling. Non-μP papers are included only when their main result directly addresses a transfer axis tracked here and are tagged as adjacent; unrelated keyword hits such as particle-physics `μp` or generic non-ML uses are excluded.
 
-The **2026-07-17** audit cross-checked exact and broad arXiv searches, recent-category sweeps, OpenReview and venue records, full-text application reports, official project and model pages, and the active `francesco-innocenti/mup-papers` index. Alternate arXiv, OpenReview, workshop, and venue records for the same work are collapsed into one entry.
+The **2026-07-20** audit cross-checked exact and broad arXiv searches, recent-category sweeps, OpenReview and venue records, full-text application reports, official project and model pages, and the active `francesco-innocenti/mup-papers` index. Alternate arXiv, OpenReview, workshop, and venue records for the same work are collapsed into one entry.
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
