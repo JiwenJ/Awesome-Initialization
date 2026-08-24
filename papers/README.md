@@ -13,5 +13,5 @@ This directory stores BibTeX files for the paper collections in this repository.
 - Keep citation keys stable after they are added.
 - Prefer arXiv or official publication URLs.
 - Preserve Greek-letter titles when the source title uses them.
-- Add the matching reading-guide entry in `docs/` when adding a new BibTeX item.
+- Keep every paper synchronized across the root `README.md`, `docs/mup-transfer.md`, and `mup-transfer.bib`; keep learning-resource and artifact rows mirrored between the two Markdown indexes.
 - Do not add generic initialization, optimizer, scaling-law, or hyperparameter-transfer papers unless μP is substantively used or analyzed.
