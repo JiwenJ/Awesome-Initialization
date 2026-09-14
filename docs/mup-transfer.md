@@ -3,9 +3,11 @@
 > μP = **Maximal Update Parametrization**.  
 > μTransfer = tune hyperparameters on a small μP proxy model and transfer them to a larger μP target model.
 
-Snapshot: **2026-09-14**. This page contains **160** directly relevant papers, plus **54** learning resources and **96** implementation / artifact links. The current search window covers **2024-08-25 to 2026-09-14**; earlier rows retain the direct theoretical lineage and historically important applications.
+Snapshot: **2026-09-14**. This page contains **161** directly relevant papers, plus **54** learning resources and **96** implementation / artifact links. The current search window covers **2024-08-25 to 2026-09-14**; earlier rows retain the direct theoretical lineage and historically important applications.
 
 This page focuses on μP as a practical tool for **cross-scale hyperparameter transfer**, especially learning-rate transfer in Transformers and related architectures.
+
+The companion [Hyperball guide](hyperball.md) covers AdamH/MuonH and related analyses beyond this page's μP scope. Its counts overlap only where works satisfy both collections' rules. The Hyperball audit also recovered MACRO's explicit μP width-transfer experiment, now indexed below.
 
 ## Contents
 
@@ -95,6 +97,7 @@ The **2026-09-14** audit recovered two application papers (ATLAS GN2 and token-l
 | 2026-05-11 | [Hyperparameter Transfer for Dense Associative Memories](https://arxiv.org/abs/2605.10164) | Extends μP-style maximal-update prescriptions to Dense Associative Memories with shared weights and sharp activations. | μP extension, DenseAM, HPT |
 | 2026-05-09 | [Sparse Layers are Critical to Scaling Looped Language Models](https://arxiv.org/abs/2605.09165) | Extends μP to shared loop blocks, MoE experts, routers, and unembeddings, then validates learning-rate transfer from width 128 to 1024 with tightly matched loss. | application report, looped Transformer, MoE, μP, width LR transfer, weight sharing |
 | 2026-05-08 | [Spectral Dynamics in Deep Networks: Feature Learning, Outlier Escape, and Learning Rate Transfer](https://arxiv.org/abs/2605.07870) | Tracks bulk and outlier spectral dynamics and shows μP yields width-consistent learning-rate transfer in deep linear settings. | spectral dynamics, theory |
+| 2026-05-06 | [Demystifying Manifold Constraints in LLM Pre-training](https://arxiv.org/abs/2605.04418) | Tests MACRO with μP-compatible initialization and constraint radii, finding consistent optimal learning rates across widths 256–2048 for both Frobenius and spectral variants. | μP, MACRO, width transfer, manifold constraints |
 | 2026-05-05 | [Nora: Normalized Orthogonal Row Alignment for Scalable Matrix Optimizer](https://arxiv.org/abs/2605.03769) | Derives Nora's η∝n^-1/2 rule from μP feature-update conditions; its 60M and 135M experiments tune each scale separately and therefore do not independently validate zero-shot LR transfer. | μP, Nora, Muon, width LR scaling, transfer caveat |
 | 2026-04-29 | [Learning Rate Transfer in Normalized Transformers](https://arxiv.org/abs/2604.27077) | Revisits μP for nGPT and proposes νGPT, enabling learning-rate transfer across width, depth, and token horizon. | nGPT, νGPT |
 | 2026-04-28 | [Scaling Probabilistic Transformer via Efficient Cross-Scale Hyperparameter Transfer](https://arxiv.org/abs/2604.25409) | Derives a probabilistic-Transformer-specific μP parameterization and validates cross-scale hyperparameter transfer in masked-language-model experiments. | μP extension, probabilistic Transformer, cross-scale HPT |

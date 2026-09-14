@@ -8,5 +8,6 @@
 - [ ] Added a one-sentence reason why each resource matters.
 - [ ] Updated BibTeX references when adding papers.
 - [ ] Checked for duplicate or already-covered entries.
-- [ ] Confirmed that μP / μTransfer is a substantive method, experiment, application, or object of analysis—not only a related-work mention.
-- [ ] Updated both `README.md` and `docs/mup-transfer.md` so their paper and resource tables remain identical.
+- [ ] Confirmed substantive μP / μTransfer relevance for the μP collection, or substantive Hyperball relevance for the dedicated Hyperball collection.
+- [ ] Mirrored changed tables between `README.md` and the applicable guide (`docs/mup-transfer.md` or `docs/hyperball.md`) and updated its paper bibliography.
+- [ ] Preserved citation keys for cross-listed works and distinguished direct papers from author resources and adjacent reading.
