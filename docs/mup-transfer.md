@@ -3,11 +3,11 @@
 > μP = **Maximal Update Parametrization**.  
 > μTransfer = tune hyperparameters on a small μP proxy model and transfer them to a larger μP target model.
 
-Snapshot: **2026-09-14**. This page contains **161** directly relevant papers, plus **54** learning resources and **96** implementation / artifact links. The current search window covers **2024-08-25 to 2026-09-14**; earlier rows retain the direct theoretical lineage and historically important applications.
+Snapshot: **2026-09-19**. This page contains **161** directly relevant papers, plus **54** learning resources and **96** implementation / artifact links. The current search window covers **2024-08-25 to 2026-09-19**; earlier rows retain the direct theoretical lineage and historically important applications.
 
 This page focuses on μP as a practical tool for **cross-scale hyperparameter transfer**, especially learning-rate transfer in Transformers and related architectures.
 
-The companion [Hyperball guide](hyperball.md) covers AdamH/MuonH and related analyses beyond this page's μP scope. Its counts overlap only where works satisfy both collections' rules. The Hyperball audit also recovered MACRO's explicit μP width-transfer experiment, now indexed below.
+The companion [Hyperball guide](hyperball.md) covers AdamH/MuonH and related analyses beyond this page's μP scope. The [scale-aware HPT guide](hyperparameter-transfer.md) covers complementary proxy-to-target methods that do not substantively use μP. Counts overlap only where works satisfy more than one collection's rules. The Hyperball audit also recovered MACRO's explicit μP width-transfer experiment, now indexed below.
 
 ## Contents
 
@@ -72,6 +72,8 @@ The **2026-08-25** completion audit found no new direct record released on Augus
 The **2026-09-05** incremental search cross-checked arXiv, OpenReview, venue records, author resources, and the community μP index. It added AK-Momentum (formerly DeltaMomentum; renamed on September 3) and the CCN 2025 SwiFT V2 extended abstract, plus experimental and teaching resources. New entries require primary-source μP derivations, coordinate checks, or explicit proxy-to-target transfer; related-work-only matches are excluded. This is a best-effort literature search through the snapshot date, not a claim that every unindexed or unpublished work has been found.
 
 The **2026-09-14** audit recovered two application papers (ATLAS GN2 and token-level data filtering), fourteen teaching / technical resources, and eight implementation links. It checked primary full texts, author code, venue records, and community-index gaps while preserving the substantive μP scope. See the [search audit](search-audit-2026-09-14.md) for evidence, date conventions, excluded general-HPT candidates, and unresolved records.
+
+The **2026-09-19** incremental audit found no new direct μP record after September 14. It promoted previously excluded non-μP scale-transfer work into the separate [scale-aware HPT collection](hyperparameter-transfer.md), preserving this timeline's stricter requirement that μP be a substantive method or object of analysis. See the [combined audit](hyperparameter-transfer-search-audit-2026-09-19.md).
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
@@ -368,7 +370,7 @@ The **2026-09-14** audit recovered two application papers (ATLAS GN2 and token-l
 | [nyuolab/OmniBioTE](https://github.com/nyuolab/OmniBioTE) | Biosequence μP application | Official code for multi-omic μP scaling with released [OmniBioTE weights](https://huggingface.co/WeiHua/OmniBioTE/tree/main). |
 | [OpenBMB/MiniCPM](https://github.com/OpenBMB/MiniCPM) | MiniCPM / MiniCPM4 applications | Official project and checkpoints for the original Model Wind Tunnel μP/Depth-μP transfer study and MiniCPM4's μP-backed ModelTunnel pipeline. |
 | [nikhilgsh/loraplus](https://github.com/nikhilgsh/loraplus) | LoRA+ / LoRA initialization | Author implementation shared by the LoRA+ and LoRA-initialization scaling papers. |
-| [modula-systems/modula](https://github.com/modula-systems/modula) | Modular Duality / μP | Official JAX implementation of the included operator-norm framework that unifies μP-style update scaling with modular optimization. |
+| [modula-systems/modula](https://github.com/modula-systems/modula) | Modular norm / Modular Duality / μP | Official JAX package accompanying Scalable Optimization in the Modular Norm and later modular-duality work; normalizes architecture-composed updates for width/depth LR transfer and relates that geometry to μP-style scaling. |
 | [lchizat/2025-hidden-width-deep-resnet](https://github.com/lchizat/2025-hidden-width-deep-resnet/) | Maximal local updates across width and depth | Official code reproducing the included Neural Mean ODE and joint depth–hidden-width maximal-update phase-diagram experiments. |
 | [lchizat/2022-wide-linear-NN](https://github.com/lchizat/2022-wide-linear-NN) | Deep linear networks under μP | Author-linked code for the included infinite-width μP gradient-flow and finite-width convergence experiments. |
 | [karl-hajjar/wide-networks](https://github.com/karl-hajjar/wide-networks) | Integrable parameterizations / μP | Paper-declared reproduction code for the included study of integrable infinite-width training and its modified-μP equivalence. |

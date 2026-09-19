@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping keep this list useful. The goal is a compact, evidence-backed index of work that directly studies **maximal-update parametrization (μP)** and **μTransfer**, with a dedicated companion collection on **Hyperball optimization**.
+Thanks for helping keep this list useful. The goal is a compact, evidence-backed index of work that directly studies **maximal-update parametrization (μP)** and **μTransfer**, with companion collections on **Hyperball optimization** and **scale-aware hyperparameter transfer**.
 
 ## Scope
 
@@ -20,7 +20,13 @@ The dedicated [Hyperball section](README.md#hyperball) and [guide](docs/hyperbal
 
 Count a formal paper once per collection. Treat the original author note, its living 2.1 / 2.2 versions, and the formal Hyperball paper as one research lineage; notes and talks belong in resources. State first-public dates and identify later versions when the relevant result was added. Distinguish author implementations, framework integrations, community experiments, and unverified artifacts.
 
-Keep the Hyperball paper, resource, and artifact tables identical between `README.md` and `docs/hyperball.md`, and synchronize its direct-paper table with `papers/hyperball.bib`. Keep the existing μP tables synchronized between `README.md` and `docs/mup-transfer.md`, with `papers/mup-transfer.bib` for its papers. A work included in both collections retains the same citation key and metadata; overlapping rows are not additional unique works.
+### Scale-Aware Hyperparameter-Transfer Collection
+
+The dedicated [scale-aware HPT section](README.md#scale-aware-hyperparameter-transfer) and [guide](docs/hyperparameter-transfer.md) accept work that transfers optimization hyperparameters from affordable proxy runs to larger or otherwise more expensive target runs. A direct paper must derive, estimate, validate, or falsify a rule over at least one stated scale axis, such as width, depth, parameters, model shape, tokens, compute, batch size, schedule length, sparsity, expert configuration, adaptation rank, or post-training scale.
+
+Cross-dataset AutoML transfer, ordinary transfer learning, neural architecture search, and performance-only scaling laws do not qualify unless the main text also contains a substantive optimization-hyperparameter rule. Theory-only work may qualify when it explicitly derives a scale-dependent optimum or invariant recipe and clearly states the model or optimizer setting. Describe narrow theory, embedded paper sections, and empirical fits at their demonstrated scope rather than as universal laws.
+
+Keep the Hyperball paper, resource, and artifact tables identical between `README.md` and `docs/hyperball.md`, and synchronize its direct-paper table with `papers/hyperball.bib`. Keep the existing μP tables synchronized between `README.md` and `docs/mup-transfer.md`, with `papers/mup-transfer.bib` for its papers. Keep the complementary HPT paper, resource, and artifact tables identical between `README.md` and `docs/hyperparameter-transfer.md`, and synchronize its direct-paper table with `papers/hyperparameter-transfer.bib`. Papers already counted by μP or Hyperball should be cross-linked from the HPT guide rather than duplicated in its bibliography. A work included in more than one strict collection retains the same citation key and metadata; overlapping rows are not additional unique works.
 
 ## Entry Format
 

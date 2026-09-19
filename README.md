@@ -1,14 +1,14 @@
 # Awesome μP
 
-> Curated, evidence-backed resources on maximal-update parametrization (μP), μTransfer, and Hyperball optimization.
+> Curated, evidence-backed resources on maximal-update parametrization (μP), μTransfer, Hyperball optimization, and scale-aware hyperparameter transfer.
 
 [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
 [![Scope](https://img.shields.io/badge/scope-%CE%BCP%20%7C%20%CE%BCTransfer%20%7C%20maximal%20updates-2f6f9f)](#why-mup-matters)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-2ea44f)](CONTRIBUTING.md)
 
-This repository tracks papers, implementations, engineering reports, and teaching material that directly derive, test, extend, criticize, or materially apply **μP / muP**, **μTransfer**, and maximal-update scaling. A dedicated [Hyperball section](#hyperball) covers the optimizer wrapper and its research lineage under the same evidence standards.
+This repository tracks papers, implementations, engineering reports, and teaching material that directly derive, test, extend, criticize, or materially apply **μP / muP**, **μTransfer**, and maximal-update scaling. Dedicated [Hyperball](#hyperball) and [scale-aware hyperparameter-transfer](#scale-aware-hyperparameter-transfer) sections cover complementary optimizer geometry and proxy-to-target scaling methods under the same evidence standards.
 
-> Snapshot: **2026-09-14**. The μP collection contains **161** directly relevant papers, plus **54** learning resources and **96** implementation / artifact links.
+> Snapshot: **2026-09-19**. The μP collection contains **161** directly relevant papers, plus **54** learning resources and **96** implementation / artifact links. The complementary HPT collection adds **17** direct papers outside the μP and Hyperball bibliographies.
 
 ## Contents
 
@@ -16,6 +16,7 @@ This repository tracks papers, implementations, engineering reports, and teachin
 - [Why μP matters](#why-mup-matters)
 - [Recent μP / μTransfer directions](#recent-mup--mutransfer-directions)
 - [Hyperball](#hyperball)
+- [Scale-aware hyperparameter transfer](#scale-aware-hyperparameter-transfer)
 - [Full paper list](#full-paper-list)
 - [Learning resources and blogs](#learning-resources-and-blogs)
 - [Implementations and artifacts](#implementations-and-artifacts)
@@ -65,11 +66,11 @@ The μP collection includes the direct Tensor Programs lineage, coordinate check
 
 ## Hyperball
 
-Dedicated collection on **Hyperball / AdamH / MuonH**, including the original method, transfer extensions, effective-learning-rate analyses, criticism, applications, and code. Snapshot: **2026-09-14**.
+Dedicated collection on **Hyperball / AdamH / MuonH**, including the original method, transfer extensions, effective-learning-rate analyses, criticism, applications, and code. Snapshot: **2026-09-19**.
 
 The collection contains **12 papers**, **16 learning resources / reports**, and **15 implementation / artifact entries**. Two papers (HyperP and MACRO) are also in the μP collection; collection totals overlap. MD Decoupling is explicitly labeled a related extension, and contextual readings below are outside the paper count.
 
-Read the [Hyperball guide](docs/hyperball.md) for the mechanism, reading path, related foundations, and evidence limits. See [BibTeX](papers/hyperball.bib) and the [search audit](docs/hyperball-search-audit-2026-09-14.md). The original 2025 author note and the formal 2026 paper belong to one research lineage; live notes and talks are resources, not extra papers.
+Read the [Hyperball guide](docs/hyperball.md) for the mechanism, reading path, related foundations, and evidence limits. See [BibTeX](papers/hyperball.bib), the [full search audit](docs/hyperball-search-audit-2026-09-14.md), and the [September 19 incremental audit](docs/hyperparameter-transfer-search-audit-2026-09-19.md). The original 2025 author note and the formal 2026 paper belong to one research lineage; live notes and talks are resources, not extra papers.
 
 ### Hyperball Papers
 
@@ -129,9 +130,73 @@ Read the [Hyperball guide](docs/hyperball.md) for the mechanism, reading path, r
 | [TitanPrecond](https://github.com/ErstinAn/titanprecond) | PyTorch / TorchTitan; community implementation | Experimental manifold optimizer with a `muonh` option and Frobenius/spectral constraints; update-alignment conventions change the LR scale. |
 | [CMU 18660 Hyperball Project](https://github.com/aramesh10/18660-Optimization-Hyperball-Project) | PyTorch; coursework implementation | MLP/NanoGPT hMuon comparisons; a community learning artifact, not an official paper reproduction or a separate formal paper. |
 
+## Scale-Aware Hyperparameter Transfer
+
+Dedicated complementary collection on transferring optimization hyperparameters from affordable proxy runs to larger models or more expensive training configurations. Snapshot: **2026-09-19**.
+
+The collection contains **17 complementary direct papers**, **10 learning resources**, and **14 implementation / artifact entries**. Direct papers already counted by the strict μP or Hyperball collections are cross-linked from the guide instead of duplicated; resources and artifacts may overlap. It covers width, depth, model/data scale, token horizon, batch size, schedules, sparsity, expert configuration, adaptation rank, and post-training scale. Cross-dataset AutoML transfer and performance-only scaling laws are outside its direct scope.
+
+Read the [scale-aware HPT guide](docs/hyperparameter-transfer.md) for the taxonomy, cross-collection index, practical protocol, and distinctions between μP, Hyperball, HyperP, nGPT, and νGPT. See [BibTeX](papers/hyperparameter-transfer.bib) and the [search audit](docs/hyperparameter-transfer-search-audit-2026-09-19.md).
+
+### Complementary Direct Papers
+
+| Date | Paper | Main contribution | Transfer axes |
+|---|---|---|---|
+| 2026-09-08 | [Hyperparameter Scaling Laws Across MoE Sparsity](https://arxiv.org/abs/2609.08690) | Fits learning-rate and batch-size laws that explicitly include MoE activation ratio, then validates joint scale-and-sparsity extrapolation on a held-out 12B-total-parameter model with 1/64 activation. | compute, tokens, MoE sparsity, expert granularity |
+| 2026-09-01 | [Efficiently Estimating Optimal Hyperparameter Scaling Laws through Power-Law Entropy Search](https://arxiv.org/abs/2609.01431) | Introduces PLES, a cost-aware multi-fidelity acquisition rule that selects proxy runs to reduce uncertainty in an entire power-law hyperparameter fit; reported experiments need less than one tenth of grid-search compute. | model scale, data scale, experiment budget |
+| 2026-08-28 | [Deriving Scaling Laws for OpenEuroLLM Models: Learning Rate, Batch Size and Loss](https://arxiv.org/abs/2608.28308) | Jointly models optimal learning rate and batch size over model/data scale and tests whether settings transfer between the stable and decay phases of WSD schedules; releases the underlying pretraining-run collection. | model size, data, batch, WSD phase |
+| 2026-07-08 | [Optimal Learning Rate Scaling Depends on Data in Deep Scalar Linear Networks](https://arxiv.org/abs/2607.07884) | Gives an exact failure case for data-agnostic depth rules and derives a data-dependent correction whose dynamics are nearly depth independent in the analyzed scalar networks. | depth, data distribution |
+| 2026-07-01 | [How to Allocate Your Tokens? Scaling Laws with Training Steps and Batch Size](https://arxiv.org/abs/2607.01487) | Splits data budget into batch size and training steps in a three-term loss law, recovering optimal and suboptimal batch-size scaling from runs that need not all use an optimal batch. | model size, steps, batch, token allocation |
+| 2026-06-04 | [Predictable Scaling Laws of Optimal Hyperparameters for LLM Continued Pre-training](https://arxiv.org/abs/2606.05610) | Learns proxy laws from compute budget to optimal learning rate and batch size, estimates a checkpoint's equivalent pretraining compute, and reports up to 90% lower search overhead for continued pretraining. | continued-pretraining state, compute, batch |
+| 2026-06 | [Post-Training Science for Supervised Fine-Tuning](https://labs.baseten.co/articles/post-training-science-for-supervised-fine-tuning) | Measures whether learning-rate and batch-size choices transfer across Qwen3 and Llama, dense and MoE models, LoRA and full fine-tuning, datasets, and a model ladder reaching 235B parameters; recommendations include uncertainty estimates. | post-training scale, family, data, LoRA/full SFT |
+| 2026-03-22 | [On the Role of Batch Size in Stochastic Conditional Gradient Methods](https://arxiv.org/abs/2603.21191) | Derives regime-dependent batch-size and step-size rules under fixed token budgets for momentum conditional-gradient methods, proposes an adaptive batch/sequence strategy, and checks the predicted regimes in NanoGPT. | batch, step size, token budget, sequence length |
+| 2026-03-16 | [Deriving Hyperparameter Scaling Laws via Modern Optimization Theory](https://arxiv.org/abs/2603.15958) | Derives learning-rate, momentum, and batch-size power laws from optimization bounds for LMO-based methods including normalized SGD, signSGD, and Muon; the model size is held fixed. | iterations, tokens, batch, momentum |
+| 2026-02-06 | [Convex Dominance in Deep Learning I: A Scaling Law of Loss and Learning Rate](https://arxiv.org/abs/2602.07145) | Uses a weak-convexity-inspired loss bound to fit learning-rate laws and reports extrapolation up to 80× in training horizon and 70× in model size. | model size, training horizon, schedule |
+| 2026-02-04 | [Theory of Optimal Learning Rate Schedules and Scaling Laws for a Random Feature Model](https://arxiv.org/abs/2602.04774) | Derives horizon-dependent optimal schedules, batch ramps, and momentum behavior in a solvable model, then shows that horizon transfer differs between easy and hard regimes in simple vision and language experiments. | horizon, schedule shape, batch, momentum |
+| 2025-03-06 | [Predictable Scale: Part I, Step Law -- Optimal Hyperparameter Scaling Law in Large Language Model Pretraining](https://arxiv.org/abs/2503.04715) | Fits optimal learning rate as a function of model and data scale and optimal batch size primarily as a function of data, using 3,700 runs across dense/MoE shapes and data recipes; releases code, data, and checkpoints. | parameters, data, batch, model shape, dense/MoE |
+| 2025-02-24 | [Function-Space Learning Rates](https://proceedings.mlr.press/v267/milsom25a.html) | Introduces FLeRM: record layerwise function-space update scales on a cheap model, then adjust target parameter-space learning rates to match them across width, depth, initialization scale, and LoRA rank. | width, depth, initialization, LoRA rank |
+| 2025-02-07 | [Joint MoE Scaling Laws: Mixture of Experts Can Be Memory Efficient](https://proceedings.mlr.press/v267/ludziejewski25a.html) | Alongside its loss/compute study, derives and tests an optimal-learning-rate law using active non-embedding parameters and expert count, including expert-count interpolation and extrapolation. | active parameters, expert count, MoE scale |
+| 2025-01-31 | [The Surprising Agreement Between Convex Optimization Theory and Learning-Rate Scheduling for Large Model Training](https://proceedings.mlr.press/v267/schaipp25a.html) | Uses a convex-optimization proxy to transfer an optimal learning rate across schedule extensions and continued-training horizons in 124M and 210M Llama-style models. | schedule length, continued training |
+| 2024-05-23 | [Scalable Optimization in the Modular Norm](https://proceedings.neurips.cc/paper_files/paper/2024/hash/8629b0fff229b8a27efb1422e990605f-Abstract-Conference.html) | Recursively defines an architecture-level modular norm and normalizes any base optimizer's updates so one learning rate transfers across width and block count/depth in Transformers, ResMLPs, and ResNets. | width, depth, architecture, base optimizer |
+| 2024-01-05 | [DeepSeek LLM: Scaling Open-Source Language Models with Longtermism](https://arxiv.org/abs/2401.02954) | Section 3.1 fits optimal learning rate and batch size as power laws of training compute on proxy runs, validates at a larger held-out compute budget, and uses the laws in the 7B/67B scaling recipe. | compute, learning rate, batch size |
+
+### Scale-Aware HPT Learning Resources
+
+| Resource | Type | Why it matters |
+|---|---|---|
+| [μTransfer: A technique for hyperparameter tuning of enormous neural networks](https://www.microsoft.com/en-us/research/blog/%C2%B5transfer-a-technique-for-hyperparameter-tuning-of-enormous-neural-networks/) | Microsoft Research explainer | Practical introduction to base shapes, proxy sweeps, and zero-shot width transfer with μP. |
+| [Greg Yang's Tensor Programs reading guide](https://thegregyang.com/) | Author-maintained guide | Organizes the Tensor Programs lineage and links talks, papers, and code behind μP. |
+| [Quickstart Guide: Hyperparameter selection](https://learningmechanics.org/quickstart/hyperparameter-selection) | Learning Mechanics tutorial | Connects width/depth parameterization choices to transfer experiments and concrete diagnostics. |
+| [Step Law project](https://step-law.github.io/) | Official project and calculator | Interactive entry point for the empirical model/data learning-rate and batch-size laws, with released data and checkpoints. |
+| [The Modula Docs](https://docs.modula.systems/) | Official documentation | Explains modular norms, architecture composition, optimizer wrapping, and the implementation used for modular-norm transfer. |
+| [Fantastic Pretraining Optimizers 2.1: Hyperball Optimization](https://whenwen.github.io/wd_blog/public/hyperball-part-1.html) | Living author note | Original Hyperball research lineage and geometric motivation for fixed-radius optimizer wrappers. |
+| [The Hitchhiker's Guide to the Weight Norm Theory](https://whenwen.github.io/wd_blog/public/weight-decay-part-2.html) | Living author tutorial | Develops weight-norm and angular-step interpretations needed to reason about Hyperball schedules. |
+| [On the Hypersphere: μP Scaling of Optimizers with the Hyperball Mechanism](https://jiaxuanzou0714.github.io/en/blog/2026/spherical-hyperball/) | Technical essay | Works through assumptions connecting SGDH, AdamH, MuonH, feature-space scaling, and μP. |
+| [Scaling Laws That Extrapolate 300× Past the Fit](https://openathena.ai/blog/delphi/) | Primary technical report | Documents a practical Complete(d)P/AdamH scaling workflow, failed initial assumptions, held-out checks, and a hyperparameter calculator. |
+| [Hyperparameter Optimization in Machine Learning](https://arxiv.org/abs/2410.22854) | Survey | Broad HPO reference useful for separating model-scale hyperparameter transfer from cross-task AutoML transfer and ordinary search methods. |
+
+### Scale-Aware HPT Implementations and Artifacts
+
+| Artifact | Framework / method | What it provides |
+|---|---|---|
+| [microsoft/mup](https://github.com/microsoft/mup) | PyTorch; μP / μTransfer | Reference base-shape tooling, μP layers, optimizer parameter groups, coordinate checks, and examples. |
+| [modula-systems/modula](https://github.com/modula-systems/modula) | JAX; modular norm | Official package for recursively composing modules and normalizing base-optimizer updates for width/depth learning-rate transfer. |
+| [function-space-learning-rates-paper](https://github.com/edwardmilsom/function-space-learning-rates-paper) | PyTorch; FLeRM | Official experiments and measurement code for matching layerwise function-space learning rates across scales. |
+| [step-law/steplaw](https://github.com/step-law/steplaw) | LLM pretraining; Step Law | Official training code, loss measurements, checkpoints, and optimal-hyperparameter estimator. |
+| [OpenEuroLLM dense English scaling laws](https://github.com/OpenEuroLLM/dense_english_scaling_laws) | LLM pretraining; empirical laws | Official scripts and records for the OpenEuroLLM learning-rate, batch-size, loss, and WSD phase study. |
+| [OpenEuroLLM scaling-law releases](https://huggingface.co/openeurollm/dense_english_scaling_laws) | Data and models | Training measurements and model artifacts accompanying the OpenEuroLLM fits. |
+| [microsoft/ArchScale](https://github.com/microsoft/ArchScale) | PyTorch / LitGPT; HyperP | Official HyperP, MuonH, SqrtGate, and width/depth/MoE scaling experiments. |
+| [VITA-Group/principled_scaling_lr_init](https://github.com/VITA-Group/principled_scaling_lr_init) | Architecture-aware HPT | Official code for topology-aware initialization and maximal-learning-rate scaling across computation graphs. |
+| [S-Lab-System-Group/Hydro](https://github.com/S-Lab-System-Group/Hydro) | Distributed HPO; μP proxies | Uses small μP surrogates to preserve multi-hyperparameter rankings and reduce target-scale HPO cost. |
+| [fabian-sp/lr-scheduling](https://github.com/fabian-sp/lr-scheduling) | PyTorch; schedule transfer | Official experiments for convex-proxy learning-rate scheduling and transfer across schedule extensions. |
+| [Joint MoE scaling-law releases](https://huggingface.co/maciek-pioro/joint-moe-scaling-laws) | Models and inference | Author-released MoE checkpoints and inference code accompanying the expert-count and active-parameter scaling study. |
+| [deepseek-ai/DeepSeek-LLM](https://github.com/deepseek-ai/DeepSeek-LLM) | Models and training utilities | Official 7B/67B release accompanying the DeepSeek scaling recipe; it is not a standalone reproduction of the hyperparameter-law sweeps. |
+| [NVIDIA/ngpt](https://github.com/NVIDIA/ngpt) | PyTorch; normalized Transformer | Illustrative code for nGPT's row/vector-normalized baseline; νGPT supplies the later transfer-specific scaling rules. |
+| [NVIDIA NeMo Emerging-Optimizers](https://github.com/NVIDIA-NeMo/Emerging-Optimizers) | PyTorch; Hyperball | Framework implementations of MuonHyperball and Hyperball hooks; radius and tensor-group conventions must match the intended recipe. |
+
 ## Full Paper List
 
-The table is ordered by arXiv `published` date, OpenReview public date, official report date, or venue date in reverse chronological order. The current search window covers **2024-08-25 to 2026-09-14**; earlier rows retain the direct theoretical lineage and historically important applications.
+The table is ordered by arXiv `published` date, OpenReview public date, official report date, or venue date in reverse chronological order. The current search window covers **2024-08-25 to 2026-09-19**; earlier rows retain the direct theoretical lineage and historically important applications.
 
 The **2026-08-13** audit re-read all 239 previously listed papers and removed 114 non-substantive, adjacent-only, or foundation-only entries. Inclusion now requires substantive derivation, implementation, experimental validation, direct criticism, or material application of μP / μTransfer. The audit also cross-checked arXiv, OpenReview, venue-only records, full-text application reports, official projects, and the active `francesco-innocenti/mup-papers` index; alternate records of the same work are collapsed into one entry.
 
@@ -144,6 +209,8 @@ The **2026-08-25** completion audit found no new direct record released on Augus
 The **2026-09-05** incremental search cross-checked arXiv, OpenReview, venue records, author resources, and the community μP index. It added AK-Momentum (formerly DeltaMomentum; renamed on September 3) and the CCN 2025 SwiFT V2 extended abstract, plus experimental and teaching resources. New entries require primary-source μP derivations, coordinate checks, or explicit proxy-to-target transfer; related-work-only matches are excluded. This is a best-effort literature search through the snapshot date, not a claim that every unindexed or unpublished work has been found.
 
 The **2026-09-14** audit recovered two application papers (ATLAS GN2 and token-level data filtering), fourteen teaching / technical resources, and eight implementation links. It checked primary full texts, author code, venue records, and community-index gaps while preserving the substantive μP scope. See the [search audit](docs/search-audit-2026-09-14.md) for evidence, date conventions, excluded general-HPT candidates, and unresolved records.
+
+The **2026-09-19** incremental audit found no new direct μP record after September 14. It promoted previously excluded non-μP scale-transfer work into the separate [scale-aware HPT collection](#scale-aware-hyperparameter-transfer), preserving this table's stricter requirement that μP be a substantive method or object of analysis. See the [combined audit](docs/hyperparameter-transfer-search-audit-2026-09-19.md).
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
@@ -440,7 +507,7 @@ The **2026-09-14** audit recovered two application papers (ATLAS GN2 and token-l
 | [nyuolab/OmniBioTE](https://github.com/nyuolab/OmniBioTE) | Biosequence μP application | Official code for multi-omic μP scaling with released [OmniBioTE weights](https://huggingface.co/WeiHua/OmniBioTE/tree/main). |
 | [OpenBMB/MiniCPM](https://github.com/OpenBMB/MiniCPM) | MiniCPM / MiniCPM4 applications | Official project and checkpoints for the original Model Wind Tunnel μP/Depth-μP transfer study and MiniCPM4's μP-backed ModelTunnel pipeline. |
 | [nikhilgsh/loraplus](https://github.com/nikhilgsh/loraplus) | LoRA+ / LoRA initialization | Author implementation shared by the LoRA+ and LoRA-initialization scaling papers. |
-| [modula-systems/modula](https://github.com/modula-systems/modula) | Modular Duality / μP | Official JAX implementation of the included operator-norm framework that unifies μP-style update scaling with modular optimization. |
+| [modula-systems/modula](https://github.com/modula-systems/modula) | Modular norm / Modular Duality / μP | Official JAX package accompanying Scalable Optimization in the Modular Norm and later modular-duality work; normalizes architecture-composed updates for width/depth LR transfer and relates that geometry to μP-style scaling. |
 | [lchizat/2025-hidden-width-deep-resnet](https://github.com/lchizat/2025-hidden-width-deep-resnet/) | Maximal local updates across width and depth | Official code reproducing the included Neural Mean ODE and joint depth–hidden-width maximal-update phase-diagram experiments. |
 | [lchizat/2022-wide-linear-NN](https://github.com/lchizat/2022-wide-linear-NN) | Deep linear networks under μP | Author-linked code for the included infinite-width μP gradient-flow and finite-width convergence experiments. |
 | [karl-hajjar/wide-networks](https://github.com/karl-hajjar/wide-networks) | Integrable parameterizations / μP | Paper-declared reproduction code for the included study of integrable infinite-width training and its modified-μP equivalence. |
@@ -475,15 +542,18 @@ The **2026-09-14** audit recovered two application papers (ATLAS GN2 and token-l
 |---|---|
 | [docs/mup-transfer.md](docs/mup-transfer.md) | Main μP / μTransfer reading guide, paper timeline, resources, code links, and practical checklist. |
 | [docs/hyperball.md](docs/hyperball.md) | Dedicated Hyperball papers, author resources, implementations, and evidence guide. |
+| [docs/hyperparameter-transfer.md](docs/hyperparameter-transfer.md) | Complementary scale-aware HPT papers, taxonomy, cross-collection map, artifacts, and transfer protocol. |
 | [papers/hyperball.bib](papers/hyperball.bib) | BibTeX for Hyperball and its substantive related extensions. |
+| [papers/hyperparameter-transfer.bib](papers/hyperparameter-transfer.bib) | BibTeX for complementary direct HPT papers outside the strict μP/Hyperball counts. |
 | [docs/hyperball-search-audit-2026-09-14.md](docs/hyperball-search-audit-2026-09-14.md) | Hyperball search scope, source evidence, exclusions, and version checks. |
 | [papers/mup-transfer.bib](papers/mup-transfer.bib) | BibTeX references for the μP / μTransfer collection. |
 | [docs/search-audit-2026-09-14.md](docs/search-audit-2026-09-14.md) | μP search scope, primary-source evidence, exclusions, and unresolved candidates. |
+| [docs/hyperparameter-transfer-search-audit-2026-09-19.md](docs/hyperparameter-transfer-search-audit-2026-09-19.md) | Combined scale-aware HPT audit, incremental μP/Hyperball check, exclusions, and artifact verification. |
 | [papers/README.md](papers/README.md) | Notes on maintaining reference files. |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution scope and entry template. |
 
 ## Contributing
 
-Useful additions include direct μP papers, implementation notes, coordinate-check scripts, substantive applications, and well-evidenced failed-transfer studies. The dedicated Hyperball collection also accepts direct Hyperball research, comparisons, applications, and documented extensions. Generic initialization, optimizer, or scaling-law work remains outside either collection without substantive relevance. Please include source links, arXiv IDs when available, and a one-sentence reason why the resource matters.
+Useful additions include direct μP papers, implementation notes, coordinate-check scripts, substantive applications, and well-evidenced failed-transfer studies. The dedicated Hyperball collection accepts direct Hyperball research, comparisons, applications, and documented extensions. The scale-aware HPT collection accepts direct proxy-to-target rules and clearly scoped theory or experiments over model/training scale. Please include source links, arXiv IDs when available, and a one-sentence reason why the resource matters.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the suggested format.
