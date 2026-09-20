@@ -2,6 +2,8 @@
 
 This audit records how the repository expanded from strict μP and Hyperball collections to a complementary scale-aware hyperparameter-transfer collection. It is a best-effort audit of public sources available through **2026-09-19**, not a proof that every unpublished, proprietary, or newly indexed item has been found.
 
+> **Correction recorded 2026-09-20:** a follow-up citation and full-text check recovered [Curvature-Conditioned Multiscale Momentum with Sphere Constraints for LLM Pretraining](https://arxiv.org/abs/2608.28442), first public 2026-08-28. Its Section 6.2 directly compares tuned MuonH with MuonS, SSO, and Muon, so it has been added to the Hyperball collection. It was already public before this audit's incremental date window and was missed because its title does not use `Hyperball`, `AdamH`, or `MuonH`.
+
 ## Scope Used for This Audit
 
 A direct paper must do at least one of the following in its main text:
@@ -55,7 +57,7 @@ The strict [μP bibliography](../papers/mup-transfer.bib) already contains the p
 
 The [Hyperball bibliography](../papers/hyperball.bib) already contains the formal Hyperball paper, HyperP, effective-learning-rate and schedule analyses, HyperTransfer, criticism, and substantive applications. Those records remain in their original bibliographies and are cross-linked by the new guide instead of duplicated.
 
-The 2026-09-15 to 2026-09-19 incremental search found no new qualifying direct μP or Hyperball paper after the prior September 14 audits. HyperTransfer, first submitted 2026-09-07, remains the latest verified direct Hyperball paper. The newest complementary scale-aware HPT paper found is the 2026-09-08 MoE-sparsity law.
+The 2026-09-15 to 2026-09-19 incremental search found no qualifying direct μP or Hyperball paper first public after the prior September 14 audits. A September 20 follow-up recovered the pre-existing August 28 MuonM/MuonH comparison described in the correction above. HyperTransfer, first submitted 2026-09-07, remains the latest verified direct Hyperball paper by first-public date. The newest complementary scale-aware HPT paper found is the 2026-09-08 MoE-sparsity law.
 
 ## Contextual Papers Kept Outside the Direct Count
 

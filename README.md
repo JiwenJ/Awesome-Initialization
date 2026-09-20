@@ -8,7 +8,7 @@
 
 This repository tracks papers, implementations, engineering reports, and teaching material that directly derive, test, extend, criticize, or materially apply **μP / muP**, **μTransfer**, and maximal-update scaling. Dedicated [Hyperball](#hyperball) and [scale-aware hyperparameter-transfer](#scale-aware-hyperparameter-transfer) sections cover complementary optimizer geometry and proxy-to-target scaling methods under the same evidence standards.
 
-> Snapshot: **2026-09-19**. The μP collection contains **161** directly relevant papers, plus **54** learning resources and **96** implementation / artifact links. The complementary HPT collection adds **17** direct papers outside the μP and Hyperball bibliographies.
+> Snapshot: **2026-09-20**. The μP collection contains **161** directly relevant papers, plus **54** learning resources and **96** implementation / artifact links. The complementary HPT collection adds **17** direct papers outside the μP and Hyperball bibliographies.
 
 ## Contents
 
@@ -66,17 +66,18 @@ The μP collection includes the direct Tensor Programs lineage, coordinate check
 
 ## Hyperball
 
-Dedicated collection on **Hyperball / AdamH / MuonH**, including the original method, transfer extensions, effective-learning-rate analyses, criticism, applications, and code. Snapshot: **2026-09-19**.
+Dedicated collection on **Hyperball / AdamH / MuonH**, including the original method, transfer extensions, effective-learning-rate analyses, criticism, applications, and code. Snapshot: **2026-09-20**.
 
-The collection contains **12 papers**, **16 learning resources / reports**, and **15 implementation / artifact entries**. Two papers (HyperP and MACRO) are also in the μP collection; collection totals overlap. MD Decoupling is explicitly labeled a related extension, and contextual readings below are outside the paper count.
+The collection contains **13 papers**, **16 learning resources / reports**, and **15 implementation / artifact entries**. Two papers (HyperP and MACRO) are also in the μP collection; collection totals overlap. MD Decoupling is explicitly labeled a related extension, and contextual readings below are outside the paper count.
 
-Read the [Hyperball guide](docs/hyperball.md) for the mechanism, reading path, related foundations, and evidence limits. See [BibTeX](papers/hyperball.bib), the [full search audit](docs/hyperball-search-audit-2026-09-14.md), and the [September 19 incremental audit](docs/hyperparameter-transfer-search-audit-2026-09-19.md). The original 2025 author note and the formal 2026 paper belong to one research lineage; live notes and talks are resources, not extra papers.
+Read the [Hyperball guide](docs/hyperball.md) for the mechanism, reading path, related foundations, and evidence limits. See [BibTeX](papers/hyperball.bib), the [full search audit](docs/hyperball-search-audit-2026-09-14.md), and the [September 20 correction audit](docs/hyperball-search-audit-2026-09-20.md). The original 2025 author note and the formal 2026 paper belong to one research lineage; live notes and talks are resources, not extra papers.
 
 ### Hyperball Papers
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
 | 2026-09-07 | [HyperTransfer: Understanding the Equivalence between Base Optimizer and Hyperball](https://arxiv.org/abs/2609.07017) | Maps base and Hyperball optimizers through an online proxy norm, gradient/state rescaling, and induced LR schedules; proves conditional scale-invariant trajectory equivalence and studies a non-invariant extension. | theory, optimizer equivalence, effective LR, state mapping |
+| 2026-08-28 | [Curvature-Conditioned Multiscale Momentum with Sphere Constraints for LLM Pretraining](https://arxiv.org/abs/2608.28442) | Proposes MuonM, adding curvature-conditioned fast/slow momentum to a learnable-radius sphere with parallel transport; Section 6.2 directly compares tuned MuonH, SSO, MuonS, and Muon on a 0.12B dense model, while the proposed method is evaluated on 0.12B–2.3B dense/MoE models. | direct comparison, related extension, MuonM, MuonH, learnable radius, momentum |
 | 2026-08-27 | [Puro-2B: Poor Lab's Qwen2-1.5B Trained on RTX 5090 within $5090](https://arxiv.org/abs/2608.27370) | Uses MuonH for attention/MLP matrices, studies effective-LR matching and schedules, and retains MuonH during supervised fine-tuning; reviewed v2, September 3. | application, MuonH, pretraining, SFT, scheduling |
 | 2026-08-25 | [Effective Learning Rate Governs Loss Dynamics in Language Model Pretraining](https://arxiv.org/abs/2608.24814) | Tests MuonH/MuonW loss-trajectory alignment through effective-LR interventions and predicts held-out Hyperball runs without refitting its scaling law; accuracy depends on normalization and slowly varying dynamics. | empirical analysis, effective LR, loss dynamics, scaling laws |
 | 2026-07-24 | [Hyperball May Not Be a Free Lunch](https://arxiv.org/abs/2607.22444) | Analyzes angular effective LR and radial/tangential updates; controlled MuonWD/MuonH schedule matching suggests effective-step evolution explains much of the difference, while faster early convergence can impair later performance. | criticism, scheduling, angular dynamics, MuonH |
@@ -546,6 +547,7 @@ The **2026-09-19** incremental audit found no new direct μP record after Septem
 | [papers/hyperball.bib](papers/hyperball.bib) | BibTeX for Hyperball and its substantive related extensions. |
 | [papers/hyperparameter-transfer.bib](papers/hyperparameter-transfer.bib) | BibTeX for complementary direct HPT papers outside the strict μP/Hyperball counts. |
 | [docs/hyperball-search-audit-2026-09-14.md](docs/hyperball-search-audit-2026-09-14.md) | Hyperball search scope, source evidence, exclusions, and version checks. |
+| [docs/hyperball-search-audit-2026-09-20.md](docs/hyperball-search-audit-2026-09-20.md) | Correction audit adding the recovered MuonM/MuonH comparison and extending the incremental search. |
 | [papers/mup-transfer.bib](papers/mup-transfer.bib) | BibTeX references for the μP / μTransfer collection. |
 | [docs/search-audit-2026-09-14.md](docs/search-audit-2026-09-14.md) | μP search scope, primary-source evidence, exclusions, and unresolved candidates. |
 | [docs/hyperparameter-transfer-search-audit-2026-09-19.md](docs/hyperparameter-transfer-search-audit-2026-09-19.md) | Combined scale-aware HPT audit, incremental μP/Hyperball check, exclusions, and artifact verification. |
