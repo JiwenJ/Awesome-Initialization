@@ -20,6 +20,8 @@ The dedicated [Hyperball section](README.md#hyperball) and [guide](docs/hyperbal
 
 Count a formal paper once per collection. Treat the original author note, its living 2.1 / 2.2 versions, and the formal Hyperball paper as one research lineage; notes and talks belong in resources. State first-public dates and identify later versions when the relevant result was added. Distinguish author implementations, framework integrations, community experiments, and unverified artifacts.
 
+The root `README.md` is the complete entry point for Hyperball. Include all collected resources, reading guidance, implementation evidence, and current audit findings there, including explicitly labeled exclusions and unresolved leads. Companion files in `docs/` may preserve the same material, but readers must not need to open them to see the collection or its evidence. Rebase relative links and keep section anchors valid when synchronizing content.
+
 ### Scale-Aware Hyperparameter-Transfer Collection
 
 The dedicated [scale-aware HPT section](README.md#scale-aware-hyperparameter-transfer) and [guide](docs/hyperparameter-transfer.md) accept work that transfers optimization hyperparameters from affordable proxy runs to larger or otherwise more expensive target runs. A direct paper must derive, estimate, validate, or falsify a rule over at least one stated scale axis, such as width, depth, parameters, model shape, tokens, compute, batch size, schedule length, sparsity, expert configuration, adaptation rank, or post-training scale.
