@@ -1,5 +1,13 @@
-% Complementary scale-aware hyperparameter-transfer collection, checked 2026-09-19.
+% Complementary scale-aware hyperparameter-transfer collection, checked 2026-09-24.
 % Papers already present in mup-transfer.bib or hyperball.bib are cross-linked in the guide and not duplicated here.
+
+@article{romanyukov2026steplawsmallscale,
+  title        = {Does Step Law Transfer to Small-Scale Language Models? An Empirical Recalibration Below 59M Parameters},
+  author       = {Romanyukov, Egor and Novikov, Timofey and Shokarov, Timur and Zorkina, Elizaveta and Palienko, Anastasia and Dergachev, Stepan},
+  journal      = {arXiv preprint arXiv:2609.27581},
+  year         = {2026},
+  url          = {https://arxiv.org/abs/2609.27581}
+}
 
 @article{tian2026moesparsity,
   title        = {Hyperparameter Scaling Laws Across {MoE} Sparsity},
@@ -7,6 +15,14 @@
   journal      = {arXiv preprint arXiv:2609.08690},
   year         = {2026},
   url          = {https://arxiv.org/abs/2609.08690}
+}
+
+@article{everett2026optimizermemory,
+  title        = {Optimizer Memory Schedules for Outscaling the Overtraining Axis},
+  author       = {Everett, Katie and Qiu, Shikai},
+  journal      = {arXiv preprint arXiv:2609.04577},
+  year         = {2026},
+  url          = {https://arxiv.org/abs/2609.04577}
 }
 
 @article{chen2026ples,
@@ -75,6 +91,14 @@
   url          = {https://arxiv.org/abs/2603.15958}
 }
 
+@article{zhang2026ncpl,
+  title        = {Configuration-to-Performance Scaling Law with Neural Ansatz},
+  author       = {Zhang, Huaqing and Wen, Kaiyue and Ma, Tengyu},
+  journal      = {arXiv preprint arXiv:2602.10300},
+  year         = {2026},
+  url          = {https://arxiv.org/abs/2602.10300}
+}
+
 @article{bu2026convexdominance,
   title        = {Convex Dominance in Deep Learning {I}: A Scaling Law of Loss and Learning Rate},
   author       = {Bu, Zhiqi and Xu, Shiyun and Mao, Jialin},
@@ -90,6 +114,15 @@
   journal      = {arXiv preprint arXiv:2602.04774},
   year         = {2026},
   url          = {https://arxiv.org/abs/2602.04774}
+}
+
+@article{marek2025smallbatch,
+  title        = {Small Batch Size Training for Language Models: When Vanilla {SGD} Works, and Why Gradient Accumulation Is Wasteful},
+  author       = {Marek, Martin and Lotfi, Sanae and Somasundaram, Aditya and Wilson, Andrew Gordon and Goldblum, Micah},
+  journal      = {arXiv preprint arXiv:2507.07101},
+  year         = {2025},
+  note         = {Accepted at NeurIPS 2025},
+  url          = {https://arxiv.org/abs/2507.07101}
 }
 
 @article{li2025steplaw,
@@ -136,6 +169,15 @@
   url          = {https://proceedings.mlr.press/v267/schaipp25a.html}
 }
 
+@inproceedings{porian2024resolving,
+  title        = {Resolving Discrepancies in Compute-Optimal Scaling of Language Models},
+  author       = {Porian, Tomer and Wortsman, Mitchell and Jitsev, Jenia and Schmidt, Ludwig and Carmon, Yair},
+  booktitle    = {Advances in Neural Information Processing Systems},
+  volume       = {37},
+  year         = {2024},
+  url          = {https://arxiv.org/abs/2406.19146}
+}
+
 @inproceedings{large2024modularnorm,
   title        = {Scalable Optimization in the Modular Norm},
   author       = {Large, Tim and Liu, Yang and Huh, Minyoung and Bahng, Hyojin and Isola, Phillip and Bernstein, Jeremy},
@@ -153,4 +195,48 @@
   journal      = {arXiv preprint arXiv:2401.02954},
   year         = {2024},
   url          = {https://arxiv.org/abs/2401.02954}
+}
+
+@inproceedings{busbridge2023ema,
+  title        = {How to Scale Your {EMA}},
+  author       = {Busbridge, Dan and Ramapuram, Jason and Ablin, Pierre and Likhomanenko, Tatiana and Dhekane, Eeshan Gunesh and Suau Cuadros, Xavier and Webb, Russell},
+  booktitle    = {Advances in Neural Information Processing Systems},
+  volume       = {36},
+  year         = {2023},
+  doi          = {10.52202/075280-3197},
+  url          = {https://arxiv.org/abs/2307.13813}
+}
+
+@article{fetterman2023carbs,
+  title        = {Tune As You Scale: Hyperparameter Optimization For Compute Efficient Training},
+  author       = {Fetterman, Abraham J. and Kitanidis, Ellie and Albrecht, Joshua and Polizzi, Zachary and Fogelman, Bryden and Knutins, Maksis and Wróblewski, Bartosz and Simon, James B. and Qiu, Kanjun},
+  journal      = {arXiv preprint arXiv:2306.08055},
+  year         = {2023},
+  url          = {https://arxiv.org/abs/2306.08055}
+}
+
+@inproceedings{malladi2022sdes,
+  title        = {On the {SDEs} and Scaling Rules for Adaptive Gradient Algorithms},
+  author       = {Malladi, Sadhika and Lyu, Kaifeng and Panigrahi, Abhishek and Arora, Sanjeev},
+  booktitle    = {Advances in Neural Information Processing Systems},
+  volume       = {35},
+  pages        = {7697--7711},
+  year         = {2022},
+  url          = {https://arxiv.org/abs/2205.10287}
+}
+
+@inproceedings{smith2018dontdecay,
+  title        = {Don't Decay the Learning Rate, Increase the Batch Size},
+  author       = {Smith, Samuel L. and Kindermans, Pieter-Jan and Ying, Chris and Le, Quoc V.},
+  booktitle    = {International Conference on Learning Representations},
+  year         = {2018},
+  url          = {https://arxiv.org/abs/1711.00489}
+}
+
+@article{goyal2017largeminibatch,
+  title        = {Accurate, Large Minibatch {SGD}: Training {ImageNet} in 1 Hour},
+  author       = {Goyal, Priya and Dollár, Piotr and Girshick, Ross and Noordhuis, Pieter and Wesolowski, Lukasz and Kyrola, Aapo and Tulloch, Andrew and Jia, Yangqing and He, Kaiming},
+  journal      = {arXiv preprint arXiv:1706.02677},
+  year         = {2017},
+  url          = {https://arxiv.org/abs/1706.02677}
 }
