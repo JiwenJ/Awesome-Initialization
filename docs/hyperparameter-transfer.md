@@ -99,6 +99,7 @@ The following direct HPT papers remain in their original collection and are not 
 | Looped depth and recurrence | [How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models](https://arxiv.org/abs/2604.21106) | [μP guide](mup-transfer.md) |
 | Width/depth transfer and scientific scaling | [How to scale your HEP ML models: A recipe for robust architecture comparisons at scale](https://arxiv.org/abs/2610.06784) | [μP guide](mup-transfer.md) |
 | Width-proxy validation and frontier extrapolation | [Kolibri: A Sovereign European Model on the Pareto Frontier](https://aleph-alpha.com/downloads/tech-report.pdf) | [μP guide](mup-transfer.md) |
+| Cross-model-scale full fine-tuning | [TACO: Ternary Absolute-max Column-wise One-sparse Optimizer for LLM Fine-Tuning](https://arxiv.org/abs/2610.02199) | [μP guide](mup-transfer.md) |
 | Batch scaling and optimizer-ranking reversals | [The Best Optimizer Depends on Batch Size](https://arxiv.org/abs/2610.08975) | [Hyperball guide](hyperball.md) |
 
 ## Learning Resources

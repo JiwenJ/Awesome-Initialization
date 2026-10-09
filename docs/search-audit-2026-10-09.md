@@ -8,7 +8,7 @@ This public-source update follows [CONTRIBUTING.md](../CONTRIBUTING.md), extends
 | Complementary scale-aware HPT | 38 → 45 | 13 → 14 | 21 → 26 |
 | Hyperball | 14 → 15 | 23 → 25 | 26 → 27 |
 
-HyperP, MACRO, and the iso-depth looped-LM study remain shared between the μP and Hyperball bibliographies. Thus the current bibliographies contain **226 distinct paper records**, not 229. The new Hyperball batch-size study and μP application reports are cross-linked from HPT rather than duplicated in its direct-paper table or bibliography. Resource and artifact counts describe collection entries, not independent reproductions.
+HyperP, MACRO, and the iso-depth looped-LM study remain shared between the μP and Hyperball bibliographies. Thus the current bibliographies contain **226 distinct paper records**, not 229. The new Hyperball batch-size study, HEP and Kolibri application reports, and TACO's cross-model-scale fine-tuning study are cross-linked from HPT rather than duplicated in its direct-paper table or bibliography. Resource and artifact counts describe collection entries, not independent reproductions.
 
 ## Search and Inclusion Method
 
