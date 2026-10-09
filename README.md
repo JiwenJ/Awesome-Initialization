@@ -1,10 +1,14 @@
-# Awesome μP
+<h1 align="center">Awesome μP</h1>
 
-> Curated, evidence-backed resources on maximal-update parametrization (μP), μTransfer, Hyperball optimization, and scale-aware hyperparameter transfer.
+<p align="center">
+  Curated, evidence-backed resources on maximal-update parametrization (μP), μTransfer, Hyperball optimization, and scale-aware hyperparameter transfer.
+</p>
 
-[![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
-[![Scope](https://img.shields.io/badge/scope-%CE%BCP%20%7C%20%CE%BCTransfer%20%7C%20maximal%20updates-2f6f9f)](#why-mup-matters)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2ea44f)](CONTRIBUTING.md)
+<p align="center">
+  <a href="https://awesome.re"><img src="https://awesome.re/badge-flat2.svg" alt="Awesome"></a>
+  <a href="#why-mup-matters"><img src="https://img.shields.io/badge/scope-%CE%BCP%20%7C%20%CE%BCTransfer%20%7C%20maximal%20updates-2f6f9f" alt="Scope"></a>
+  <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-2ea44f" alt="PRs welcome"></a>
+</p>
 
 This repository tracks papers, implementations, engineering reports, and teaching material that directly derive, test, extend, criticize, or materially apply **μP / muP**, **μTransfer**, and maximal-update scaling. Dedicated [Hyperball](#hyperball) and [scale-aware hyperparameter-transfer](#scale-aware-hyperparameter-transfer) sections cover complementary optimizer geometry and proxy-to-target scaling methods under the same evidence standards.
 
