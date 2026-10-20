@@ -3,7 +3,7 @@
 > μP = **Maximal Update Parametrization**.  
 > μTransfer = tune hyperparameters on a small μP proxy model and transfer them to a larger μP target model.
 
-Snapshot: **2026-10-15**. This page contains **171** directly relevant papers, plus **63** learning resources and **102** implementation / artifact links. The current search window covers **2024-08-25 to 2026-10-15**; earlier rows retain the direct theoretical lineage and historically important applications.
+Snapshot: **2026-10-20**. This page contains **173** directly relevant papers, plus **63** learning resources and **102** implementation / artifact links. The current search window covers **2024-08-25 to 2026-10-20**; earlier rows retain the direct theoretical lineage and historically important applications.
 
 This page focuses on μP as a practical tool for **cross-scale hyperparameter transfer**, especially learning-rate transfer in Transformers and related architectures.
 
@@ -83,8 +83,12 @@ The **2026-10-09** incremental audit added a HEP Complete(d)P application and re
 
 The **2026-10-15** incremental audit added ShellElastic's μ-Elastic extension and recovered σTransfer's October 8 uncertainty-transfer study, plus the now-retrievable CompleteP teaching note. ShellElastic's scaling arguments use stated heuristic assumptions, and its independent learning-rate sweeps cover 119M–906M elastic families; σTransfer's kernel theorem is fixed-depth, finite-step MLP theory, while its public 1B→7B experiment changes both width and depth. Neither paper currently supplies a verified author-code link. The SSRN lead *Quantitative Mean-Field Limits for the Training of Maximal-Update Neural Networks via Explicit Couplings* remains uncounted because its full text could not be retrieved. See the [search audit](search-audit-2026-10-15.md).
 
+The **2026-10-20** incremental audit added DP-μP's noise-aware width-transfer rules and a study of learning-rate-curve gradients with explicit μP width sweeps. DP-μP requires layer-wise signal-to-noise matching and noise-dominated assumptions; its batch experiment fixes update count while scaling privacy noise, and depth transfer remains open. The LR-gradient study combines conditional edge-of-stability analysis with a heuristic fixed-point estimator; output-scale ablations affect μP transfer in its ResNet experiments, without establishing a universal optimal-LR rule. No verified author-code release was found for either new paper, ShellElastic, or σTransfer. The SSRN coupling preprint and three previously unresolved tutorials remain outside the counted tables because their full text could not be retrieved. See the [search audit](search-audit-2026-10-20.md).
+
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
+| 2026-10-16 | [Towards Hyperparameter Transfer for Differentially Private Optimization](https://arxiv.org/abs/2610.22976) | Introduces DP-μP through spectral update scaling and layer-wise signal-to-noise matching for DP-SGD / Adam / Muon, validating width transfer in MLPs, ViTs, and 76M→788M GPT-2 models on character-level Shakespeare; analysis assumes noise-dominated updates and does not cover depth transfer. | μP extension, differential privacy, SNR matching, width transfer, DP-Muon |
+| 2026-10-15 | [Measuring the local shape of learning-rate transfer curves](https://arxiv.org/abs/2610.21814) | Proposes conditional edge-of-stability and heuristic fixed-point LR-gradient diagnostics, profiles layer-wise sensitivity, and directly tests how output multipliers affect μP width transfer in ResNets; the diagnostics do not supply a universal target-optimal LR formula. | μP analysis, width transfer, LR sensitivity, output multiplier, edge of stability |
 | 2026-10-10 | [ShellElastic: Scalable Elastic Pretraining with Simultaneous Maximal Updates and Hyperparameter Transfer](https://arxiv.org/abs/2610.15124) | Extends μP to weight-shared elastic Transformers with groupwise μ-Elastic rules for simultaneous maximal updates, and independently checks proxy learning-rate / initialization transfer across elastic families at 119M–906M; scaling arguments use stated heuristic assumptions and do not prove finite-scale optimality. | μP extension, μ-Elastic, elastic Transformers, width-shell transfer, shared weights |
 | 2026-10-08 | [σTransfer: Uncertainty Transfer from Small to Large Networks under μP](https://arxiv.org/abs/2610.11668) | Derives μP-aware Laplace prior-covariance scaling and tests zero-shot prior-precision / uncertainty-decision transfer in MLPs and Transformer readouts, including public 1B→7B models; its kernel theorem is fixed-depth, finite-step MLP theory, not a general joint width-depth guarantee. | μP extension, σTransfer, Bayesian inference, prior precision, uncertainty transfer |
 | 2026-10-05 | [How to scale your HEP ML models: A recipe for robust architecture comparisons at scale](https://arxiv.org/abs/2610.06784) | Validates Complete(d)P width learning-rate transfer in jet-tagging Transformers and fits an additional approximately inverse-square-root depth correction before calibrating batch / training-horizon optima; uncorrected depth invariance is imperfect. | application study, μP, Complete(d)P, width transfer, depth correction, HEP |
@@ -455,6 +459,7 @@ The **2026-10-15** incremental audit added ShellElastic's μ-Elastic extension a
 - **Token horizon is not context length.** Current duration-transfer work changes total training tokens or steps; zero-shot optimal-LR transfer across context curricula, sparse-attention onset, or modality mixtures remains unestablished.
 - **Theory vs practice gap remains.** Recent empirical work questions whether the standard μP explanation fully accounts for AdamW LM transfer, especially around embeddings.
 - **Coordinate checks and LR transfer are different tests.** Hybrid Transformer–SSM experiments exhibit width-LR transfer despite failed standard coordinate checks; conversely, stable coordinates alone do not establish that a transferred LR is target-optimal.
+- **Privacy noise adds another transfer constraint.** DP-μP matches both spectral update scales and layer-wise signal-to-noise ratios; its noise-dominated width theory does not establish depth transfer or a rule for the transition between signal- and noise-dominated regimes.
 
 ## Search Keywords
 
@@ -476,3 +481,4 @@ Use these when extending the list:
 - `MSSP`
 - `SμPar`
 - `HyperP Muon`
+- `DP-μP signal-to-noise transfer`
