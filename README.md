@@ -1,18 +1,12 @@
-<h1 align="center">Awesome μP</h1>
+<div align="center">
 
-<p align="center">
-  Curated, evidence-backed resources on maximal-update parametrization (μP), μTransfer, Hyperball optimization, and scale-aware hyperparameter transfer.
-</p>
+<img alt="Awesome μP: training loss against log2 learning rate for widths 256 to 8192, with every curve reaching its minimum at the same learning rate" src="assets/banner.svg" width="100%">
 
-<p align="center">
-  <a href="https://awesome.re"><img src="https://awesome.re/badge-flat2.svg" alt="Awesome"></a>
-  <a href="#why-mup-matters"><img src="https://img.shields.io/badge/scope-%CE%BCP%20%7C%20%CE%BCTransfer%20%7C%20maximal%20updates-2f6f9f" alt="Scope"></a>
-  <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-2ea44f" alt="PRs welcome"></a>
-</p>
+<a href="https://awesome.re"><img src="https://awesome.re/badge-flat2.svg" alt="Awesome"></a> <a href="#why-mup-matters"><img src="https://img.shields.io/badge/scope-%CE%BCP%20%7C%20%CE%BCTransfer%20%7C%20maximal%20updates-2f6f9f" alt="Scope"></a> <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-2ea44f" alt="PRs welcome"></a>
 
-This repository tracks papers, implementations, engineering reports, and teaching material that directly derive, test, extend, criticize, or materially apply **μP / muP**, **μTransfer**, and maximal-update scaling. Dedicated [Hyperball](#hyperball) and [scale-aware hyperparameter-transfer](#scale-aware-hyperparameter-transfer) sections cover complementary optimizer geometry and proxy-to-target scaling methods under the same evidence standards.
+A curated list of papers, code and notes on maximal-update parametrization (μP) and μTransfer, the recipe for tuning hyperparameters on a small proxy model and reusing them at scale. Companion lists cover [Hyperball](#hyperball) and [scale-aware hyperparameter transfer](#scale-aware-hyperparameter-transfer).
 
-> μP / HPT snapshot: **2026-10-20**. The μP collection contains **173** directly relevant papers, plus **63** learning resources and **102** implementation / artifact links. The complementary HPT collection adds **58** direct papers and technical reports outside the μP and Hyperball bibliographies. See the [latest cross-collection audit](docs/search-audit-2026-10-20.md) for additions, corrections, and unresolved leads.
+</div>
 
 ## Contents
 
@@ -1016,6 +1010,7 @@ The **2026-10-20** incremental audit added DP-μP's noise-aware width-transfer r
 | [docs/search-audit-2026-10-15.md](docs/search-audit-2026-10-15.md) | October 15 μP extensions, depth/horizon/batch transfer studies, CBS recovery, Hyperball version and implementation updates, and access limits. |
 | [docs/search-audit-2026-10-20.md](docs/search-audit-2026-10-20.md) | Latest DP-μP and LR-sensitivity studies, frontier and schedule-transfer recipes, historical omissions, Hyperball implementation updates, and access limits. |
 | [papers/README.md](papers/README.md) | Notes on maintaining reference files. |
+| [assets/banner.svg](assets/banner.svg) | README banner. |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution scope and entry template. |
 
 ## Contributing
