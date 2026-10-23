@@ -36,14 +36,30 @@ Please include:
 
 - paper or resource title;
 - source link, preferably arXiv or official project page;
-- year;
+- first verified public date, at its known precision;
 - one sentence explaining why it matters;
 - tags that describe the mechanism or transfer axis.
 
-Suggested table row:
+Use the same column names and alignment in all three collections:
+
+- Papers: `Date | Paper | Main contribution | Tags`; center the date column and left-align the remaining columns.
+- Resources: `Resource | Type | Notes`; left-align all columns.
+- Code: `Code / artifact | Framework / method | Notes`; left-align all columns. This index also includes datasets, model releases, and other artifacts, not only executable code.
+
+Formatting conventions:
+
+- Dates use `YYYY-MM-DD`, `YYYY-MM`, or `YYYY`, according to the verified precision. Do not invent a day or substitute an access date for a publication date. Keep papers in reverse chronological order. In resource metadata, place the date after a semicolon; retain qualifiers such as `checked`, `accessed`, `merged`, or `data snapshot`. Write both endpoints of a date range in full.
+- Paper and resource titles use one Markdown link to the primary source, preserving the original title and capitalization. Use the same displayed title for the same source URL across collections; do not add decorative bold or italic styling.
+- Tags are plain text, separated by a comma and one space, without a trailing period. Preserve method capitalization, such as `μP`, `Depth-μP`, `AdamW`, and `MuonH`; do not merge scientifically distinct tags for cosmetic consistency.
+- Primary GitHub code links display `owner/repo`. For a file, directory, branch, or PR, append a brief scope after ` · ` (for example, `MuonH source`, `completep branch`, or `PR #498: MuonH submission`), while retaining the exact versioned URL. Hugging Face links use `owner/name` plus an artifact type such as `models`, `dataset`, `collection`, or `commit`. Documentation and gists retain descriptive labels. Separate multiple artifact links with ` · `.
+- Keep authorship, official/community status, validation limits, and model/data-release distinctions in the context or notes columns. A formatting change must not imply that an unmerged PR is a released implementation or that inspected code was executed.
+
+Suggested paper row:
 
 ```markdown
-| 2026 | Paper Title | One-sentence contribution; include arXiv ID or official URL. | tags |
+| Date | Paper | Main contribution | Tags |
+| :---: | :--- | :--- | :--- |
+| YYYY-MM-DD | [Paper title](https://arxiv.org/abs/xxxx.xxxxx) | One-sentence contribution and its demonstrated scope. | width, depth |
 ```
 
 Suggested BibTeX entry:
