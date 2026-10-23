@@ -22,9 +22,9 @@ Count a formal paper once per collection. Treat the original author note, its li
 
 The root `README.md` is the complete entry point for Hyperball. Include all collected papers, resources, reading guidance, and implementation evidence there. Companion files in `docs/` provide reader-facing topic guides. Keep the repository focused on curated references and research guidance; do not add search logs, source-audit reports, update diaries, or candidate ledgers. Use commit history to track changes. Keep scientific limitations and source citations with the relevant entries. Rebase relative links and keep section anchors valid when synchronizing content.
 
-### Scale-Aware Hyperparameter-Transfer Collection
+### Others: Scale-Aware Hyperparameter-Transfer Collection
 
-The dedicated [scale-aware HPT section](README.md#scale-aware-hyperparameter-transfer) and [guide](docs/hyperparameter-transfer.md) accept work that transfers optimization hyperparameters from affordable proxy runs to larger or otherwise more expensive target runs. A direct paper must derive, estimate, validate, or falsify a rule over at least one stated scale axis, such as width, depth, parameters, model shape, tokens, compute, batch size, schedule length, sparsity, expert configuration, adaptation rank, or post-training scale.
+The [Others section](README.md#others) and [scale-aware HPT guide](docs/hyperparameter-transfer.md) accept work that transfers optimization hyperparameters from affordable proxy runs to larger or otherwise more expensive target runs. A direct paper must derive, estimate, validate, or falsify a rule over at least one stated scale axis, such as width, depth, parameters, model shape, tokens, compute, batch size, schedule length, sparsity, expert configuration, adaptation rank, or post-training scale.
 
 Cross-dataset AutoML transfer, ordinary transfer learning, neural architecture search, and performance-only scaling laws do not qualify unless the main text also contains a substantive optimization-hyperparameter rule. Theory-only work may qualify when it explicitly derives a scale-dependent optimum or invariant recipe and clearly states the model or optimizer setting. Describe narrow theory, embedded paper sections, and empirical fits at their demonstrated scope rather than as universal laws.
 
