@@ -718,7 +718,6 @@ Coverage requires substantive derivation, implementation, experimental validatio
 | [papers/hyperball.bib](papers/hyperball.bib) | BibTeX for Hyperball and its substantive related extensions. |
 | [papers/hyperparameter-transfer.bib](papers/hyperparameter-transfer.bib) | BibTeX for complementary direct HPT papers outside the strict μP/Hyperball counts. |
 | [papers/mup-transfer.bib](papers/mup-transfer.bib) | BibTeX references for the μP / μTransfer collection. |
-| [maintenance/](maintenance/README.md) | Search notes, source audits, update histories, exclusions, and unresolved leads. |
 | [papers/README.md](papers/README.md) | Notes on maintaining reference files. |
 | [assets/banner.svg](assets/banner.svg) | README banner. |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution scope and entry template. |

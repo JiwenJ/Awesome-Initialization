@@ -11,4 +11,4 @@
 - [ ] Confirmed substantive μP / μTransfer relevance, substantive Hyperball relevance, or a direct scale-aware optimization-hyperparameter rule for the complementary HPT collection.
 - [ ] Mirrored changed tables between `README.md` and the applicable guide (`docs/mup-transfer.md`, `docs/hyperball.md`, or `docs/hyperparameter-transfer.md`) and updated its paper bibliography.
 - [ ] Preserved citation keys for cross-listed works and distinguished direct papers from author resources and adjacent reading.
-- [ ] Kept search / audit records and update histories under `maintenance/`, with reader-facing guidance under `docs/`.
+- [ ] Kept content focused on curated references and reader-facing guidance, without search / audit logs or update diaries.

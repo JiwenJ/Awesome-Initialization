@@ -20,7 +20,7 @@ The dedicated [Hyperball section](README.md#hyperball) and [guide](docs/hyperbal
 
 Count a formal paper once per collection. Treat the original author note, its living 2.1 / 2.2 versions, and the formal Hyperball paper as one research lineage; notes and talks belong in resources. State first-public dates and identify later versions when the relevant result was added. Distinguish author implementations, framework integrations, community experiments, and unverified artifacts.
 
-The root `README.md` is the complete entry point for Hyperball. Include all collected papers, resources, reading guidance, and implementation evidence there. Companion files in `docs/` provide reader-facing topic guides. Keep search logs, source audits, update histories, excluded candidates, and unresolved leads in [maintenance/](maintenance/README.md), rather than embedding them in the README or topic guides. Keep scientific limitations with the relevant entries. Rebase relative links and keep section anchors valid when synchronizing content.
+The root `README.md` is the complete entry point for Hyperball. Include all collected papers, resources, reading guidance, and implementation evidence there. Companion files in `docs/` provide reader-facing topic guides. Keep the repository focused on curated references and research guidance; do not add search logs, source-audit reports, update diaries, or candidate ledgers. Use commit history to track changes. Keep scientific limitations and source citations with the relevant entries. Rebase relative links and keep section anchors valid when synchronizing content.
 
 ### Scale-Aware Hyperparameter-Transfer Collection
 
