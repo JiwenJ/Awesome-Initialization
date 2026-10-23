@@ -1,12 +1,14 @@
 <div align="center">
 
-<img alt="Awesome μP: training loss against log2 learning rate for widths 256 to 8192, with every curve reaching its minimum at the same learning rate" src="assets/banner.svg" width="100%">
+<img alt="Awesome μP: training loss against log2 learning rate for widths 256 to 8192, with every curve reaching its minimum at the same learning rate" src="assets/banner.svg?v=b316585" width="100%">
 
 [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
 [![GitHub: JiwenJ/Awesome-Initialization](https://img.shields.io/badge/GitHub-JiwenJ%2FAwesome--Initialization-181717.svg?style=flat-square&logo=github)](https://github.com/JiwenJ/Awesome-Initialization)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/JiwenJ/Awesome-Initialization/pulls)
 
-A curated collection of papers, code, and resources on [μP](#mup), [Hyperball optimization](#hyperball), and [cross-scale hyperparameter transfer](#others).
+A curated collection of papers, code, and learning resources on scale-aware neural network training. It covers [maximal-update parametrization (μP)](#mup) and μTransfer, [Hyperball optimization](#hyperball) and its AdamH/MuonH variants, and [other approaches to hyperparameter transfer](#others).
+
+The collection spans theoretical foundations, coordinate checks, empirical scaling laws, practical implementations, and critical evaluations. It focuses on how model width and depth, training duration, batch size, and optimizer choice affect learning-rate and weight-decay transfer, helping researchers compare methods and design proxy-to-target tuning strategies.
 
 </div>
 
