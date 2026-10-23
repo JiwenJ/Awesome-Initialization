@@ -10,91 +10,44 @@ Papers, code and notes organized into [μP](#mup), [Hyperball](#hyperball), and 
 
 </div>
 
+Literature snapshot: **2026-10-20**. Counts may overlap across collections.
+
 ## Contents
 
 - [μP](#mup)
-  - [Start here](#start-here)
-  - [Why μP matters](#why-mup-matters)
-  - [Recent directions](#recent-mup--mutransfer-directions)
   - [Papers](#mup-papers)
-  - [Learning resources and blogs](#mup-resources)
-  - [Implementations and artifacts](#mup-implementations)
+  - [Resources](#mup-resources)
+  - [Code](#mup-implementations)
 - [Hyperball](#hyperball)
-  - [Reading path](#hyperball-reading-path)
-  - [Mechanism and interpretation](#hyperball-mechanism-and-interpretation)
   - [Papers](#hyperball-papers)
-  - [Learning resources and reports](#hyperball-learning-resources-and-reports)
-  - [Implementations and artifacts](#hyperball-implementations-and-artifacts)
-  - [Related foundations](#hyperball-related-foundations-and-distinctions)
-  - [Evidence and limitations](#hyperball-evidence-and-limitations)
+  - [Resources](#hyperball-learning-resources-and-reports)
+  - [Code](#hyperball-implementations-and-artifacts)
 - [Others](#others)
-  - [Scale-aware hyperparameter transfer](#scale-aware-hyperparameter-transfer)
-    - [Papers](#complementary-direct-papers)
-    - [Learning resources](#scale-aware-hpt-learning-resources)
-    - [Implementations and artifacts](#scale-aware-hpt-implementations-and-artifacts)
+  - [Papers](#complementary-direct-papers)
+  - [Resources](#scale-aware-hpt-learning-resources)
+  - [Code](#scale-aware-hpt-implementations-and-artifacts)
 
 <a id="mup"></a>
 
 ## μP
 
-Maximal-update parametrization and μTransfer: theory, scaling rules, coordinate checks, and cross-scale hyperparameter transfer. Snapshot: **2026-10-20**. This collection contains **173 papers**, **63 learning resources**, and **102 implementation / artifact entries**.
+Maximal-update parametrization, μTransfer, coordinate checks, and architecture-specific scaling rules.
 
-### Start Here
+**173 papers · 63 resources · 102 code / artifact entries.**
 
-| Order | Theme | Resource |
-|---:|---|---|
-| 1 | Theory foundation | [Feature Learning in Infinite-Width Neural Networks](https://arxiv.org/abs/2011.14522) |
-| 2 | Core μTransfer recipe | [Tensor Programs V: Tuning Large Neural Networks via Zero-Shot Hyperparameter Transfer](https://arxiv.org/abs/2203.03466) |
-| 3 | Adaptive optimizers | [Tensor Programs IVb: Adaptive Optimization in the Infinite-Width Limit](https://arxiv.org/abs/2308.01814) |
-| 4 | Depth scaling | [Tensor Programs VI: Feature Learning in Infinite-Depth Neural Networks](https://arxiv.org/abs/2310.02244) |
-| 5 | Empirical LR transfer | [An Empirical Study of μP Learning Rate Transfer](https://arxiv.org/abs/2404.05728) |
-| 6 | Practical caveat | [Quantifying Hyperparameter Transfer and the Importance of Embedding Layer Learning Rate](https://arxiv.org/abs/2605.21486) |
-
-For the detailed guide and practical checklist, see [μTransfer / μP Hyperparameter Transfer](docs/mup-transfer.md).
-
+<a id="start-here"></a>
 <a id="why-mup-matters"></a>
-
-### Why μP Matters
-
-μP is not just an initialization trick. It is a scaling-aware parameterization recipe covering initialization scales, learning-rate multipliers, readout and embedding treatment, and optimizer parameter groups. The practical goal of μTransfer is:
-
-1. Convert the target architecture to μP.
-2. Tune key hyperparameters on a small proxy model.
-3. Transfer those hyperparameters to a much larger model without re-running the expensive sweep.
-
-The μP collection includes the direct Tensor Programs lineage, coordinate checks, architecture-specific extensions, critical evaluations, and application reports with substantive μP evidence. Generic initialization, Muon, scaling-law, batch/token, scheduler, or ordinary HPT papers are intentionally excluded when μP is only an analogy, background citation, or unvalidated recipe mention.
-
+<a id="why-μp-matters"></a>
 <a id="recent-mup--mutransfer-directions"></a>
+<a id="recent-μp--μtransfer-directions"></a>
 
-### Recent μP / μTransfer Directions
+[Guide](docs/mup-transfer.md) · [BibTeX](papers/mup-transfer.bib)
 
-- **Width transfer for LLMs** — original μTransfer framing and practical Transformer results.
-- **Depth transfer** — Depth-μP, effective-depth laws, and limitations in modern multi-layer residual blocks.
-- **Embedding and readout scaling** — recent evidence that embedding-layer learning rate can dominate apparent μP gains in AdamW language-model training.
-- **Architecture-specific μP** — GNNs, GQA-μP, diffusion Transformers, probabilistic Transformers, Fourier neural operators, MoE, LoRA, and sparse models.
-- **Elastic and uncertainty transfer** — ShellElastic's μE for nested subnetworks and σTransfer for Laplace prior-precision selection; these target different hyperparameters and are not universal optimizer-LR rules.
-- **Private training and LR sensitivity** — DP-μP adds noise-aware spectral and signal-to-noise constraints; LR-gradient diagnostics study which layers and output multipliers affect observed transfer curves.
-- **Training-system variants** — u-μP for unit-scaled / low-precision training, SμPar for sparse training, and maximal-update rules for matrix-preconditioned optimizers.
-- **Boundaries and negative results** — experiments that directly test when μP does or does not transfer across optimizer, architecture, batch, duration, or parameter groups.
-
-| Topic | What to look for |
-|---|---|
-| Width transfer | Original μTransfer framing and practical Transformer results. |
-| Depth transfer | Depth-μP, effective-depth laws, and limits in modern residual blocks. |
-| Embedding / readout scaling | Cases where embedding-layer learning rate or output scaling controls transfer quality. |
-| Architecture-specific μP | GNNs, GQA, diffusion Transformers, probabilistic Transformers, Fourier neural operators, sparse models, and LoRA. |
-| Optimizer-specific transfer | Adaptive optimizers, Muon / hypersphere optimization, and optimizer-dependent scaling rules. |
-| Batch and duration | Work that tests these axes while μP remains a substantive part of the method or experimental design. |
-| Elastic and uncertainty transfer | [ShellElastic / μE](https://arxiv.org/abs/2610.15124) transfers LR and initialization across elastic families; [σTransfer](https://arxiv.org/abs/2610.11668) transfers Laplace prior precision under μP. |
-
-<a id="full-paper-list"></a>
 <a id="mup-papers"></a>
+<a id="full-paper-list"></a>
+<a id="μp-papers"></a>
 
-### μP Papers
-
-The table is ordered by arXiv `published` date, OpenReview public date, official report date, or venue date in reverse chronological order, matching the style of `JiwenJ/Awesome-Optimizers`.
-
-Coverage requires substantive derivation, implementation, experimental validation, direct criticism, or material application of μP / μTransfer. Generic initialization, Muon, scaling-law, batch/token, scheduler, or ordinary HPT papers are excluded when μP is only an analogy, background citation, or unvalidated recipe mention.
+### Papers
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
@@ -272,10 +225,11 @@ Coverage requires substantive derivation, implementation, experimental validatio
 | 2021-10-29 | [Training Integrable Parameterizations of Deep Neural Networks in the Infinite-Width Limit](https://arxiv.org/abs/2110.15596) | Studies mean-field integrable parameterizations and shows one training method is equivalent to a modification of μP. | mean field, integrable parameterizations |
 | 2020-11-30 | [Feature Learning in Infinite-Width Neural Networks](https://arxiv.org/abs/2011.14522) | Introduces maximal-update parametrization and classifies the stable infinite-width regimes that retain nontrivial feature learning instead of collapsing to kernel dynamics. | Tensor Programs IV, μP foundation, feature learning |
 
-<a id="learning-resources-and-blogs"></a>
 <a id="mup-resources"></a>
+<a id="learning-resources-and-blogs"></a>
+<a id="μp-learning-resources-and-blogs"></a>
 
-### μP Learning Resources and Blogs
+### Resources
 
 | Resource | Type | Notes |
 |---|---|---|
@@ -343,10 +297,11 @@ Coverage requires substantive derivation, implementation, experimental validatio
 | [Timothy Nguyen conversation on μP and Tensor Programs](https://www.youtube.com/watch?v=1aXOXHA7Jcw&t=2723s&ab_channel=TimothyNguyen) | Video | Long-form discussion touching Tensor Programs, μP, and scaling limits. |
 | [AutoML Seminar: scaling exponents across parameterisations](https://www.youtube.com/watch?v=CnAfD7aVzLg&ab_channel=AutoMLSeminars) | Talk | Seminar companion for scaling-exponent work across parameterizations and optimizers. |
 
-<a id="implementations-and-artifacts"></a>
 <a id="mup-implementations"></a>
+<a id="implementations-and-artifacts"></a>
+<a id="μp-implementations-and-artifacts"></a>
 
-### μP Implementations and Artifacts
+### Code
 
 | Resource | Related method | Notes |
 |---|---|---|
@@ -455,37 +410,20 @@ Coverage requires substantive derivation, implementation, experimental validatio
 
 ## Hyperball
 
-> A companion collection on Hyperball, AdamH, MuonH, their analyses, implementations, and applications. Snapshot: **2026-10-20**.
+Hyperball, AdamH, MuonH, and their analyses, extensions, comparisons, and applications.
 
-Hyperball controls selected weight matrices and optimizer updates through Frobenius normalization. This collection covers the original method, substantive comparisons and criticism, applications, and explicitly identified extensions of its fixed-sphere idea. It follows the repository's primary-source, deduplication, and factual-description rules; an independent μP result is not required here. The [μP collection](#mup) retains its original scope, while the [Others section](#others) compares Hyperball and HyperP with other transfer routes.
+**15 papers · 26 resources · 30 code / artifact entries.**
 
-The collection contains **15 papers**, **26 learning resources / reports**, and **30 implementation / artifact entries**. Three papers (HyperP, MACRO, and the iso-depth looped-LM study) are also in the μP collection; collection totals overlap. MD Decoupling is explicitly labeled a related extension, and contextual readings below are outside the paper count. Model/data releases and mirrors are grouped with their corresponding code entry.
+<a id="hyperball-reading-path"></a>
+<a id="hyperball-mechanism-and-interpretation"></a>
+<a id="hyperball-related-foundations-and-distinctions"></a>
+<a id="hyperball-evidence-and-limitations"></a>
 
-The complete collection and reading guide are included below. BibTeX: [hyperball.bib](papers/hyperball.bib).
+[Guide](docs/hyperball.md) · [BibTeX](papers/hyperball.bib)
 
-### Hyperball Reading Path
+<a id="hyperball-papers"></a>
 
-1. Read the [original paper](https://arxiv.org/abs/2606.16899) and its [author note](https://whenwen.github.io/wd_blog/public/hyperball-part-1.html) for the wrapper and motivation.
-2. Read [HyperP](https://arxiv.org/abs/2603.28743) for scale-transfer rules and limits, then [Hyperball May Not Be a Free Lunch](https://arxiv.org/abs/2607.22444) for scheduling evidence.
-3. Compare [Effective Learning Rate Governs Loss Dynamics](https://arxiv.org/abs/2608.24814) with [HyperTransfer](https://arxiv.org/abs/2609.07017): approximate loss alignment and conditional optimizer-trajectory equivalence are different claims.
-4. Read [The Best Optimizer Depends on Batch Size](https://arxiv.org/abs/2610.08975) for independently tuned Hyperball optimizer rankings across batch sizes.
-5. Inspect a versioned implementation below before adapting the recipe to new tensor groups or distributed layouts.
-
-### Hyperball Mechanism and Interpretation
-
-For a constrained matrix, let $R>0$ be its fixed radius, $u_t$ the base optimizer's proposed update, and $N(X)=X/\lVert X\rVert_F$. The original wrapper is
-
-$$
-W_{t+1}=R\,N\!\left(W_t-\eta_t R\,N(u_t)\right).
-$$
-
-The paper sets $R=\lVert W_0\rVert_F$ and applies the wrapper to attention/MLP matrices. Adam and Muon supply different directions, giving AdamH and MuonH. The proposed step has norm $\eta_tR$; the final displacement after projection need not. Implementations need defined behavior for zero updates and cannot infer a positive radius from a zero-initialized matrix. See [Algorithm 1 and §2](https://arxiv.org/html/2606.16899v1).
-
-Fixed matrix norms do not imply identical feature dynamics across arbitrary architectures. Actual angular motion also depends on the parameter–update angle; parameter routing, normalization gains, radius conventions, and schedules remain part of the recipe. [HyperP](https://arxiv.org/html/2603.28743v2) and [Free Lunch](https://arxiv.org/html/2607.22444v1) investigate these boundaries.
-
-### Hyperball Papers
-
-Dates are first verified public manuscript dates, in reverse order. Later versions are identified where relevant. The batch-size study uses its verified arXiv submission date; an earlier author-PDF Git commit does not establish the exact public posting day. The original 2025 author note and its living versions are resources in the same lineage as the 2026 formal paper, not additional papers. BibTeX: [hyperball.bib](papers/hyperball.bib).
+### Papers
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
@@ -505,9 +443,9 @@ Dates are first verified public manuscript dates, in reverse order. Later versio
 | 2026-03-30 | [Rethinking Language Model Scaling under Transferable Hypersphere Optimization](https://arxiv.org/abs/2603.28743) | Builds HyperP around MuonH/AdamH, derives width/depth rules, fits token-horizon scaling, and adds SqrtGate for MoE granularity; finds Hyperball alone insufficient for depth transfer. | extension, HyperP, μP, depth, token horizon, MoE |
 | 2026-01-29 | [Manifold constrained steepest descent for smooth and closed-set optimization](https://arxiv.org/abs/2601.21487) | The August 13 v2 explicitly formulates Hyperball and explains why projecting an ambient steepest direction need not guarantee constrained descent; its counterexample is geometric, not an LLM benchmark. | theoretical boundary, MCSD, projection, stationarity, v2 evidence |
 
-### Hyperball Learning Resources and Reports
+<a id="hyperball-learning-resources-and-reports"></a>
 
-Author resources, experimental reports, talks, and tutorials are labeled separately from papers. Live reports are snapshots, not promises of completed runs. Translations and redirect aliases are grouped with their originals.
+### Resources
 
 | Resource | Type | Why it matters |
 |---|---|---|
@@ -538,9 +476,9 @@ Author resources, experimental reports, talks, and tutorials are labeled separat
 | [Fantastic Pretraining Optimizers 2.2: The Hitchhiker's Guide to the Weight Norm Theory](https://whenwen.github.io/wd_blog/public/weight-decay-part-2.html) | Living author theory tutorial | Develops noise-model explanations of weight norms and angular step sizes, with interactive simulations; full [author-hosted source](https://github.com/WhenWen/WhenWen.github.io/blob/1f21d2d782f25fbe68f40aec743231e9b68f258b/wd_blog/public/weight-decay-part-2.html) reviewed, but exact publication date was not established. |
 | [Marin Agent MoE Experiment Digest](https://marin.readthedocs.io/en/latest/reports/agent-moe-experiments/) | Project experiment digest; data snapshot 2026-08-20 | Summarizes 80 experiments, including AdamH/MuonH and optimizer ablations. [MuonH experiment #5596](https://github.com/marin-community/marin/issues/5596#issuecomment-4422416900) reports 1.19–1.33× effective wall-clock gains over AdamH across four measured scales, while its fixed-asymptote fit projects a crossover near $1.65\times10^{21}$ FLOPs; the crossover is an extrapolation, not a measured reversal. Maintainer-hosted, agent-assisted records rather than peer-reviewed evidence. |
 
-### Hyperball Implementations and Artifacts
+<a id="hyperball-implementations-and-artifacts"></a>
 
-Links below were inspected for method support and provenance, not executed as reproductions. Pinned files identify the inspected implementation; upstream APIs may differ. Community ports and configurable variants are labeled separately from author code and framework integrations; inclusion does not establish benchmark gains or production readiness.
+### Code
 
 | Artifact | Framework / method | What it provides |
 |---|---|---|
@@ -575,42 +513,19 @@ Links below were inspected for method support and provenance, not executed as re
 | [DETR MuonH integration](https://github.com/troydutton/detr/pull/11) | PyTorch; community object-detection implementation and report, merged 2026-10-19 | [Pinned optimizer](https://github.com/troydutton/detr/blob/2a770f9be4cbb9ddf68e86cd0832fe787bb56323/src/optimizers/muonh.py) caches the first-step Frobenius radius, normalizes the Muon direction, radius-scales the step, and reprojects; embeddings, vectors, and zero-initialized matrices use Adam. The PR reports 50.5 AP for 16-epoch MuonH versus 24-epoch AdamW, but changes LR and schedule and gives no repeat variance, so this is a recipe-level report. Base-Muon tests inspected, not run; Hyperball-specific norm/continuation tests were not verified. |
 | [UFSM 3D-convolution Hyperball experiments](https://github.com/SuperOptimizer/ufsm/blob/0b5da92b17ebebc1a1f144853378e55781751b3e/DESIGN.md) | C / CUDA; community segmentation implementation and mixed-result report, 2026-10-16 | [Pinned kernels](https://github.com/SuperOptimizer/ufsm/blob/0b5da92b17ebebc1a1f144853378e55781751b3e/src/nn_opt.cu) apply normalized, radius-scaled Muon or Muon-C steps and fixed-sphere retraction to selected GroupNorm-fed convolutions, with checkpointed radii. Its 2,000-step Hyperball arm has validation loss 0.6564 versus Muon's 0.6539; Hyperball-specific repeats and a full angular-LR sweep are absent. Wrapper/reference and resumed-update tests inspected, not run; no general quality conclusion established. |
 
-### Hyperball Related Foundations and Distinctions
-
-These contextual links do not increase the Hyperball paper count and are not asserted to implement Hyperball.
-
-| Reading | Connection and distinction |
-|---|---|
-| [Spherical Motion Dynamics](https://arxiv.org/abs/2006.08419) | Earlier analysis of normalization, SGD, weight decay, and motion on a sphere. |
-| [Training Scale-Invariant Neural Networks on the Sphere Can Happen in Three Regimes](https://arxiv.org/abs/2209.03695) | Earlier fixed-sphere learning-dynamics analysis; useful context for effective-LR regimes. |
-| [Rotational Equilibrium: How Weight Decay Balances Learning Across Neural Networks](https://proceedings.mlr.press/v235/kosson24a.html) | Analyzes norm/angular-update equilibria and explicit rotation control before Hyperball. |
-| [nGPT: Normalized Transformer with Representation Learning on the Hypersphere](https://arxiv.org/abs/2410.01131) | Architectural/vector normalization differs from a matrix-wise Frobenius optimizer wrapper. The [official illustrative code](https://github.com/NVIDIA/ngpt) is a small reference implementation, not the internal training stack. |
-| [Learning Rate Transfer in Normalized Transformers](https://arxiv.org/abs/2604.27077) | Shows that original nGPT does not by itself give width/token-horizon LR transfer, then introduces νGPT's alignment-based width, depth, and duration rules. νGPT remains row/vector-normalized rather than whole-matrix Frobenius Hyperball and is indexed in the μP collection. |
-| [Training nGPT](https://arxiv.org/abs/2608.01284) | Extends normalized nGPT to a hybrid Mamba-2–Transformer MoE ladder through 30B total parameters. Its v2 uses model-dependent coefficients in \(\eta_{\text{peak}}=C/\sqrt{d_{\text{model}}}\) and explicitly leaves complete hyperparameter scaling laws for future work, so it is a scaling recipe rather than demonstrated zero-shot transfer or Hyperball. |
-| [Controlled LLM Training on Spectral Sphere](https://arxiv.org/abs/2601.08393) | Spectral-sphere constraints and SSO/Muon Sphere differ from Hyperball's Frobenius sphere. |
-| [Completed Hyperparameter Transfer across Modules, Width, Depth, Batch and Duration](https://arxiv.org/abs/2512.22382) | Transfer theory adopted by later AdamH recipes; the original paper does not introduce Hyperball. |
-| [Summer-22B](https://arxiv.org/abs/2603.00173) | Uses row-wise tangent-projected Adam and unit-row retraction; retained in the μP index, not labeled a Hyperball application. |
-| [Mano](https://arxiv.org/abs/2601.23000) and [Spherical Cautious Optimizers](https://openreview.net/forum?id=OyT2CJ4fh7) | Related tangent-space/oblique or cautious-update methods; checked texts do not establish direct AdamH/MuonH evaluation. |
-
-### Hyperball Evidence and Limitations
-
-- **Transfer is conditional.** The original paper's finite width/depth sweeps are not a theorem for every architecture. HyperP supplies additional depth and MoE rules; its token-horizon exponent is fitted. [Original experiments](https://arxiv.org/html/2606.16899v1), [HyperP](https://arxiv.org/html/2603.28743v2).
-- **Scheduling remains consequential.** Free Lunch reports heuristic bidirectional schedule matching; ELR reports conditional loss alignment, including an initial transient. HyperTransfer additionally maps optimizer states under explicit assumptions. Its non-scale-invariant extension compares a rescaled representative, not necessarily the raw fixed-radius network's loss. [Free Lunch](https://arxiv.org/html/2607.22444v1), [ELR](https://arxiv.org/html/2608.24814v1), [HyperTransfer](https://arxiv.org/html/2609.07017v1).
-- **Separate optimizer evidence from full-recipe gains.** Puro combines hardware, precision, curriculum, and optimizer changes. The DNA study's family-level efficiency gains are not evidence that MuonH beats MuonW. [Puro](https://arxiv.org/html/2608.27370v2), [DNA companion experiments](https://origin.bio/blogs/muon/).
-- **Inspect norm conventions.** Whole-matrix, row-wise, expert-wise, and global sharded norms define different algorithms. NeMo's inspected source requires an explicit radius; older online API documentation differs. [Marin's expert-group investigation](https://github.com/marin-community/marin/issues/8621) shows why per-expert direction computation does not necessarily imply per-expert radius constraints. Parameter-group exceptions are part of each linked implementation.
-- **Read source beyond method names.** Some repositories named Hyperball only project an ordinary optimizer step or clip to a ball; those operations omit parts of the original normalized-step sphere wrapper. Community ports may additionally change decay, angular-LR calibration, or the norm axes.
-
 ## Others
 
-### Scale-Aware Hyperparameter Transfer
+Scale-aware hyperparameter transfer beyond the μP and Hyperball paper collections, including learning-rate, batch-size, token-budget, and schedule scaling.
 
-Dedicated complementary collection on transferring optimization hyperparameters from affordable proxy runs to larger models or more expensive training configurations. Snapshot: **2026-10-20**.
+**58 papers · 18 resources · 28 code / artifact entries.**
 
-The collection contains **58 complementary direct papers and technical reports**, **18 learning resources**, and **28 implementation / artifact entries**. Direct papers already counted by the strict μP or Hyperball collections are cross-linked from the guide instead of duplicated; resources and artifacts may overlap. It covers width, depth, model/data scale, token horizon, batch size, schedules, sparsity, expert configuration, adaptation rank, and post-training scale. Cross-dataset AutoML transfer and performance-only scaling laws are outside its direct scope.
+<a id="scale-aware-hyperparameter-transfer"></a>
 
-Read the [scale-aware HPT guide](docs/hyperparameter-transfer.md) for the taxonomy, cross-collection index, practical protocol, and distinctions between μP, Hyperball, HyperP, nGPT, and νGPT. BibTeX: [hyperparameter-transfer.bib](papers/hyperparameter-transfer.bib).
+[Guide](docs/hyperparameter-transfer.md) · [BibTeX](papers/hyperparameter-transfer.bib)
 
-#### Complementary Direct Papers
+<a id="complementary-direct-papers"></a>
+
+### Papers
 
 | Date | Paper | Main contribution | Transfer axes |
 |---|---|---|---|
@@ -673,7 +588,9 @@ Read the [scale-aware HPT guide](docs/hyperparameter-transfer.md) for the taxono
 | 2017-11-01 | [Don't Decay the Learning Rate, Increase the Batch Size](https://arxiv.org/abs/1711.00489) | Converts learning-rate decay schedules into increasing-batch schedules and analyzes coupled batch, learning-rate, and momentum scaling; demonstrates comparable learning curves and large-batch training benefits on CIFAR-10 and ImageNet. | batch, schedule, momentum, SGD |
 | 2017-06-08 | [Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour](https://arxiv.org/abs/1706.02677) | Validates linear learning-rate scaling with minibatch size plus gradual warmup for distributed ResNet-50 training on ImageNet, preserving small-batch accuracy up to batch size 8,192; the rule is not universal. | batch, SGD, warmup, ImageNet |
 
-#### Scale-Aware HPT Learning Resources
+<a id="scale-aware-hpt-learning-resources"></a>
+
+### Resources
 
 | Resource | Type | Why it matters |
 |---|---|---|
@@ -696,7 +613,9 @@ Read the [scale-aware HPT guide](docs/hyperparameter-transfer.md) for the taxono
 | [How to Scale Hyperparameters as Batch Size Increases](https://sadhikamalladi.github.io/blog/2024/01/22/SDEs-ScalingRules/) | Author tutorial; 2024-01-22 | Explains SGD/Adam SDE-based batch scaling and diagnostic limits, including coupled learning-rate, beta and epsilon choices. |
 | [AdaScale SGD documentation](https://fairscale.readthedocs.io/en/stable/api/optim/adascale.html) | Official FairScale documentation | Explains the PyTorch SGD/DDP wrapper, gradient accumulation, gain-based schedule clock and usage limits for adaptive large-batch scaling; a framework integration, not the paper's author experiment code. |
 
-#### Scale-Aware HPT Implementations and Artifacts
+<a id="scale-aware-hpt-implementations-and-artifacts"></a>
+
+### Code
 
 | Artifact | Framework / method | What it provides |
 |---|---|---|
@@ -731,27 +650,7 @@ Read the [scale-aware HPT guide](docs/hyperparameter-transfer.md) for the taxono
 
 ---
 
-<details>
-<summary>Repository files and contributing</summary>
+<a id="repository-layout"></a>
+<a id="contributing"></a>
 
-### Repository Layout
-
-| Path | Purpose |
-|---|---|
-| [docs/mup-transfer.md](docs/mup-transfer.md) | Main μP / μTransfer reading guide, paper timeline, resources, code links, and practical checklist. |
-| [docs/hyperball.md](docs/hyperball.md) | Companion copy of the complete Hyperball collection shown in this README. |
-| [docs/hyperparameter-transfer.md](docs/hyperparameter-transfer.md) | Complementary scale-aware HPT papers, taxonomy, cross-collection map, artifacts, and transfer protocol. |
-| [papers/hyperball.bib](papers/hyperball.bib) | BibTeX for Hyperball and its substantive related extensions. |
-| [papers/hyperparameter-transfer.bib](papers/hyperparameter-transfer.bib) | BibTeX for complementary direct HPT papers outside the strict μP/Hyperball counts. |
-| [papers/mup-transfer.bib](papers/mup-transfer.bib) | BibTeX references for the μP / μTransfer collection. |
-| [papers/README.md](papers/README.md) | Notes on maintaining reference files. |
-| [assets/banner.svg](assets/banner.svg) | README banner. |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution scope and entry template. |
-
-### Contributing
-
-Useful additions include direct μP papers, implementation notes, coordinate-check scripts, substantive applications, and well-evidenced failed-transfer studies. The dedicated Hyperball collection accepts direct Hyperball research, comparisons, applications, and documented extensions. The scale-aware HPT collection accepts direct proxy-to-target rules and clearly scoped theory or experiments over model/training scale. Please include source links, arXiv IDs when available, and a one-sentence reason why the resource matters.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the suggested format.
-
-</details>
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for scope and entry format, and [papers/](papers/) for reference files.
