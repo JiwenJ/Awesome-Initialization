@@ -24,6 +24,8 @@ The collection contains **15 papers**, **26 learning resources / reports**, and 
 4. Read [The Best Optimizer Depends on Batch Size](https://arxiv.org/abs/2610.08975) for independently tuned Hyperball optimizer rankings across batch sizes.
 5. Inspect a versioned implementation below before adapting the recipe to new tensor groups or distributed layouts.
 
+[↑ Back to Contents](#contents)
+
 ## Mechanism and Interpretation
 
 For a constrained matrix, let $R>0$ be its fixed radius, $u_t$ the base optimizer's proposed update, and $N(X)=X/\lVert X\rVert_F$. The original wrapper is
@@ -35,6 +37,8 @@ $$
 The paper sets $R=\lVert W_0\rVert_F$ and applies the wrapper to attention/MLP matrices. Adam and Muon supply different directions, giving AdamH and MuonH. The proposed step has norm $\eta_tR$; the final displacement after projection need not. Implementations need defined behavior for zero updates and cannot infer a positive radius from a zero-initialized matrix. See [Algorithm 1 and §2](https://arxiv.org/html/2606.16899v1).
 
 Fixed matrix norms do not imply identical feature dynamics across arbitrary architectures. Actual angular motion also depends on the parameter–update angle; parameter routing, normalization gains, radius conventions, and schedules remain part of the recipe. [HyperP](https://arxiv.org/html/2603.28743v2) and [Free Lunch](https://arxiv.org/html/2607.22444v1) investigate these boundaries.
+
+[↑ Back to Contents](#contents)
 
 ## Hyperball Papers
 
@@ -57,6 +61,8 @@ Dates are first verified public manuscript dates, in reverse order. Later versio
 | 2026-04-22 | [How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models](https://arxiv.org/abs/2604.21106) | Uses MuonH with μP/HyperP scaling in iso-depth looped/non-looped LM experiments; Appendix D validates width and token-horizon LR transfer at fixed effective depth, not independent depth transfer. Reviewed v3, May 7. | application, MuonH, HyperP, μP, width, token horizon, looped LMs |
 | 2026-03-30 | [Rethinking Language Model Scaling under Transferable Hypersphere Optimization](https://arxiv.org/abs/2603.28743) | Builds HyperP around MuonH/AdamH, derives width/depth rules, fits token-horizon scaling, and adds SqrtGate for MoE granularity; finds Hyperball alone insufficient for depth transfer. | extension, HyperP, μP, depth, token horizon, MoE |
 | 2026-01-29 | [Manifold constrained steepest descent for smooth and closed-set optimization](https://arxiv.org/abs/2601.21487) | The August 13 v2 explicitly formulates Hyperball and explains why projecting an ambient steepest direction need not guarantee constrained descent; its counterexample is geometric, not an LLM benchmark. | theoretical boundary, MCSD, projection, stationarity, v2 evidence |
+
+[↑ Back to Contents](#contents)
 
 ## Hyperball Learning Resources and Reports
 
@@ -90,6 +96,8 @@ Author resources, experimental reports, talks, and tutorials are labeled separat
 | [Fantastic Pretraining Optimizers 2.1: Hyperball Optimization](https://whenwen.github.io/wd_blog/public/hyperball-part-1.html) | Living author note / original research lineage | Redirects to the paper-linked Notion note. The [legacy combined note](https://whenwen.github.io/wd_blog/public/index.html) has an author-supplied 2025-11-30 citation; both belong to the formal paper's lineage. |
 | [Fantastic Pretraining Optimizers 2.2: The Hitchhiker's Guide to the Weight Norm Theory](https://whenwen.github.io/wd_blog/public/weight-decay-part-2.html) | Living author theory tutorial | Develops noise-model explanations of weight norms and angular step sizes, with interactive simulations; full [author-hosted source](https://github.com/WhenWen/WhenWen.github.io/blob/1f21d2d782f25fbe68f40aec743231e9b68f258b/wd_blog/public/weight-decay-part-2.html) reviewed, but exact publication date was not established. |
 | [Marin Agent MoE Experiment Digest](https://marin.readthedocs.io/en/latest/reports/agent-moe-experiments/) | Project experiment digest; data snapshot 2026-08-20 | Summarizes 80 experiments, including AdamH/MuonH and optimizer ablations. [MuonH experiment #5596](https://github.com/marin-community/marin/issues/5596#issuecomment-4422416900) reports 1.19–1.33× effective wall-clock gains over AdamH across four measured scales, while its fixed-asymptote fit projects a crossover near $1.65\times10^{21}$ FLOPs; the crossover is an extrapolation, not a measured reversal. Maintainer-hosted, agent-assisted records rather than peer-reviewed evidence. |
+
+[↑ Back to Contents](#contents)
 
 ## Hyperball Implementations and Artifacts
 
@@ -128,6 +136,8 @@ Links below were inspected for method support and provenance, not executed as re
 | [DETR MuonH integration](https://github.com/troydutton/detr/pull/11) | PyTorch; community object-detection implementation and report, merged 2026-10-19 | [Pinned optimizer](https://github.com/troydutton/detr/blob/2a770f9be4cbb9ddf68e86cd0832fe787bb56323/src/optimizers/muonh.py) caches the first-step Frobenius radius, normalizes the Muon direction, radius-scales the step, and reprojects; embeddings, vectors, and zero-initialized matrices use Adam. The PR reports 50.5 AP for 16-epoch MuonH versus 24-epoch AdamW, but changes LR and schedule and gives no repeat variance, so this is a recipe-level report. Base-Muon tests inspected, not run; Hyperball-specific norm/continuation tests were not verified. |
 | [UFSM 3D-convolution Hyperball experiments](https://github.com/SuperOptimizer/ufsm/blob/0b5da92b17ebebc1a1f144853378e55781751b3e/DESIGN.md) | C / CUDA; community segmentation implementation and mixed-result report, 2026-10-16 | [Pinned kernels](https://github.com/SuperOptimizer/ufsm/blob/0b5da92b17ebebc1a1f144853378e55781751b3e/src/nn_opt.cu) apply normalized, radius-scaled Muon or Muon-C steps and fixed-sphere retraction to selected GroupNorm-fed convolutions, with checkpointed radii. Its 2,000-step Hyperball arm has validation loss 0.6564 versus Muon's 0.6539; Hyperball-specific repeats and a full angular-LR sweep are absent. Wrapper/reference and resumed-update tests inspected, not run; no general quality conclusion established. |
 
+[↑ Back to Contents](#contents)
+
 ## Related Foundations and Distinctions
 
 These contextual links do not increase the Hyperball paper count and are not asserted to implement Hyperball.
@@ -145,6 +155,8 @@ These contextual links do not increase the Hyperball paper count and are not ass
 | [Summer-22B](https://arxiv.org/abs/2603.00173) | Uses row-wise tangent-projected Adam and unit-row retraction; retained in the μP index, not labeled a Hyperball application. |
 | [Mano](https://arxiv.org/abs/2601.23000) and [Spherical Cautious Optimizers](https://openreview.net/forum?id=OyT2CJ4fh7) | Related tangent-space/oblique or cautious-update methods; checked texts do not establish direct AdamH/MuonH evaluation. |
 
+[↑ Back to Contents](#contents)
+
 ## Reading the Evidence
 
 - **Transfer is conditional.** The original paper's finite width/depth sweeps are not a theorem for every architecture. HyperP supplies additional depth and MoE rules; its token-horizon exponent is fitted. [Original experiments](https://arxiv.org/html/2606.16899v1), [HyperP](https://arxiv.org/html/2603.28743v2).
@@ -152,3 +164,5 @@ These contextual links do not increase the Hyperball paper count and are not ass
 - **Separate optimizer evidence from full-recipe gains.** Puro combines hardware, precision, curriculum, and optimizer changes. The DNA study's family-level efficiency gains are not evidence that MuonH beats MuonW. [Puro](https://arxiv.org/html/2608.27370v2), [DNA companion experiments](https://origin.bio/blogs/muon/).
 - **Inspect norm conventions.** Whole-matrix, row-wise, expert-wise, and global sharded norms define different algorithms. NeMo's inspected source requires an explicit radius; older online API documentation differs. [Marin's expert-group investigation](https://github.com/marin-community/marin/issues/8621) shows why per-expert direction computation does not necessarily imply per-expert radius constraints. Parameter-group exceptions are part of each linked implementation.
 - **Read source beyond method names.** Some repositories named Hyperball only project an ordinary optimizer step or clip to a ball; those operations omit parts of the original normalized-step sphere wrapper. Community ports may additionally change decay, angular-LR calibration, or the norm axes.
+
+[↑ Back to Contents](#contents)

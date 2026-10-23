@@ -30,6 +30,8 @@ The scope is **scale-aware transfer within a model or training family**: width, 
 
 No single approach covers every axis. μP primarily addresses width; Hyperball controls selected matrix norms and update directions; HyperP re-derives scale rules for hypersphere optimization; empirical laws remain necessary when token budget, batch size, sparsity, or data distribution changes.
 
+[↑ Back to Contents](#contents)
+
 ## Complementary Direct Papers
 
 These papers directly derive, estimate, validate, or falsify a scale-aware hyperparameter rule, including explicitly scoped theoretical optima, and are not already counted in the strict μP or Hyperball paper tables. BibTeX: [hyperparameter-transfer.bib](../papers/hyperparameter-transfer.bib). Dates identify the first public version where verified; month-only dates preserve unresolved day-level precision.
@@ -95,6 +97,8 @@ These papers directly derive, estimate, validate, or falsify a scale-aware hyper
 | 2017-11-01 | [Don't Decay the Learning Rate, Increase the Batch Size](https://arxiv.org/abs/1711.00489) | Converts learning-rate decay schedules into increasing-batch schedules and analyzes coupled batch, learning-rate, and momentum scaling; demonstrates comparable learning curves and large-batch training benefits on CIFAR-10 and ImageNet. | batch, schedule, momentum, SGD |
 | 2017-06-08 | [Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour](https://arxiv.org/abs/1706.02677) | Validates linear learning-rate scaling with minibatch size plus gradual warmup for distributed ResNet-50 training on ImageNet, preserving small-batch accuracy up to batch size 8,192; the rule is not universal. | batch, SGD, warmup, ImageNet |
 
+[↑ Back to Contents](#contents)
+
 ## Key Papers in the μP and Hyperball Collections
 
 The following direct HPT papers remain in their original collection and are not duplicated in the 58-paper count above.
@@ -115,6 +119,8 @@ The following direct HPT papers remain in their original collection and are not 
 | Width-proxy validation and frontier extrapolation | [Kolibri: A Sovereign European Model on the Pareto Frontier](https://aleph-alpha.com/downloads/tech-report.pdf) | [μP guide](mup-transfer.md) |
 | Cross-model-scale full fine-tuning | [TACO: Ternary Absolute-max Column-wise One-sparse Optimizer for LLM Fine-Tuning](https://arxiv.org/abs/2610.02199) | [μP guide](mup-transfer.md) |
 | Batch scaling and optimizer-ranking reversals | [The Best Optimizer Depends on Batch Size](https://arxiv.org/abs/2610.08975) | [Hyperball guide](hyperball.md) |
+
+[↑ Back to Contents](#contents)
 
 ## Learning Resources
 
@@ -138,6 +144,8 @@ The following direct HPT papers remain in their original collection and are not 
 | [How AI training scales](https://openai.com/index/how-ai-training-scales/) | OpenAI author explainer | Explains gradient-noise scale, critical batches and the data/time tradeoff behind McCandlish et al.; differentiates predictions from hardware throughput. |
 | [How to Scale Hyperparameters as Batch Size Increases](https://sadhikamalladi.github.io/blog/2024/01/22/SDEs-ScalingRules/) | Author tutorial; 2024-01-22 | Explains SGD/Adam SDE-based batch scaling and diagnostic limits, including coupled learning-rate, beta and epsilon choices. |
 | [AdaScale SGD documentation](https://fairscale.readthedocs.io/en/stable/api/optim/adascale.html) | Official FairScale documentation | Explains the PyTorch SGD/DDP wrapper, gradient accumulation, gain-based schedule clock and usage limits for adaptive large-batch scaling; a framework integration, not the paper's author experiment code. |
+
+[↑ Back to Contents](#contents)
 
 ## Implementations and Artifacts
 
@@ -172,6 +180,8 @@ The following direct HPT papers remain in their original collection and are not 
 | [google-research/batch_science](https://github.com/google-research/google-research/tree/master/batch_science) | Training measurements and analysis | Author trial metadata, loss measurements and plot-reproduction notebook for the data-parallelism study; not a full standalone training implementation. |
 | [Marin data-efficiency experiments](https://github.com/marin-community/marin/tree/suhas/data-efficiency/experiments/data_efficiency) | Marin / Levanter; ensemble scaling | Author-linked training configurations, ensemble hyperparameter candidates and plot code for `Pre-training under infinite compute`; the linked WandB report was not independently audited for completeness. |
 
+[↑ Back to Contents](#contents)
+
 ## Practical Transfer Protocol
 
 1. **Name every changing axis.** Record width, depth, model shape, parameter count, tokens, batch size, sequence length, sparsity, expert count, optimizer, schedule, data mixture, and adaptation rank. A rule validated on one axis is not automatically valid on another.
@@ -183,6 +193,8 @@ The following direct HPT papers remain in their original collection and are not 
 7. **Treat tokens as an independent axis.** Matching model-size parameterization does not make learning rate invariant to training duration. A proxy can use fewer tokens only when the method supplies and validates a horizon correction.
 8. **Keep a narrow safety sweep.** When target cost permits, run a small bracket around the transferred setting and preserve failed runs as evidence about the boundary of the rule.
 
+[↑ Back to Contents](#contents)
+
 ## Common Distinctions
 
 - **μP and Hyperball are compatible ideas, not opposites.** μP scales parameterization and optimizer groups to preserve feature dynamics; Hyperball constrains selected matrices and normalizes update directions. HyperP derives the scaling rules needed when the two concerns meet.
@@ -192,6 +204,8 @@ The following direct HPT papers remain in their original collection and are not 
 - **A performance scaling law is not automatically a hyperparameter law.** Direct inclusion requires a rule for an optimization hyperparameter or a validated invariant recipe, not only a prediction of loss, compute, or model/data allocation.
 - **Critical batch size is definition-dependent.** Steps-to-target efficiency thresholds, checkpoint-local recovery limits, gradient-noise proxies, and peaks of optimal-LR curves are not interchangeable. Record batch units (tokens, sequences, or responses), training budget, schedule, tuning protocol, target loss, and tolerance before comparing CBS claims.
 
+[↑ Back to Contents](#contents)
+
 ## Evidence Limits
 
 The collection records public sources available through **2026-10-20** and is not guaranteed exhaustive. Several entries are preprints. Narrow theory, embedded experiments, and extrapolations retain their stated assumptions and tested scales; a fitted optimum or one successful transferred run does not establish universal or zero-shot transfer.
@@ -199,3 +213,5 @@ The collection records public sources available through **2026-10-20** and is no
 Microsoft's frontier report provides small-to-intermediate validation and a frontier application, without a target-scale optimum sweep or enough raw sweep data to independently refit its laws. The least-squares schedule formulas and heuristic critical-batch threshold are not established rules for AdamW or LLMs. Repeated-data GPU-time estimates and the 70B/10T recipe are fitted projections.
 
 Schedule-selection formulas remain empirical; the learning-rate-annealing paper warns that unconstrained optimization of its approximation can yield collapsed schedules. Released measurements and plotting code are labeled as artifacts rather than complete training implementations. See [CONTRIBUTING.md](../CONTRIBUTING.md) for inclusion and metadata rules.
+
+[↑ Back to Contents](#contents)

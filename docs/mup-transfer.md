@@ -33,6 +33,8 @@ Standard parameterization often makes the best learning rate, initialization sca
 | Data and schedule | Does changing batch size, token budget, warmup, or schedule length break transfer? |
 | Architecture | Does the model introduce GNNs, GQA, MoE, LoRA, diffusion objectives, sparsity, or neural-operator axes? |
 
+[↑ Back to Contents](#contents)
+
 ## Terminology
 
 | Term | Meaning |
@@ -44,6 +46,8 @@ Standard parameterization often makes the best learning rate, initialization sca
 | Coordinate check | Diagnostic that tracks activations, logits, gradients, or update magnitudes across widths to confirm that the μP implementation scales correctly. |
 | Base / delta / target model | Common implementation pattern: define a base shape, a slightly wider delta shape, and the target shape to infer scaling multipliers. |
 
+[↑ Back to Contents](#contents)
+
 ## Core Reading Path
 
 | Order | Resource | Why it matters |
@@ -53,6 +57,8 @@ Standard parameterization often makes the best learning rate, initialization sca
 | 3 | [Tensor Programs IVb: Adaptive Optimization in the Infinite-Width Limit](https://arxiv.org/abs/2308.01814) | Extends the Tensor Programs analysis to adaptive optimizers such as Adam. |
 | 4 | [Tensor Programs VI: Feature Learning in Infinite-Depth Neural Networks](https://arxiv.org/abs/2310.02244) | Introduces Depth-μP and discusses why depth transfer is harder than width transfer, especially for modern residual blocks. |
 | 5 | [Quantifying Hyperparameter Transfer and the Importance of Embedding Layer Learning Rate](https://arxiv.org/abs/2605.21486) | Recent critical analysis: proposes metrics for transfer quality and highlights embedding-layer learning rate as a key bottleneck in AdamW LM training. |
+
+[↑ Back to Contents](#contents)
 
 ## Paper Timeline
 
@@ -236,6 +242,8 @@ Coverage requires substantive derivation, implementation, experimental validatio
 | 2021-10-29 | [Training Integrable Parameterizations of Deep Neural Networks in the Infinite-Width Limit](https://arxiv.org/abs/2110.15596) | Studies mean-field integrable parameterizations and shows one training method is equivalent to a modification of μP. | mean field, integrable parameterizations |
 | 2020-11-30 | [Feature Learning in Infinite-Width Neural Networks](https://arxiv.org/abs/2011.14522) | Introduces maximal-update parametrization and classifies the stable infinite-width regimes that retain nontrivial feature learning instead of collapsing to kernel dynamics. | Tensor Programs IV, μP foundation, feature learning |
 
+[↑ Back to Contents](#contents)
+
 ## Learning Resources and Blogs
 
 | Resource | Type | Notes |
@@ -303,6 +311,8 @@ Coverage requires substantive derivation, implementation, experimental validatio
 | [Renormalizing the optimal hyperparameters of a neural network](https://indico.cern.ch/event/1065458/contributions/4647081/) | Talk / slides | Greg Yang's concise μTransfer talk with a recording, 25-page slide deck, and effective-field-theory analogy. |
 | [Timothy Nguyen conversation on μP and Tensor Programs](https://www.youtube.com/watch?v=1aXOXHA7Jcw&t=2723s&ab_channel=TimothyNguyen) | Video | Long-form discussion touching Tensor Programs, μP, and scaling limits. |
 | [AutoML Seminar: scaling exponents across parameterisations](https://www.youtube.com/watch?v=CnAfD7aVzLg&ab_channel=AutoMLSeminars) | Talk | Seminar companion for scaling-exponent work across parameterizations and optimizers. |
+
+[↑ Back to Contents](#contents)
 
 ## Implementations and Artifacts
 
@@ -411,6 +421,8 @@ Coverage requires substantive derivation, implementation, experimental validatio
 | [thebuckleylab/jpc limits-paper experiments](https://github.com/thebuckleylab/jpc/tree/main/experiments/limits_paper) | Predictive-coding width / depth limits | Official JAX reproduction code for stable feature-learning parameterizations and width / depth transfer in predictive-coding networks. |
 | [thebuckleylab/jpc μPC experiments](https://github.com/thebuckleylab/jpc/tree/main/experiments/mupc_paper) | μPC / Depth-μP | Official full experiment suite for the μPC paper; the repository also retains the compact [tutorial notebook](https://github.com/thebuckleylab/jpc/blob/main/examples/mupc.ipynb). |
 
+[↑ Back to Contents](#contents)
+
 ## Practical Checklist
 
 1. **Decide which axes transfer.** Classic μP targets width transfer. Depth, batch size, sequence length, token budget, sparsity, LoRA rank, GQA groups, and optimizer changes need additional rules or validation.
@@ -421,6 +433,8 @@ Coverage requires substantive derivation, implementation, experimental validatio
 6. **Validate a narrow target band.** Even with μTransfer, run a small sanity sweep around the transferred learning rate on the largest feasible target when budget allows.
 7. **Watch embeddings.** Recent work suggests embedding-layer learning rate can dominate transfer quality in AdamW language-model training, so treat embeddings as first-class hyperparameters.
 8. **Document failures.** Failed transfer cases are useful: record which axis changed, which parameter groups were scaled, and which coordinate checks failed.
+
+[↑ Back to Contents](#contents)
 
 ## Known Limitations and Open Questions
 
@@ -435,3 +449,5 @@ Coverage requires substantive derivation, implementation, experimental validatio
 - **Theory vs practice gap remains.** Recent empirical work questions whether the standard μP explanation fully accounts for AdamW LM transfer, especially around embeddings.
 - **Coordinate checks and LR transfer are different tests.** Hybrid Transformer–SSM experiments exhibit width-LR transfer despite failed standard coordinate checks; conversely, stable coordinates alone do not establish that a transferred LR is target-optimal.
 - **Privacy noise adds another transfer constraint.** DP-μP matches both spectral update scales and layer-wise signal-to-noise ratios; its noise-dominated width theory does not establish depth transfer or a rule for the transition between signal- and noise-dominated regimes.
+
+[↑ Back to Contents](#contents)
