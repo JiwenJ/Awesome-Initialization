@@ -22,6 +22,6 @@ The follow-up searched exact and full-text combinations of `Hyperball`, `AdamH`,
 
 - `README.md` and `docs/hyperball.md`: paper count, snapshot, direct-paper row, and audit links.
 - `papers/hyperball.bib`: one matching BibTeX record.
-- `docs/hyperparameter-transfer-search-audit-2026-09-19.md`: a dated correction explaining the earlier false negative.
+- `maintenance/audits/hyperparameter-transfer-search-audit-2026-09-19.md`: a dated correction explaining the earlier false negative.
 
 The correction preserves the existing rule that table rows must be identical between the root README and Hyperball guide and must map one-to-one to the paper-only bibliography.

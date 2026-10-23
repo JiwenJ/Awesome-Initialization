@@ -4,7 +4,7 @@
 
 This audit implements the request for a dedicated Hyperball section in Awesome-Initialization. It covers the optimization method introduced by Wen, Dang, Lyu, Ma, and Liang, including AdamH/MuonH, substantive analyses, applications, implementations, and an explicitly labeled related extension. It does not broaden the separate μP collection to arbitrary optimizers.
 
-The [guide](hyperball.md) and root [Hyperball section](../README.md#hyperball) contain **12 papers**, **16 learning resources / reports**, and **15 implementation / artifact entries**. Eleven papers directly develop, analyze, compare, or apply Hyperball; MD Decoupling is a substantive related extension with a different update-scaling convention. HyperP was already in the μP index. MACRO's independently verified μP experiment was also added there, taking that collection from 160 to 161 papers. The two collections share those two papers and therefore contain **171 unique papers** in total.
+The [guide](../../docs/hyperball.md) and root [Hyperball section](../../README.md#hyperball) contain **12 papers**, **16 learning resources / reports**, and **15 implementation / artifact entries**. Eleven papers directly develop, analyze, compare, or apply Hyperball; MD Decoupling is a substantive related extension with a different update-scaling convention. HyperP was already in the μP index. MACRO's independently verified μP experiment was also added there, taking that collection from 160 to 161 papers. The two collections share those two papers and therefore contain **171 unique papers** in total.
 
 ## Search Method
 

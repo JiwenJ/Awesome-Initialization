@@ -1,6 +1,6 @@
 # μP, Scale-Aware HPT, and Hyperball Audit — 2026-10-04
 
-This public-source update follows [CONTRIBUTING.md](../CONTRIBUTING.md), extending the September 24 snapshot through **October 4, 2026** and checking older omissions. It adds 14 distinct papers, keeps manuscript revisions within existing records, and separates demonstrated transfer from heuristic recipes and unverified implementations. It does not claim exhaustive coverage of private, unindexed, or inaccessible work.
+This public-source update follows [CONTRIBUTING.md](../../CONTRIBUTING.md), extending the September 24 snapshot through **October 4, 2026** and checking older omissions. It adds 14 distinct papers, keeps manuscript revisions within existing records, and separates demonstrated transfer from heuristic recipes and unverified implementations. It does not claim exhaustive coverage of private, unindexed, or inaccessible work.
 
 | Collection | Papers before → after | Resources before → after | Artifacts before → after |
 |---|---:|---:|---:|
@@ -45,7 +45,7 @@ New artifacts include the [looped-LM author repository](https://github.com/kschw
 
 ## Hyperball Update
 
-The complete current Hyperball audit is included in the [root README](../README.md#hyperball-incremental-audit--2026-10-04), including the recovered application, MACRO revision, seminar, dataset provenance correction, version checks, and unresolved leads. The September 23/24 audits remain historical snapshots rather than being rewritten to imply knowledge unavailable at their cutoffs.
+The complete Hyperball audit for this cutoff is preserved in the [maintenance archive](hyperball-history.md#hyperball-incremental-audit--2026-10-04), including the recovered application, MACRO revision, seminar, dataset provenance correction, version checks, and unresolved leads. The September 23/24 audits remain historical snapshots rather than being rewritten to imply knowledge unavailable at their cutoffs.
 
 ## Exclusions and Access Limits
 

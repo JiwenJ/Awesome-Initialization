@@ -1,6 +1,6 @@
 # μP, Scale-Aware HPT, and Hyperball Audit — 2026-09-24
 
-This incremental public-source audit follows the repository's [inclusion rules](../CONTRIBUTING.md). It combines recent-paper discovery with backward checks for omitted foundational work. It does not claim exhaustive coverage of private, unindexed, or inaccessible material.
+This incremental public-source audit follows the repository's [inclusion rules](../../CONTRIBUTING.md). It combines recent-paper discovery with backward checks for omitted foundational work. It does not claim exhaustive coverage of private, unindexed, or inaccessible material.
 
 | Collection | Papers before → after | Resources before → after | Artifacts before → after |
 |---|---:|---:|---:|
@@ -51,7 +51,7 @@ This adds 11 papers, two teaching resources, and six implementation/artifact ent
 
 ## Hyperball Increment
 
-See the complete [September 24 Hyperball audit in the root README](../README.md#hyperball-incremental-audit--2026-09-24) for version checks, the Palingenesis warmup fix, and the unresolved LR-Transfer-Trajectory dataset. The Hyperball inventory remains 13 papers, 22 resources/reports, and 24 implementation/artifact families.
+See the complete [September 24 Hyperball audit in the maintenance archive](hyperball-history.md#hyperball-incremental-audit--2026-09-24) for version checks, the Palingenesis warmup fix, and the unresolved LR-Transfer-Trajectory dataset. The Hyperball inventory remains 13 papers, 22 resources/reports, and 24 implementation/artifact families.
 
 ## Maintenance Validation
 

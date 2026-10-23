@@ -1,6 +1,6 @@
 # μP / μTransfer search audit — 2026-09-14
 
-This update follows the substantive μP scope in [CONTRIBUTING.md](../CONTRIBUTING.md). It extends the September 5 snapshot through September 14, with backward searches for omissions. The collection now contains **160 papers**, **54 learning / technical resources**, and **96 implementation / artifact links**: additions of **2**, **14**, and **8**, respectively. The two Markdown indexes have identical paper and resource tables; each paper has a BibTeX entry.
+This update follows the substantive μP scope in [CONTRIBUTING.md](../../CONTRIBUTING.md). It extends the September 5 snapshot through September 14, with backward searches for omissions. The collection now contains **160 papers**, **54 learning / technical resources**, and **96 implementation / artifact links**: additions of **2**, **14**, and **8**, respectively. The two Markdown indexes have identical paper and resource tables; each paper has a BibTeX entry.
 
 This is a best-effort search of publicly accessible sources, not proof of exhaustive coverage. Unindexed work, newly posted records, inaccessible submissions, and unpublished material can still be missing. The date is the search cutoff, not a claim that every source was published on that date. General hyperparameter transfer was searched for discovery, but this update retains the repository's existing μP inclusion boundary.
 

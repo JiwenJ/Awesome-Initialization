@@ -1,6 +1,6 @@
 # μP, Scale-Aware HPT, and Hyperball Audit — 2026-10-15
 
-This update follows [CONTRIBUTING.md](../CONTRIBUTING.md), extends the [October 9 audit](search-audit-2026-10-09.md) through **October 15, 2026**, and checks older omissions. It adds **9 distinct papers**: two direct μP extensions and seven complementary HPT studies. Revisions of an existing paper and updates within an existing implementation family are not new papers or independent implementations. The cutoff describes a best-effort public-source search, not guaranteed coverage of private, inaccessible, unindexed, or newly posted work.
+This update follows [CONTRIBUTING.md](../../CONTRIBUTING.md), extends the [October 9 audit](search-audit-2026-10-09.md) through **October 15, 2026**, and checks older omissions. It adds **9 distinct papers**: two direct μP extensions and seven complementary HPT studies. Revisions of an existing paper and updates within an existing implementation family are not new papers or independent implementations. The cutoff describes a best-effort public-source search, not guaranteed coverage of private, inaccessible, unindexed, or newly posted work.
 
 | Collection | Papers before → after | Resources before → after | Artifacts before → after |
 |---|---:|---:|---:|
@@ -52,7 +52,7 @@ Two existing integration rows were updated, not counted again:
 - [Paddle #79850](https://github.com/PaddlePaddle/Paddle/pull/79850), merged October 12, separately updates logical slices of fused parameters, correcting the difference between a combined norm constraint and separate gate/up constraints. Source and tests were inspected; no loss gain is inferred. The release cherry-pick #79851 is closed unmerged and the sharding proposal #79844 remains unmerged.
 - [MarinSkyRL #939](https://github.com/marin-community/MarinSkyRL/pull/939), merged October 9 UTC, adds native Megatron MuonH/AdamH grouping and continuation. Whole-logical-QKV, separate gate/up and per-expert norms, CPU momentum offload and FP32 master weights are recipe details, not evidence of independently verified RL-quality improvement. Tensor parallelism remains restricted to size one.
 
-The closed-unmerged [Dion MuonH proposal #71](https://github.com/microsoft/dion/pull/71) is not upstream support. Unofficial CS312 derivative notes are not counted separately. Existing bioRxiv/Notion/OpenReview access limits are not silently treated as resolved. The [root README includes the complete current Hyperball evidence](../README.md#hyperball-search-coverage-and-maintenance).
+The closed-unmerged [Dion MuonH proposal #71](https://github.com/microsoft/dion/pull/71) is not upstream support. Unofficial CS312 derivative notes are not counted separately. Existing bioRxiv/Notion/OpenReview access limits are not silently treated as resolved. The [maintenance archive includes the complete current Hyperball evidence](hyperball-history.md#hyperball-search-coverage-and-maintenance).
 
 ## Exclusions and Access Limits
 

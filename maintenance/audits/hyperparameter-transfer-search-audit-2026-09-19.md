@@ -53,9 +53,9 @@ The exact arXiv phrase query for `hyperparameter transfer` returned many cross-d
 
 ## Direct Work Already Covered Elsewhere
 
-The strict [μP bibliography](../papers/mup-transfer.bib) already contains the primary parameterization lineage and many multi-axis extensions, including Tensor Programs V, Depthwise HPT, Tensor Programs VI, architecture-aware scaling, Scaling Exponents, Power Scheduler, token-horizon scaling, Time Transfer, CompleteP, Power Lines, Complete(d)P, matrix-preconditioned optimizer transfer, νGPT, and several MoE rules and applications.
+The strict [μP bibliography](../../papers/mup-transfer.bib) already contains the primary parameterization lineage and many multi-axis extensions, including Tensor Programs V, Depthwise HPT, Tensor Programs VI, architecture-aware scaling, Scaling Exponents, Power Scheduler, token-horizon scaling, Time Transfer, CompleteP, Power Lines, Complete(d)P, matrix-preconditioned optimizer transfer, νGPT, and several MoE rules and applications.
 
-The [Hyperball bibliography](../papers/hyperball.bib) already contains the formal Hyperball paper, HyperP, effective-learning-rate and schedule analyses, HyperTransfer, criticism, and substantive applications. Those records remain in their original bibliographies and are cross-linked by the new guide instead of duplicated.
+The [Hyperball bibliography](../../papers/hyperball.bib) already contains the formal Hyperball paper, HyperP, effective-learning-rate and schedule analyses, HyperTransfer, criticism, and substantive applications. Those records remain in their original bibliographies and are cross-linked by the new guide instead of duplicated.
 
 The 2026-09-15 to 2026-09-19 incremental search found no qualifying direct μP or Hyperball paper first public after the prior September 14 audits. A September 20 follow-up recovered the pre-existing August 28 MuonM/MuonH comparison described in the correction above. HyperTransfer, first submitted 2026-09-07, remains the latest verified direct Hyperball paper by first-public date. The newest complementary scale-aware HPT paper found is the 2026-09-08 MoE-sparsity law.
 

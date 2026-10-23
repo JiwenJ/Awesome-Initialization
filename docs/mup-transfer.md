@@ -3,11 +3,11 @@
 > μP = **Maximal Update Parametrization**.  
 > μTransfer = tune hyperparameters on a small μP proxy model and transfer them to a larger μP target model.
 
-Snapshot: **2026-10-20**. This page contains **173** directly relevant papers, plus **63** learning resources and **102** implementation / artifact links. The current search window covers **2024-08-25 to 2026-10-20**; earlier rows retain the direct theoretical lineage and historically important applications.
+Snapshot: **2026-10-20**. This page contains **173** directly relevant papers, plus **63** learning resources and **102** implementation / artifact links. The collection covers **2024-08-25 to 2026-10-20**, alongside earlier theoretical foundations and historically important applications.
 
 This page focuses on μP as a practical tool for **cross-scale hyperparameter transfer**, especially learning-rate transfer in Transformers and related architectures.
 
-The companion [Hyperball guide](hyperball.md) covers AdamH/MuonH and related analyses beyond this page's μP scope. The [scale-aware HPT guide](hyperparameter-transfer.md) covers complementary proxy-to-target methods that do not substantively use μP. Counts overlap only where works satisfy more than one collection's rules. The Hyperball audit also recovered MACRO's explicit μP width-transfer experiment, now indexed below.
+The companion [Hyperball guide](hyperball.md) covers AdamH/MuonH and related analyses beyond this page's μP scope. The [scale-aware HPT guide](hyperparameter-transfer.md) covers complementary proxy-to-target methods that do not substantively use μP. Counts overlap only where works satisfy more than one collection's rules.
 
 ## Contents
 
@@ -19,7 +19,6 @@ The companion [Hyperball guide](hyperball.md) covers AdamH/MuonH and related ana
 - [Implementations and artifacts](#implementations-and-artifacts)
 - [Practical checklist](#practical-checklist)
 - [Known limitations and open questions](#known-limitations-and-open-questions)
-- [Search keywords](#search-keywords)
 
 ## Summary
 
@@ -60,30 +59,6 @@ Standard parameterization often makes the best learning rate, initialization sca
 The table is ordered by arXiv `published` date, OpenReview public date, official report date, or venue date in reverse chronological order, matching the style of `JiwenJ/Awesome-Optimizers`.
 
 Coverage requires substantive derivation, implementation, experimental validation, direct criticism, or material application of μP / μTransfer. Generic initialization, Muon, scaling-law, batch/token, scheduler, or ordinary HPT papers are excluded when μP is only an analogy, background citation, or unvalidated recipe mention.
-
-The **2026-08-13** audit re-read all 239 previously listed papers and removed 114 non-substantive, adjacent-only, or foundation-only entries. It cross-checked arXiv, OpenReview, venue-only records, full-text application reports, official projects, and the active `francesco-innocenti/mup-papers` index; alternate records of the same work are collapsed into one entry.
-
-The **2026-08-18** incremental audit found no new direct μP record first released after August 13, but recovered seven earlier false negatives through full-text and venue-level checks, removed one residual-scaling / Muon paper that only cited μP-related work, tightened fourteen ambiguous descriptions, and reclassified companion artifacts by what they actually implement.
-
-The **2026-08-24** full-text audit added one newly released direct record and restored nine earlier false negatives, including Depth-μP / Muon routing analysis, μP-controlled scaling-law and warmup studies, progressive depth expansion, Hydro, Cerebras-GPT, MiniCPM, and the Feature Speed Formula. It also removed an abstract-only record whose public text did not expose any μP result, refreshed official code, checkpoints, and documentation, and continued to reject work where μP is only a citation, analogy, or unvalidated configuration.
-
-The **2026-08-25** completion audit found no new direct record released on August 24–25, but restored eleven historical false negatives through primary-source full-text checks. It removed a dynamic-sparsity paper whose learning-rate rule was only motivated by μP, moved the TASI lectures to teaching resources, corrected descriptions that overclaimed transfer validation, and retained the Depth-μP / Muon MoE study with an explicit note that it does not test multi-depth optimal-LR transfer.
-
-The **2026-09-05** incremental search cross-checked arXiv, OpenReview, venue records, author resources, and the community μP index. It added AK-Momentum (formerly DeltaMomentum; renamed on September 3) and the CCN 2025 SwiFT V2 extended abstract, plus experimental and teaching resources. New entries require primary-source μP derivations, coordinate checks, or explicit proxy-to-target transfer; related-work-only matches are excluded. This is a best-effort literature search through the snapshot date, not a claim that every unindexed or unpublished work has been found.
-
-The **2026-09-14** audit recovered two application papers (ATLAS GN2 and token-level data filtering), fourteen teaching / technical resources, and eight implementation links. It checked primary full texts, author code, venue records, and community-index gaps while preserving the substantive μP scope. See the [search audit](search-audit-2026-09-14.md) for evidence, date conventions, excluded general-HPT candidates, and unresolved records.
-
-The **2026-09-19** incremental audit found no new direct μP record after September 14. It promoted previously excluded non-μP scale-transfer work into the separate [scale-aware HPT collection](hyperparameter-transfer.md), preserving this timeline's stricter requirement that μP be a substantive method or object of analysis. See the [combined audit](hyperparameter-transfer-search-audit-2026-09-19.md).
-
-The **2026-09-24** incremental audit found no new direct μP paper first released after September 14, but recovered a bilingual-pretraining study with explicit proxy-to-target validation. It added a weight-decay tutorial and an implementation-only LM Engine entry, and refreshed the reference package's archive status and Megatron's optimizer-specific support. See the [search audit](search-audit-2026-09-24.md) for primary-source evidence and exclusions.
-
-The **2026-10-04** audit added hybrid Transformer–SSM width-transfer experiments and growing-horizon shallow-linear fast-transfer theory, and recovered a looped-LM application with independent HyperP learning-rate checks. It also corrected the HiLD sketched-regression paper's public authors, added a teaching note with an author-reported one-step reproduction, and distinguished author code from an unexecuted community MLX demonstration. Failed coordinate checks do not by themselves disprove empirical learning-rate transfer; common-horizon width theory and single-LR long runs do not establish zero-shot transfer between training durations. See the [search audit](search-audit-2026-10-04.md) for evidence and unresolved sources.
-
-The **2026-10-09** incremental audit added a HEP Complete(d)P application and recovered three earlier omissions: Kolibri's width-transfer validation / horizon-extrapolation recipe, μP-controlled graph-metanetwork width generalization, and TACO's conditional spectral derivation / post-training learning-rate sweeps (latest reviewed v2, October 6). It added source-inspected author implementations, official Kolibri release artifacts, two researcher teaching notes, an executable framework coordinate-check tutorial, a secondary u-μP summary, an official course outline, and ACAT graph-transformer conference slides. These results retain their demonstrated limits: HEP depth transfer needs an empirical correction, Kolibri's measured width optimum drifts by √2 and its target-horizon optimum is not independently verified, metanetwork theory fixes the training-horizon / optimizer / data laws, and TACO's shared optimum is not a universal pretraining guarantee. See the [search audit](search-audit-2026-10-09.md).
-
-The **2026-10-15** incremental audit added ShellElastic's μ-Elastic extension and recovered σTransfer's October 8 uncertainty-transfer study, plus the now-retrievable CompleteP teaching note. ShellElastic's scaling arguments use stated heuristic assumptions, and its independent learning-rate sweeps cover 119M–906M elastic families; σTransfer's kernel theorem is fixed-depth, finite-step MLP theory, while its public 1B→7B experiment changes both width and depth. Neither paper currently supplies a verified author-code link. The SSRN lead *Quantitative Mean-Field Limits for the Training of Maximal-Update Neural Networks via Explicit Couplings* remains uncounted because its full text could not be retrieved. See the [search audit](search-audit-2026-10-15.md).
-
-The **2026-10-20** incremental audit added DP-μP's noise-aware width-transfer rules and a study of learning-rate-curve gradients with explicit μP width sweeps. DP-μP requires layer-wise signal-to-noise matching and noise-dominated assumptions; its batch experiment fixes update count while scaling privacy noise, and depth transfer remains open. The LR-gradient study combines conditional edge-of-stability analysis with a heuristic fixed-point estimator; output-scale ablations affect μP transfer in its ResNet experiments, without establishing a universal optimal-LR rule. No verified author-code release was found for either new paper, ShellElastic, or σTransfer. The SSRN coupling preprint and three previously unresolved tutorials remain outside the counted tables because their full text could not be retrieved. See the [search audit](search-audit-2026-10-20.md).
 
 | Date | Paper | Main contribution | Tags |
 |---|---|---|---|
@@ -460,25 +435,3 @@ The **2026-10-20** incremental audit added DP-μP's noise-aware width-transfer r
 - **Theory vs practice gap remains.** Recent empirical work questions whether the standard μP explanation fully accounts for AdamW LM transfer, especially around embeddings.
 - **Coordinate checks and LR transfer are different tests.** Hybrid Transformer–SSM experiments exhibit width-LR transfer despite failed standard coordinate checks; conversely, stable coordinates alone do not establish that a transferred LR is target-optimal.
 - **Privacy noise adds another transfer constraint.** DP-μP matches both spectral update scales and layer-wise signal-to-noise ratios; its noise-dominated width theory does not establish depth transfer or a rule for the transition between signal- and noise-dominated regimes.
-
-## Search Keywords
-
-Use these when extending the list:
-
-- `maximal update parametrization`
-- `maximal update parameterization`
-- `muP hyperparameter transfer`
-- `μTransfer`
-- `Tensor Programs V`
-- `Depth-μP`
-- `coordinate check muP`
-- `embedding learning rate muP`
-- `GQA-μP`
-- `u-μP`
-- `μP^2`
-- `CompleteP`
-- `AM-μP`
-- `MSSP`
-- `SμPar`
-- `HyperP Muon`
-- `DP-μP signal-to-noise transfer`

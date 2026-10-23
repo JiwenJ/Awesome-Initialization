@@ -21,3 +21,5 @@ This directory stores BibTeX files for the paper collections in this repository.
 - Reuse citation keys and identical bibliographic metadata for papers present in both collections. Collection counts overlap and must not be summed as unique papers.
 - Author notes, talks, blogs, code links, and explicitly labeled adjacent reading do not increase the direct-paper counts or receive entries in these paper-only bibliographies.
 - Do not add generic initialization, optimizer, scaling-law, or hyperparameter-transfer papers to the μP collection unless μP is substantively used or analyzed. The Hyperball collection instead requires substantive Hyperball evidence. The complementary HPT collection requires a direct optimization-hyperparameter rule or invariant recipe over a stated model/training scale axis, as specified in [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+Source audits and literature-search histories are indexed in [maintenance/](../maintenance/README.md).
