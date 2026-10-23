@@ -2,7 +2,9 @@
 
 <img alt="Awesome μP: training loss against log2 learning rate for widths 256 to 8192, with every curve reaching its minimum at the same learning rate" src="assets/banner.svg" width="100%">
 
-<a href="https://awesome.re"><img src="https://awesome.re/badge-flat2.svg" alt="Awesome"></a> <a href="https://github.com/JiwenJ/Awesome-Initialization"><img src="https://img.shields.io/badge/GitHub-JiwenJ%2FAwesome--Initialization-181717?logo=github" alt="JiwenJ/Awesome-Initialization"></a> <a href="#why-mup-matters"><img src="https://img.shields.io/badge/scope-%CE%BCP%20%7C%20%CE%BCTransfer%20%7C%20maximal%20updates-2f6f9f" alt="Scope"></a> <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-2ea44f" alt="PRs welcome"></a>
+[![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
+[![GitHub: JiwenJ/Awesome-Initialization](https://img.shields.io/badge/GitHub-JiwenJ%2FAwesome--Initialization-181717.svg?style=flat-square&logo=github)](https://github.com/JiwenJ/Awesome-Initialization)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/JiwenJ/Awesome-Initialization/pulls)
 
 Papers, code and notes organized into [μP](#mup), [Hyperball](#hyperball), and [Others](#others), covering maximal-update parametrization and complementary methods for transferring optimization hyperparameters across scales.
 
