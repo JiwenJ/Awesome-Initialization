@@ -6,11 +6,9 @@
 [![GitHub: JiwenJ/Awesome-Initialization](https://img.shields.io/badge/GitHub-JiwenJ%2FAwesome--Initialization-181717.svg?style=flat-square&logo=github)](https://github.com/JiwenJ/Awesome-Initialization)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/JiwenJ/Awesome-Initialization/pulls)
 
-Papers, code and notes organized into [μP](#mup), [Hyperball](#hyperball), and [Others](#others), covering maximal-update parametrization and complementary methods for transferring optimization hyperparameters across scales.
+A curated collection of papers, code, and resources on [μP](#mup), [Hyperball optimization](#hyperball), and [cross-scale hyperparameter transfer](#others).
 
 </div>
-
-Literature snapshot: **2026-10-20**. Counts may overlap across collections.
 
 ## Contents
 
