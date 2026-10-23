@@ -6,9 +6,7 @@
 [![GitHub: JiwenJ/Awesome-Initialization](https://img.shields.io/badge/GitHub-JiwenJ%2FAwesome--Initialization-181717.svg?style=flat-square&logo=github)](https://github.com/JiwenJ/Awesome-Initialization)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/JiwenJ/Awesome-Initialization/pulls)
 
-A curated collection of papers, code, and learning resources on scale-aware neural network training. It covers [maximal-update parametrization (μP)](#mup) and μTransfer, [Hyperball optimization](#hyperball) and its AdamH/MuonH variants, and [other approaches to hyperparameter transfer](#others).
-
-The collection spans theoretical foundations, coordinate checks, empirical scaling laws, practical implementations, and critical evaluations. It focuses on how model width and depth, training duration, batch size, and optimizer choice affect learning-rate and weight-decay transfer, helping researchers compare methods and design proxy-to-target tuning strategies.
+A curated collection of papers, code, and learning resources on [μP and μTransfer](#mup), [Hyperball optimization](#hyperball), and [cross-scale hyperparameter transfer](#others). It covers theory, coordinate checks, empirical scaling laws, implementations, and critical evaluations, focusing on how model width and depth, batch size, training duration, and optimizer choice affect learning-rate and weight-decay transfer from small proxy models to large-scale training.
 
 </div>
 
