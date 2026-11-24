@@ -28,6 +28,8 @@ The [Others section](README.md#others) and [scale-aware HPT guide](docs/hyperpar
 
 Cross-dataset AutoML transfer, ordinary transfer learning, neural architecture search, and performance-only scaling laws do not qualify unless the main text also contains a substantive optimization-hyperparameter rule. Theory-only work may qualify when it explicitly derives a scale-dependent optimum or invariant recipe and clearly states the model or optimizer setting. Describe narrow theory, embedded paper sections, and empirical fits at their demonstrated scope rather than as universal laws.
 
+The [learning-rate schedules guide](docs/learning-rate-schedules.md) also links to foundational scheduler-design papers that do not satisfy a direct collection's scope. Keep these as contextual readings without adding them to the direct tables, counts, or bibliographies; cross-link already indexed work.
+
 Keep the Hyperball paper, resource, and artifact tables identical between `README.md` and `docs/hyperball.md`, and synchronize its direct-paper table with `papers/hyperball.bib`. Keep the existing μP tables synchronized between `README.md` and `docs/mup-transfer.md`, with `papers/mup-transfer.bib` for its papers. Keep the complementary HPT paper, resource, and artifact tables identical between `README.md` and `docs/hyperparameter-transfer.md`, and synchronize its direct-paper table with `papers/hyperparameter-transfer.bib`. Papers already counted by μP or Hyperball should be cross-linked from the HPT guide rather than duplicated in its bibliography. A work included in more than one strict collection retains the same citation key and metadata; overlapping rows are not additional unique works.
 
 ## Entry Format
